@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JT Cotton | Data Analytics Portfolio</title>
+<style>
+  :root {
+    --gold: #FFB800;
+    --gold-light: #FFD04D;
+    --gold-dark: #CC9200;
+    --black: #0A0A0A;
+    --dark: #141414;
+    --card: #1E1E1E;
+    --card2: #252525;
+    --border: #2E2E2E;
+    --text: #F0F0F0;
+    --muted: #888;
+    --green: #4CAF50;
+    --red: #F44336;
+    --blue: #2196F3;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--dark) 0%, #1a1400 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-left h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .header-left p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+  .header-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* ── TABS ── */
+  .tab-bar {
+    background: var(--dark);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    padding: 0 40px;
+    overflow-x: auto;
+    gap: 4px;
+  }
+  .tab-btn {
+    padding: 14px 22px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--gold-light); }
+  .tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── CONTENT ── */
+  .tab-content { display: none; padding: 36px 40px; max-width: 1100px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  h2 { font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+  h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .section-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--gold-dark); }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+  .card-title { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+  .card-meta { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+  .card-body { font-size: 0.9rem; color: #ccc; line-height: 1.6; }
+
+  /* ── TAGS ── */
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .tag {
+    background: #1a1200;
+    border: 1px solid var(--gold-dark);
+    color: var(--gold-light);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .tag.skill { background: #001a14; border-color: #2e7d52; color: #81c995; }
+  .tag.status-done { background: #001a00; border-color: #388e3c; color: #81c784; }
+  .tag.status-wip { background: #1a1000; border-color: #f57c00; color: #ffb74d; }
+  .tag.status-next { background: #0a0a1a; border-color: #1565c0; color: #90caf9; }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap { margin-top: 10px; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-bottom: 5px; }
+  .progress-bar { background: var(--border); border-radius: 4px; height: 8px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); transition: width 0.5s ease; }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+
+  /* ── ROADMAP ── */
+  .roadmap-phase { margin-bottom: 28px; }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-num {
+    background: var(--gold);
+    color: var(--black);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .phase-title { font-size: 1.1rem; font-weight: 700; }
+  .phase-timeline { margin-left: auto; font-size: 0.8rem; color: var(--gold); font-weight: 600; background: #1a1200; border: 1px solid var(--gold-dark); padding: 3px 10px; border-radius: 10px; }
+
+  .skill-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-check {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  .skill-check.checked { background: var(--gold); border-color: var(--gold); color: var(--black); font-size: 0.75rem; }
+  .skill-info { flex: 1; }
+  .skill-name { font-size: 0.9rem; font-weight: 600; }
+  .skill-res { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+  .skill-level { font-size: 0.75rem; color: var(--gold); font-weight: 600; }
+
+  /* ── CERTS ── */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+  }
+  .cert-card.earned::before { background: var(--green); }
+  .cert-card.in-progress::before { background: #FF9800; }
+  .cert-icon { font-size: 2rem; margin-bottom: 10px; }
+  .cert-name { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+  .cert-org { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+  .cert-status-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .status-earned { background: #0a1f0a; color: #81c784; border: 1px solid #388e3c; }
+  .status-progress { background: #1a1000; color: #ffb74d; border: 1px solid #f57c00; }
+  .status-planned { background: #0a0a1a; color: #90caf9; border: 1px solid #1565c0; }
+  .cert-date { font-size: 0.78rem; color: var(--muted); margin-top: 8px; }
+  .cert-notes { font-size: 0.82rem; color: #bbb; margin-top: 8px; line-height: 1.5; }
+
+  /* ── GOALS ── */
+  .goal-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .goal-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .goal-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+  .goal-desc { font-size: 0.85rem; color: #bbb; line-height: 1.5; }
+  .goal-date { font-size: 0.78rem; color: var(--gold); font-weight: 600; margin-top: 6px; }
+
+  /* ── ABOUT ── */
+  .about-hero {
+    background: linear-gradient(135deg, var(--card) 0%, #1a1200 100%);
+    border: 1px solid var(--gold-dark);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .about-name { font-size: 2rem; font-weight: 800; color: var(--gold); }
+  .about-title { font-size: 1rem; color: var(--muted); margin-top: 6px; }
+  .about-bio { font-size: 0.95rem; color: #ccc; line-height: 1.8; margin-top: 16px; text-align: left; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .skill-pill {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--gold-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  /* ── STAT BOXES ── */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--gold); }
+  .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
+
+  /* ── EDITABLE ── */
+  [contenteditable="true"] {
+    outline: none;
+    border-radius: 4px;
+    padding: 2px 4px;
+    transition: background 0.2s;
+  }
+  [contenteditable="true"]:focus {
+    background: rgba(255,184,0,0.1);
+    box-shadow: 0 0 0 1px var(--gold-dark);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  @media (max-width: 600px) {
+    header, .tab-content { padding: 20px 16px; }
+    .tab-bar { padding: 0 8px; }
+    .tab-btn { padding: 12px 14px; font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>JT Cotton</h1>
+    <p>Data Analytics Portfolio &nbsp;•&nbsp; WHS Specialist → Data Analyst</p>
+  </div>
+  <div class="header-badges">
+    <span class="badge">📍 Lubbock, TX</span>
+    <span class="badge">🏭 Amazon LBB5</span>
+    <span class="badge">📊 Aspiring Data Analyst</span>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('portfolio', this)">🗂️ Portfolio</button>
+  <button class="tab-btn" onclick="showTab('roadmap', this)">🗺️ Learning Roadmap</button>
+  <button class="tab-btn" onclick="showTab('certs', this)">🏆 Certifications</button>
+  <button class="tab-btn" onclick="showTab('goals', this)">🎯 Goals</button>
+  <button class="tab-btn" onclick="showTab('about', this)">👤 About Me</button>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 1 — PORTFOLIO
+════════════════════════════════════════ -->
+<div id="tab-portfolio" class="tab-content active">
+  <h2>Project Portfolio</h2>
+  <p class="section-sub">Real-world tools built to solve operational problems — each one a data project.</p>
+
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num">4</div><div class="stat-label">Projects Built</div></div>
+    <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Tools in Active Use</div></div>
+    <div class="stat-box"><div class="stat-num">5+</div><div class="stat-label">Skills Applied</div></div>
+    <div class="stat-box"><div class="stat-num">∞</div><div class="stat-label">Problems Solved</div></div>
+  </div>
+
+  <!-- Project 1 -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">📋 LBB5 CAST Training Tracker</div>
+        <div class="card-meta">WHS Compliance Tool &nbsp;•&nbsp; HTML / JavaScript / CSV Integration</div>
+      </div>
+      <span class="tag status-done">✅ Live</span>
+    </div>
+    <div class="card-body">
+      Built a fully browser-based training compliance dashboard for Amazon's CAST safety training program at the LBB5 Sort Center. The tool ingests CSV exports from the learning management system, strips formatting artifacts, and displays real-time compliance status by associate, shift, and training module. Integrated RallyPoint scheduling data to show upcoming TM pull windows for training. Replaced a manual spreadsheet process that took hours — now takes minutes.
+      <div class="tags">
+        <span class="tag skill">HTML/CSS/JS</span>
+        <span class="tag skill">CSV Parsing</span>
+        <span class="tag skill">Data Cleaning</span>
+        <span class="tag skill">Operations Analytics</span>
+        <span class="tag skill">Dashboard Design</span>
+        <span class="tag">Amazon WHS</span>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Complexity</span><span>Advanced</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">📅 LBB5 SSPOT Schedule Tracker</div>
+        <div class="card-meta">Workforce Scheduling Tool &nbsp;•&nbsp; HTML / JavaScript / Multi-CSV</div>
+      </div>
+      <span class="tag status-done">✅ Live</span>
+    </div>
+    <div class="card-body">
+      Designed a schedule management tool that cross-references SSPOT roster data with CAST training compliance to identify which associates are available for training during their scheduled shifts. Parses multiple CSV formats with columns including Employee Login, Schedule Start/End Time, and Schedule Work Groups. Provides ops managers an instant view of training opportunities without requiring access to backend systems.
+      <div class="tags">
+        <span class="tag skill">HTML/CSS/JS</span>
+        <span class="tag skill">Multi-source Data Join</span>
+        <span class="tag skill">Workforce Analytics</span>
+        <span class="tag skill">Schedule Optimization</span>
+        <span class="tag">Amazon Operations</span>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Complexity</span><span>Advanced</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+    </div>
+  </div>
+
+  <!-- Project 3 -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🔍 LBB5 Investigation Tracker</div>
+        <div class="card-meta">Safety Investigation Tool &nbsp;•&nbsp; HTML / JavaScript / Local Storage</div>
+      </div>
+      <span class="tag status-done">✅ Live</span>
+    </div>
+    <div class="card-body">
+      Developed a 3LS (3-Level Safety) investigation tracking system used by the WHS team at LBB5. Provides a structured workflow for logging, categorizing, and tracking safety incidents through the investigation lifecycle. Uses browser local storage for persistence — no server required, fully offline-capable. Designed for shift handoff visibility so nothing falls through the cracks.
+      <div class="tags">
+        <span class="tag skill">HTML/CSS/JS</span>
+        <span class="tag skill">Data Entry & Tracking</span>
+        <span class="tag skill">Workflow Design</span>
+        <span class="tag skill">Local Storage / State</span>
+        <span class="tag">Safety Analytics</span>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Complexity</span><span>Intermediate</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+    </div>
+  </div>
+
+  <!-- Project 4 -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🗺️ LBB5 Site Map</div>
+        <div class="card-meta">Facility Visualization &nbsp;•&nbsp; Draw.io / XML / Spatial Data</div>
+      </div>
+      <span class="tag status-done">✅ Complete</span>
+    </div>
+    <div class="card-body">
+      Created a detailed facility site map of the LBB5 Sort Center using Draw.io, exported as structured XML. Used for operational planning, safety zone identification, and onboarding new associates. Demonstrates spatial data thinking and the ability to represent complex physical environments in a structured, digital format.
+      <div class="tags">
+        <span class="tag skill">Data Visualization</span>
+        <span class="tag skill">XML / Structured Data</span>
+        <span class="tag skill">Draw.io</span>
+        <span class="tag skill">Facility Planning</span>
+        <span class="tag">Operations</span>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Complexity</span><span>Intermediate</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+    </div>
+  </div>
+
+  <!-- Project 5 — HYROX placeholder -->
+  <div class="card">
+    <div class="card-header">
+      <div>
+        <div class="card-title">🏋️ HYROX Training Analytics</div>
+        <div class="card-meta">Personal Performance Tracker &nbsp;•&nbsp; HTML / JS / Apple Fitness Integration</div>
+      </div>
+      <span class="tag status-wip">🔄 In Progress</span>
+    </div>
+    <div class="card-body">
+      Building a personal training analytics tracker to prepare for a HYROX competition in November 2026. Tracks workouts, performance trends, weight, and recovery data. Demonstrates ability to apply data analytics to real personal goals — including trend analysis, goal pacing, and performance benchmarking. (Great example of self-motivated data work for interviewers.)
+      <div class="tags">
+        <span class="tag skill">HTML/CSS/JS</span>
+        <span class="tag skill">Time-Series Data</span>
+        <span class="tag skill">Performance Analytics</span>
+        <span class="tag skill">Data Visualization</span>
+        <span class="tag">Personal Project</span>
+      </div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>Complexity</span><span>Intermediate</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 2 — ROADMAP
+════════════════════════════════════════ -->
+<div id="tab-roadmap" class="tab-content">
+  <h2>Learning Roadmap</h2>
+  <p class="section-sub">12-month plan from WHS Specialist to Data Analyst. Check off skills as you complete them — progress saves automatically.</p>
+
+  <div class="stats-row" id="roadmap-stats">
+    <div class="stat-box"><div class="stat-num" id="stat-completed">0</div><div class="stat-label">Skills Completed</div></div>
+    <div class="stat-box"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Skills</div></div>
+    <div class="stat-box"><div class="stat-num" id="stat-pct">0%</div><div class="stat-label">Overall Progress</div></div>
+  </div>
+
+  <!-- Phase 1 -->
+  <div class="roadmap-phase">
+    <div class="phase-header">
+      <div class="phase-num">1</div>
+      <div>
+        <div class="phase-title">Foundation — You Already Have This</div>
+        <div class="card-meta">Credit your existing skills</div>
+      </div>
+      <div class="phase-timeline">Now</div>
+    </div>
+    <div class="card">
+      <div class="skill-item">
+        <div class="skill-check checked" onclick="toggleSkill(this)">✓</div>
+        <div class="skill-info">
+          <div class="skill-name">Excel — Intermediate/Advanced</div>
+          <div class="skill-res">Weekly scheduling, CSV analysis, CAST tracker</div>
+        </div>
+        <div class="skill-level">✅ Done</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check checked" onclick="toggleSkill(this)">✓</div>
+        <div class="skill-info">
+          <div class="skill-name">HTML / CSS / JavaScript</div>
+          <div class="skill-res">Built 3+ production tools for LBB5</div>
+        </div>
+        <div class="skill-level">✅ Done</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check checked" onclick="toggleSkill(this)">✓</div>
+        <div class="skill-info">
+          <div class="skill-name">CSV Data Handling</div>
+          <div class="skill-res">Parsing, cleaning, joining — daily work</div>
+        </div>
+        <div class="skill-level">✅ Done</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check checked" onclick="toggleSkill(this)">✓</div>
+        <div class="skill-info">
+          <div class="skill-name">Operations Data Mindset</div>
+          <div class="skill-res">3 years reading operational metrics, safety KPIs</div>
+        </div>
+        <div class="skill-level">✅ Done</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="roadmap-phase">
+    <div class="phase-header">
+      <div class="phase-num">2</div>
+      <div>
+        <div class="phase-title">SQL — The #1 Must-Have Skill</div>
+        <div class="card-meta">Every data role requires SQL</div>
+      </div>
+      <div class="phase-timeline">Months 1-2</div>
+    </div>
+    <div class="card">
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">SQL Basics — SELECT, WHERE, ORDER BY</div>
+          <div class="skill-res">Resource: SQLZoo.net (free, interactive)</div>
+        </div>
+        <div class="skill-level">⚡ Priority</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">SQL Joins — INNER, LEFT, RIGHT, FULL</div>
+          <div class="skill-res">Resource: Mode Analytics SQL Tutorial (free)</div>
+        </div>
+        <div class="skill-level">⚡ Priority</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">SQL Aggregations — GROUP BY, HAVING, COUNT, SUM</div>
+          <div class="skill-res">Resource: W3Schools SQL (free)</div>
+        </div>
+        <div class="skill-level">⚡ Priority</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">SQL Subqueries & CTEs</div>
+          <div class="skill-res">Resource: LeetCode SQL problems (free tier)</div>
+        </div>
+        <div class="skill-level">Month 2</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">SQL Window Functions</div>
+          <div class="skill-res">Resource: Kaggle SQL micro-course (free)</div>
+        </div>
+        <div class="skill-level">Month 2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="roadmap-phase">
+    <div class="phase-header">
+      <div class="phase-num">3</div>
+      <div>
+        <div class="phase-title">Data Visualization — Tell the Story</div>
+        <div class="card-meta">Turn data into decisions</div>
+      </div>
+      <div class="phase-timeline">Months 2-4</div>
+    </div>
+    <div class="card">
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Excel — Pivot Tables & Advanced Charts</div>
+          <div class="skill-res">Resource: ExcelJet.net tutorials (free)</div>
+        </div>
+        <div class="skill-level">⚡ Priority</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Tableau Public — Basics</div>
+          <div class="skill-res">Resource: Tableau Public (free) + official training videos</div>
+        </div>
+        <div class="skill-level">Month 3</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Power BI Desktop — Basics</div>
+          <div class="skill-res">Resource: Microsoft Learn (free) — PL-300 prep</div>
+        </div>
+        <div class="skill-level">Month 4</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Dashboard Design Principles</div>
+          <div class="skill-res">Resource: "Storytelling with Data" (book) by Cole Nussbaumer Knaflic</div>
+        </div>
+        <div class="skill-level">Month 3-4</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="roadmap-phase">
+    <div class="phase-header">
+      <div class="phase-num">4</div>
+      <div>
+        <div class="phase-title">Python for Data — pandas & matplotlib</div>
+        <div class="card-meta">Automate analysis at scale</div>
+      </div>
+      <div class="phase-timeline">Months 4-7</div>
+    </div>
+    <div class="card">
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Python Basics — Variables, Loops, Functions</div>
+          <div class="skill-res">Resource: Kaggle Python Micro-course (free, ~5 hours)</div>
+        </div>
+        <div class="skill-level">Month 4-5</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">pandas — DataFrames, filtering, groupby</div>
+          <div class="skill-res">Resource: Kaggle Pandas Micro-course (free)</div>
+        </div>
+        <div class="skill-level">Month 5-6</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">matplotlib / seaborn — Charts in Python</div>
+          <div class="skill-res">Resource: Real Python tutorials (free)</div>
+        </div>
+        <div class="skill-level">Month 6</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Jupyter Notebooks</div>
+          <div class="skill-res">Resource: Kaggle notebooks environment (free, browser-based)</div>
+        </div>
+        <div class="skill-level">Month 6-7</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="roadmap-phase">
+    <div class="phase-header">
+      <div class="phase-num">5</div>
+      <div>
+        <div class="phase-title">Statistics & Analytics Thinking</div>
+        <div class="card-meta">Interpret data correctly</div>
+      </div>
+      <div class="phase-timeline">Months 5-8</div>
+    </div>
+    <div class="card">
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Descriptive Statistics — Mean, Median, StDev</div>
+          <div class="skill-res">Resource: Khan Academy Statistics (free)</div>
+        </div>
+        <div class="skill-level">Month 5</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">A/B Testing Concepts</div>
+          <div class="skill-res">Resource: Udacity A/B Testing course (free)</div>
+        </div>
+        <div class="skill-level">Month 7</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Basic Regression Analysis</div>
+          <div class="skill-res">Resource: Google Data Analytics Certificate includes this</div>
+        </div>
+        <div class="skill-level">Month 8</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 6 -->
+  <div class="roadmap-phase">
+    <div class="phase-header">
+      <div class="phase-num">6</div>
+      <div>
+        <div class="phase-title">Job Ready — Portfolio + Applications</div>
+        <div class="card-meta">Put yourself out there</div>
+      </div>
+      <div class="phase-timeline">Months 8-12</div>
+    </div>
+    <div class="card">
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">GitHub Profile — Upload your projects</div>
+          <div class="skill-res">Resource: GitHub.com (free) — host this portfolio too!</div>
+        </div>
+        <div class="skill-level">Month 8</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">LinkedIn — Reframe your experience in data terms</div>
+          <div class="skill-res">Highlight: tools built, data analyzed, decisions impacted</div>
+        </div>
+        <div class="skill-level">Month 8-9</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Capstone Project — End-to-end data analysis</div>
+          <div class="skill-res">Idea: LBB5 safety trend analysis or HYROX training report</div>
+        </div>
+        <div class="skill-level">Month 9-10</div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-check" onclick="toggleSkill(this)"></div>
+        <div class="skill-info">
+          <div class="skill-name">Start applying — Data Analyst roles</div>
+          <div class="skill-res">Target: Operations Analyst, Business Analyst, WHS Data Analyst</div>
+        </div>
+        <div class="skill-level">Month 10-12</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 3 — CERTIFICATIONS
+════════════════════════════════════════ -->
+<div id="tab-certs" class="tab-content">
+  <h2>Certifications</h2>
+  <p class="section-sub">Track your credentials — earned, in progress, and planned.</p>
+
+  <div class="cert-grid">
+
+    <div class="cert-card planned">
+      <div class="cert-icon">📊</div>
+      <div class="cert-name">Google Data Analytics Certificate</div>
+      <div class="cert-org">Google / Coursera</div>
+      <span class="cert-status-badge status-planned">📋 Planned</span>
+      <div class="cert-date">🎯 Target: End of 2026</div>
+      <div class="cert-notes">6 courses covering data cleaning, SQL, Tableau, R. ~6 months at 10 hrs/week. ~$50/month on Coursera. Highly recognized by employers. Great starting cert.</div>
+    </div>
+
+    <div class="cert-card planned">
+      <div class="cert-icon">☁️</div>
+      <div class="cert-name">AWS Cloud Practitioner (CLF-C02)</div>
+      <div class="cert-org">Amazon Web Services</div>
+      <span class="cert-status-badge status-planned">📋 Planned</span>
+      <div class="cert-date">🎯 Target: Q1 2027</div>
+      <div class="cert-notes">Foundation cloud cert. As an Amazon employee you have free access to internal AWS training. Boosts data analyst roles that use cloud data warehouses (Redshift, S3, Athena).</div>
+    </div>
+
+    <div class="cert-card planned">
+      <div class="cert-icon">📈</div>
+      <div class="cert-name">Microsoft Power BI Data Analyst (PL-300)</div>
+      <div class="cert-org">Microsoft</div>
+      <span class="cert-status-badge status-planned">📋 Planned</span>
+      <div class="cert-date">🎯 Target: Q2 2027</div>
+      <div class="cert-notes">Highly in-demand for business/operations analyst roles. Power BI is used widely in logistics, manufacturing, and supply chain. Free prep via Microsoft Learn.</div>
+    </div>
+
+    <div class="cert-card planned">
+      <div class="cert-icon">🐍</div>
+      <div class="cert-name">Python for Everybody (Py4E)</div>
+      <div class="cert-org">University of Michigan / Coursera</div>
+      <span class="cert-status-badge status-planned">📋 Planned</span>
+      <div class="cert-date">🎯 Target: Mid 2026</div>
+      <div class="cert-notes">Beginner-friendly Python specialization. Free to audit on Coursera. Pairs perfectly with your existing JS knowledge — syntax transfer is fast.</div>
+    </div>
+
+    <div class="cert-card planned">
+      <div class="cert-icon">🏭</div>
+      <div class="cert-name">Amazon Internal: Safety / WHS Credentials</div>
+      <div class="cert-org">Amazon</div>
+      <span class="cert-status-badge status-earned">✅ Earned</span>
+      <div class="cert-date">📅 Active</div>
+      <div class="cert-notes">Your WHS Specialist credentials, CAST training completions, and safety program certifications. These count as domain expertise in safety analytics roles.</div>
+    </div>
+
+    <div class="cert-card planned">
+      <div class="cert-icon">🗄️</div>
+      <div class="cert-name">SQL for Data Science</div>
+      <div class="cert-org">UC Davis / Coursera</div>
+      <span class="cert-status-badge status-planned">📋 Planned</span>
+      <div class="cert-date">🎯 Target: Q3 2026</div>
+      <div class="cert-notes">4-week SQL course specifically focused on data science use cases. Free to audit. Great companion to the Google cert if you want SQL depth early.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 4 — GOALS
+════════════════════════════════════════ -->
+<div id="tab-goals" class="tab-content">
+  <h2>Career Goals & Milestones</h2>
+  <p class="section-sub">Where you're headed — keep this visible and revisit it often.</p>
+
+  <div class="goal-item">
+    <div class="goal-icon">🎯</div>
+    <div>
+      <div class="goal-title">Land First Data Analyst Role</div>
+      <div class="goal-desc">Transition from WHS Specialist to a Data Analyst or Operations Analyst role. Target roles: Operations Data Analyst, Business Intelligence Analyst, WHS/Safety Data Analyst, Supply Chain Analyst. Leverages existing Amazon operations knowledge with new analytics skills.</div>
+      <div class="goal-date">🗓️ Target: End of 2027</div>
+    </div>
+  </div>
+
+  <div class="goal-item">
+    <div class="goal-icon">📊</div>
+    <div>
+      <div class="goal-title">Complete Google Data Analytics Certificate</div>
+      <div class="goal-desc">Finish all 6 courses in the Google Data Analytics Professional Certificate on Coursera. This is the foundational credential that opens doors and proves you're serious about the transition.</div>
+      <div class="goal-date">🗓️ Target: December 2026</div>
+    </div>
+  </div>
+
+  <div class="goal-item">
+    <div class="goal-icon">💻</div>
+    <div>
+      <div class="goal-title">Launch GitHub Portfolio</div>
+      <div class="goal-desc">Get your LBB5 tools and any new projects on GitHub. A public portfolio is the #1 thing that separates candidates who get interviews. Your HTML tools are genuinely impressive and tell a story no CS grad can tell.</div>
+      <div class="goal-date">🗓️ Target: August 2026</div>
+    </div>
+  </div>
+
+  <div class="goal-item">
+    <div class="goal-icon">🔗</div>
+    <div>
+      <div class="goal-title">Rebuild LinkedIn as a Data Professional</div>
+      <div class="goal-desc">Reframe every job title and bullet point in data terms. "Built 4 operational analytics tools." "Analyzed safety compliance trends across 500+ associates." "Reduced training reporting time by 80%." Your story is already there — just tell it right.</div>
+      <div class="goal-date">🗓️ Target: July 2026</div>
+    </div>
+  </div>
+
+  <div class="goal-item">
+    <div class="goal-icon">🐍</div>
+    <div>
+      <div class="goal-title">Write First Python Data Analysis</div>
+      <div class="goal-desc">Complete a real end-to-end analysis using pandas in a Jupyter notebook. Use real data — your CAST training exports, HYROX training log, or any LBB5 ops data. Publish it on GitHub Kaggle or as a Kaggle notebook.</div>
+      <div class="goal-date">🗓️ Target: September 2026</div>
+    </div>
+  </div>
+
+  <div class="goal-item">
+    <div class="goal-icon">🏋️</div>
+    <div>
+      <div class="goal-title">Complete HYROX — November 2026</div>
+      <div class="goal-desc">Finish your first HYROX competition. Document the training data. Use it as a project. Interviewers love people who apply analytical thinking to their own life — it shows the mindset is real, not just resume words.</div>
+      <div class="goal-date">🗓️ Target: November 2026</div>
+    </div>
+  </div>
+
+  <div class="goal-item">
+    <div class="goal-icon">☁️</div>
+    <div>
+      <div class="goal-title">Earn AWS Cloud Practitioner</div>
+      <div class="goal-desc">Use your Amazon employee access to internal AWS training. Cloud foundational knowledge pairs perfectly with data analytics — most data pipelines live in cloud environments. Makes you stand out in supply chain and logistics roles.</div>
+      <div class="goal-date">🗓️ Target: Q1 2027</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     TAB 5 — ABOUT ME
+════════════════════════════════════════ -->
+<div id="tab-about" class="tab-content">
+  <h2>About Me</h2>
+  <p class="section-sub">Your professional story — framed for a data analytics audience.</p>
+
+  <div class="about-hero">
+    <div class="about-name">JT Cotton</div>
+    <div class="about-title">WHS Specialist @ Amazon LBB5 &nbsp;|&nbsp; Aspiring Data Analyst &nbsp;|&nbsp; Lubbock, TX</div>
+    <div class="about-bio">
+      I'm a Workplace Health & Safety Specialist at Amazon's LBB5 Sort Center in Lubbock, TX — and I've spent the last several years solving operational problems by building data tools, not just talking about data.
+      <br><br>
+      While most people in my role rely on spreadsheets and manual processes, I taught myself HTML, CSS, and JavaScript to build production tools used daily by my team: a CAST training compliance tracker that replaced a multi-hour manual process, a workforce scheduling tool that cross-references training availability, and a 3LS safety investigation tracker used across shift handoffs.
+      <br><br>
+      I'm now on a focused path to transition into a data analyst role — combining my operational domain expertise (safety, workforce, compliance, logistics) with skills in SQL, Python, and data visualization. I bring something most data analysts don't have: I know how the floor works, what actually drives decisions, and how to build tools that real people use.
+      <br><br>
+      I also serve as the Sustainability Ambassador at LBB5, managing hazardous waste and donation programs — another example of taking on responsibility and finding better ways to track and report on it.
+    </div>
+  </div>
+
+  <h3 style="margin-bottom:12px;">Current Skills</h3>
+  <div class="skills-grid">
+    <span class="skill-pill">HTML / CSS / JS</span>
+    <span class="skill-pill">Excel (Advanced)</span>
+    <span class="skill-pill">CSV Data Analysis</span>
+    <span class="skill-pill">Data Cleaning</span>
+    <span class="skill-pill">Dashboard Design</span>
+    <span class="skill-pill">Operations Analytics</span>
+    <span class="skill-pill">Safety KPI Tracking</span>
+    <span class="skill-pill">Workforce Scheduling</span>
+    <span class="skill-pill">Draw.io / Visualization</span>
+    <span class="skill-pill">XML / Structured Data</span>
+    <span class="skill-pill">Amazon WHS</span>
+    <span class="skill-pill">Process Improvement</span>
+  </div>
+
+  <h3 style="margin-top:28px; margin-bottom:12px;">Learning Now</h3>
+  <div class="skills-grid">
+    <span class="skill-pill" style="border-color:var(--gold); color:var(--gold);">SQL</span>
+    <span class="skill-pill" style="border-color:var(--gold); color:var(--gold);">Python / pandas</span>
+    <span class="skill-pill" style="border-color:var(--gold); color:var(--gold);">Tableau</span>
+    <span class="skill-pill" style="border-color:var(--gold); color:var(--gold);">Power BI</span>
+    <span class="skill-pill" style="border-color:var(--gold); color:var(--gold);">Statistics</span>
+  </div>
+
+  <div class="card" style="margin-top:28px;">
+    <h3>Why I'm Different</h3>
+    <div class="card-body" style="margin-top:8px;">
+      <strong style="color:var(--gold);">Domain expertise you can't teach:</strong> I know what good operational data looks like, what questions managers actually ask, and what decisions data needs to drive — from 3+ years on the floor at a high-volume Amazon facility.<br><br>
+      <strong style="color:var(--gold);">Builder mindset:</strong> I don't wait for a tool to exist. I build it. Four production HTML tools deployed with zero budget and zero IT support.<br><br>
+      <strong style="color:var(--gold);">Self-motivated learner:</strong> Everything I know about web development I taught myself. Now I'm applying that same drive to SQL, Python, and data visualization.<br><br>
+      <strong style="color:var(--gold);">Amazon-scale thinking:</strong> Working at one of the world's largest logistics operations means I understand scale, speed, and what it means for data to actually matter in a real business context.
+    </div>
+  </div>
+</div>
+
+<footer>
+  JT Cotton &nbsp;•&nbsp; Data Analytics Portfolio &nbsp;•&nbsp; Built with intention &nbsp;•&nbsp; <span id="footer-year"></span>
+</footer>
+
+<script>
+  // ── Tab switching
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    if (id === 'roadmap') updateRoadmapStats();
+  }
+
+  // ── Skill checkboxes with localStorage
+  function toggleSkill(el) {
+    el.classList.toggle('checked');
+    el.textContent = el.classList.contains('checked') ? '✓' : '';
+    saveChecks();
+    updateRoadmapStats();
+  }
+
+  function saveChecks() {
+    const checks = document.querySelectorAll('.skill-check');
+    const state = Array.from(checks).map(c => c.classList.contains('checked'));
+    localStorage.setItem('jt_roadmap_checks', JSON.stringify(state));
+  }
+
+  function loadChecks() {
+    const saved = localStorage.getItem('jt_roadmap_checks');
+    if (!saved) return;
+    const state = JSON.parse(saved);
+    const checks = document.querySelectorAll('.skill-check');
+    checks.forEach((c, i) => {
+      if (state[i]) {
+        c.classList.add('checked');
+        c.textContent = '✓';
+      }
+    });
+  }
+
+  function updateRoadmapStats() {
+    const all = document.querySelectorAll('.skill-check');
+    const done = document.querySelectorAll('.skill-check.checked');
+    const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+    const el = document.getElementById('stat-completed');
+    const tot = document.getElementById('stat-total');
+    const pctEl = document.getElementById('stat-pct');
+    if (el) el.textContent = done.length;
+    if (tot) tot.textContent = all.length;
+    if (pctEl) pctEl.textContent = pct + '%';
+  }
+
+  // ── Footer year
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+  // ── Init
+  loadChecks();
+  updateRoadmapStats();
+</script>
+</body>
+</html>

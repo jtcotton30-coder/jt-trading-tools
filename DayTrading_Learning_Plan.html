@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Trading Learning Plan | JT's Trading Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --uga-red: #BA0C2F;
+            --uga-black: #000000;
+            --uga-white: #FFFFFF;
+            --uga-dark-gray: #1a1a1a;
+            --uga-medium-gray: #2d2d2d;
+            --uga-light-gray: #3a3a3a;
+            --uga-text: #e0e0e0;
+            --uga-red-dark: #8a0922;
+            --uga-red-light: #d4324f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--uga-dark-gray);
+            color: var(--uga-text);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--uga-black) 0%, var(--uga-dark-gray) 50%, var(--uga-red-dark) 100%);
+            padding: 30px 40px;
+            border-bottom: 4px solid var(--uga-red);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: var(--uga-white);
+            font-size: 2.2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header h1 span {
+            color: var(--uga-red);
+        }
+
+        .header p {
+            color: #aaa;
+            font-size: 1em;
+            margin-top: 8px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: var(--uga-black);
+            padding: 0 20px;
+            border-bottom: 2px solid var(--uga-red);
+        }
+
+        .nav-tab {
+            padding: 14px 20px;
+            cursor: pointer;
+            color: #999;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab:hover {
+            color: var(--uga-white);
+            background: rgba(186, 12, 47, 0.1);
+        }
+
+        .nav-tab.active {
+            color: var(--uga-red);
+            border-bottom: 3px solid var(--uga-red);
+        }
+
+        /* Content */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--uga-medium-gray);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--uga-red);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .card h3 {
+            color: var(--uga-white);
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+
+        .card h4 {
+            color: var(--uga-red-light);
+            font-size: 1.05em;
+            margin: 15px 0 8px 0;
+        }
+
+        .card ul {
+            padding-left: 20px;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+            color: var(--uga-text);
+        }
+
+        .card li strong {
+            color: var(--uga-white);
+        }
+
+        /* Week Header */
+        .week-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .week-badge {
+            background: var(--uga-red);
+            color: var(--uga-white);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85em;
+            text-transform: uppercase;
+        }
+
+        .week-title {
+            color: var(--uga-white);
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(186, 12, 47, 0.15);
+            border: 2px solid var(--uga-red);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .warning-box h3 {
+            color: var(--uga-red);
+            margin-bottom: 10px;
+        }
+
+        .warning-box p {
+            color: var(--uga-text);
+        }
+
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--uga-red);
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checklist-item input:checked + label {
+            text-decoration: line-through;
+            color: #666;
+        }
+
+        /* Key Concepts */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .concept-card {
+            background: var(--uga-light-gray);
+            border-radius: 6px;
+            padding: 18px;
+            border-top: 3px solid var(--uga-red);
+        }
+
+        .concept-card h5 {
+            color: var(--uga-red-light);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .concept-card p {
+            color: #bbb;
+            font-size: 0.9em;
+        }
+
+        /* Rules Table */
+        .rules-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .rules-table th {
+            background: var(--uga-red);
+            color: var(--uga-white);
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .rules-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .rules-table tr:hover {
+            background: rgba(186, 12, 47, 0.05);
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 25px;
+        }
+
+        .progress-bar-container {
+            background: var(--uga-light-gray);
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--uga-red-dark), var(--uga-red));
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        /* Tip Box */
+        .tip-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(186, 12, 47, 0.3);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #bbb;
+        }
+
+        .tip-box::before {
+            content: "💡 ";
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #555;
+            font-size: 0.8em;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-tab { padding: 10px 12px; font-size: 0.8em; }
+            .content { padding: 15px; }
+            .header h1 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🐂 Day Trading <span>Learning Plan</span></h1>
+    <p>JT's Trading Academy — From Beginner to Consistent Trader</p>
+</div>
+
+<div class="nav-tabs">
+    <div class="nav-tab active" onclick="showTab('overview')">Overview</div>
+    <div class="nav-tab" onclick="showTab('week12')">Week 1-2</div>
+    <div class="nav-tab" onclick="showTab('week34')">Week 3-4</div>
+    <div class="nav-tab" onclick="showTab('week56')">Week 5-6</div>
+    <div class="nav-tab" onclick="showTab('week78')">Week 7-8</div>
+    <div class="nav-tab" onclick="showTab('rules')">Golden Rules</div>
+    <div class="nav-tab" onclick="showTab('glossary')">Glossary</div>
+    <div class="nav-tab" onclick="showTab('robinhood')">Robinhood Tips</div>
+    <div class="nav-tab" onclick="showTab('longterm')">Long-Term Holds</div>
+</div>
+
+<div class="content">
+
+    <!-- OVERVIEW TAB -->
+    <div class="tab-content active" id="overview">
+        <div class="warning-box">
+            <h3>⚠️ CRITICAL: Read Before You Start</h3>
+            <p><strong>Day trading is risky.</strong> Most beginners lose money in their first year. This plan is designed to minimize that risk by building knowledge BEFORE you risk real capital. Follow the phases in order. Do NOT skip to live trading.</p>
+            <br>
+            <p><strong>Pattern Day Trader Rule (PDT):</strong> If your Robinhood account has less than $25,000, you are limited to <strong>3 day trades per 5 rolling business days</strong>. A day trade = buying AND selling the same stock in the same day. Exceed this and your account gets flagged/restricted for 90 days.</p>
+        </div>
+
+        <div class="progress-section">
+            <h3 style="color: var(--uga-white); margin-bottom: 5px;">Your Progress</h3>
+            <p style="color: #999; font-size: 0.9em;">Check items off in each week as you complete them</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="overallProgress" style="width: 0%"></div>
+            </div>
+            <div class="progress-label">
+                <span>Beginner</span>
+                <span id="progressPercent">0%</span>
+                <span>Consistent Trader</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📋 8-Week Curriculum Overview</h3>
+            <table class="rules-table">
+                <tr><th>Phase</th><th>Focus</th><th>Goal</th></tr>
+                <tr><td><strong>Week 1-2</strong></td><td>Foundations</td><td>Understand markets, order types, candlesticks</td></tr>
+                <tr><td><strong>Week 3-4</strong></td><td>Technical Analysis</td><td>Read charts, indicators, identify patterns</td></tr>
+                <tr><td><strong>Week 5-6</strong></td><td>Strategy & Risk</td><td>Build your trading plan, manage risk</td></tr>
+                <tr><td><strong>Week 7-8</strong></td><td>Paper Trading</td><td>Practice without real money, refine strategy</td></tr>
+                <tr><td><strong>Week 9+</strong></td><td>Live Trading</td><td>Small positions, journal everything, grow slowly</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>🎯 What You'll Need</h3>
+            <ul>
+                <li><strong>Robinhood Account</strong> — Your broker (already have it ✅)</li>
+                <li><strong>TradingView</strong> — Free charting platform (tradingview.com) — way better charts than Robinhood</li>
+                <li><strong>Trading Journal</strong> — We'll build this as an Excel tracker (Phase 3)</li>
+                <li><strong>Discipline</strong> — The #1 skill. More important than any indicator.</li>
+                <li><strong>Small Capital to Start</strong> — Only risk what you can 100% afford to lose</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>📈 Day Trading Styles (Pick One to Start)</h3>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h5>Scalping</h5>
+                    <p>Very fast trades (seconds to minutes). Small profits, high frequency. Requires focus and fast execution. Not beginner-friendly.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Momentum Trading ⭐</h5>
+                    <p>Ride stocks making big moves on high volume. Hold minutes to hours. <strong>Best for beginners.</strong> Clear entries and exits.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Breakout Trading</h5>
+                    <p>Buy when price breaks above resistance with volume. Clear stop-loss levels. Good risk/reward. Beginner-friendly.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Reversal Trading</h5>
+                    <p>Catch stocks bouncing off support or reversing trend. Higher risk, requires experience. Not recommended for beginners.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEK 1-2 TAB -->
+    <div class="tab-content" id="week12">
+        <div class="week-header">
+            <span class="week-badge">Week 1-2</span>
+            <span class="week-title">Foundations — How Markets Work</span>
+        </div>
+
+        <div class="card">
+            <h3>📚 What You'll Learn</h3>
+            <p>Before you trade a single dollar, you need to understand the playing field. This is like film study before game day.</p>
+            
+            <h4>Market Basics</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-1" onchange="updateProgress()">
+                <label for="w1-1"><strong>Market Hours:</strong> Regular session 9:30 AM - 4:00 PM ET. Pre-market 4-9:30 AM. After-hours 4-8 PM. Best action = first 2 hours (9:30-11:30 AM).</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-2" onchange="updateProgress()">
+                <label for="w1-2"><strong>Bid vs Ask:</strong> Bid = highest price buyers will pay. Ask = lowest price sellers will accept. Spread = difference between them. Tighter spread = more liquid stock.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-3" onchange="updateProgress()">
+                <label for="w1-3"><strong>Volume:</strong> Number of shares traded. High volume = strong moves, easier to enter/exit. Low volume = choppy, unpredictable. ALWAYS check volume.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-4" onchange="updateProgress()">
+                <label for="w1-4"><strong>Float & Market Cap:</strong> Float = shares available to trade. Low float (&lt;10M shares) = bigger moves. Market cap = company size (small cap &lt; $2B, mid $2-10B, large &gt; $10B).</label>
+            </div>
+
+            <h4>Order Types (How to Buy/Sell)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-5" onchange="updateProgress()">
+                <label for="w1-5"><strong>Market Order:</strong> Buy/sell immediately at current price. Fast but you might get a worse price (slippage). Use for fast-moving stocks when speed matters.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-6" onchange="updateProgress()">
+                <label for="w1-6"><strong>Limit Order:</strong> Buy/sell only at YOUR specified price or better. More control. Use this most of the time. "I'll buy AAPL but only at $180 or less."</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-7" onchange="updateProgress()">
+                <label for="w1-7"><strong>Stop-Loss Order:</strong> Automatically sells if price drops to your level. YOUR BEST FRIEND. Always set one. Example: Buy at $50, stop-loss at $48 = max loss of $2/share.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-8" onchange="updateProgress()">
+                <label for="w1-8"><strong>Stop-Limit Order:</strong> Like stop-loss but converts to limit order. More precise but might not fill in a fast crash. Use trailing stops for profits.</label>
+            </div>
+
+            <h4>Candlestick Basics</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-9" onchange="updateProgress()">
+                <label for="w1-9"><strong>Reading a Candle:</strong> Green/white = price went UP (open at bottom, close at top). Red/black = price went DOWN (open at top, close at bottom). Wicks = high/low extremes.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-10" onchange="updateProgress()">
+                <label for="w1-10"><strong>Doji:</strong> Open and close nearly equal (cross shape). Signals indecision. Trend might reverse. Watch what happens on the NEXT candle.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-11" onchange="updateProgress()">
+                <label for="w1-11"><strong>Hammer/Shooting Star:</strong> Hammer (at bottom of downtrend) = bullish reversal signal. Shooting star (at top of uptrend) = bearish reversal signal. Long wick shows rejection.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-12" onchange="updateProgress()">
+                <label for="w1-12"><strong>Engulfing Patterns:</strong> Bullish engulfing = big green candle swallows prior red candle (buy signal). Bearish engulfing = big red swallows prior green (sell signal).</label>
+            </div>
+
+            <h4>Timeframes</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-13" onchange="updateProgress()">
+                <label for="w1-13"><strong>1-Minute Chart:</strong> Very fast, noisy. Good for scalpers. Each candle = 1 minute of price action.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-14" onchange="updateProgress()">
+                <label for="w1-14"><strong>5-Minute Chart:</strong> The standard day trading timeframe. Good balance of detail and clarity. START HERE.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w1-15" onchange="updateProgress()">
+                <label for="w1-15"><strong>15-Min / 1-Hour / Daily:</strong> Use these for context. "Zoom out" to see the bigger picture. Daily chart shows overall trend. Trade WITH the trend, not against it.</label>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            Week 1-2 Action: Open TradingView (free), pick any stock (AAPL, TSLA, SPY), and just WATCH the 5-minute chart during market hours. Identify candle patterns. Don't trade yet — just observe.
+        </div>
+    </div>
+
+    <!-- WEEK 3-4 TAB -->
+    <div class="tab-content" id="week34">
+        <div class="week-header">
+            <span class="week-badge">Week 3-4</span>
+            <span class="week-title">Technical Analysis — Reading the Matrix</span>
+        </div>
+
+        <div class="card">
+            <h3>📊 Key Indicators (The Big 5)</h3>
+            <p>These are the tools traders use to predict where price is going. Don't use ALL of them — pick 2-3 that make sense to you.</p>
+
+            <h4>1. Moving Averages (MA)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-1" onchange="updateProgress()">
+                <label for="w3-1"><strong>EMA 9 & EMA 20:</strong> Exponential Moving Averages. When 9 EMA crosses ABOVE 20 EMA = bullish (buy signal). When 9 crosses BELOW 20 = bearish (sell signal). Price above both = uptrend.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-2" onchange="updateProgress()">
+                <label for="w3-2"><strong>VWAP (Volume Weighted Average Price):</strong> THE most important day trading indicator. Price above VWAP = bullish, below = bearish. Institutional traders use this. It resets daily. "Is price above or below VWAP?" — ask this constantly.</label>
+            </div>
+
+            <h4>2. RSI (Relative Strength Index)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-3" onchange="updateProgress()">
+                <label for="w3-3"><strong>RSI Basics:</strong> Measures momentum (0-100). Above 70 = overbought (might drop). Below 30 = oversold (might bounce). DON'T blindly buy/sell at these levels — use as confirmation with other signals.</label>
+            </div>
+
+            <h4>3. MACD (Moving Average Convergence Divergence)</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-4" onchange="updateProgress()">
+                <label for="w3-4"><strong>MACD Basics:</strong> Two lines + histogram. When MACD line crosses above signal line = buy signal. Below = sell signal. Histogram shows momentum strength. Good for confirming trend direction.</label>
+            </div>
+
+            <h4>4. Support & Resistance</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-5" onchange="updateProgress()">
+                <label for="w3-5"><strong>Support:</strong> Price level where stock tends to STOP falling (floor). Buyers step in here. Draw horizontal lines at levels price has bounced off multiple times.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-6" onchange="updateProgress()">
+                <label for="w3-6"><strong>Resistance:</strong> Price level where stock tends to STOP rising (ceiling). Sellers step in. When resistance BREAKS with volume, it often becomes new support (key concept!).</label>
+            </div>
+
+            <h4>5. Volume Analysis</h4>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-7" onchange="updateProgress()">
+                <label for="w3-7"><strong>Volume Confirmation:</strong> Price move UP + high volume = REAL move (trust it). Price move UP + low volume = WEAK move (don't trust it). Volume validates price action.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w3-8" onchange="updateProgress()">
+                <label for="w3-8"><strong>Volume Spikes:</strong> Sudden massive volume = something big happening (news, earnings, institutional buying). These create momentum trades. Relative volume (RVOL) above 2x = noteworthy.</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📐 Chart Patterns (The Playbook)</h3>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h5>Bull Flag 🏁</h5>
+                    <p>Sharp move up (pole), then slight pullback on low volume (flag). When it breaks above the flag = continuation. High probability pattern. Look for volume on breakout.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Double Bottom (W)</h5>
+                    <p>Price hits support twice, forms a "W" shape. Break above the middle peak = buy signal. Shows buyers are strong at that level.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Cup & Handle ☕</h5>
+                    <p>Rounded bottom (cup) followed by small pullback (handle). Breakout above handle = strong buy. Works on multiple timeframes.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Head & Shoulders</h5>
+                    <p>Three peaks — middle is highest. Break below "neckline" = bearish. Inverse H&S (three bottoms) = bullish. Classic reversal pattern.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Ascending Triangle 📐</h5>
+                    <p>Flat resistance + rising support (higher lows). Compression. Usually breaks UP. Volume should increase on breakout. Very reliable.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Opening Range Breakout</h5>
+                    <p>Mark high/low of first 15-30 min. Trade the breakout direction with volume. Simple, effective for day traders. Great for beginners.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            Week 3-4 Action: Add VWAP + 9 EMA + 20 EMA to your TradingView chart. Watch how price reacts to these levels. Draw support/resistance lines. Still NO real trades — just identify patterns and practice predicting what happens next.
+        </div>
+    </div>
+
+    <!-- WEEK 5-6 TAB -->
+    <div class="tab-content" id="week56">
+        <div class="week-header">
+            <span class="week-badge">Week 5-6</span>
+            <span class="week-title">Strategy & Risk Management — Your Trading Plan</span>
+        </div>
+
+        <div class="warning-box">
+            <h3>🛡️ Risk Management = Survival</h3>
+            <p>This is the MOST IMPORTANT section. You can have a mediocre strategy and still make money with great risk management. You can have the best strategy and BLOW UP your account with poor risk management. Learn this deeply.</p>
+        </div>
+
+        <div class="card">
+            <h3>💰 The 1% Rule (Non-Negotiable)</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-1" onchange="updateProgress()">
+                <label for="w5-1"><strong>Never risk more than 1-2% of your account on a single trade.</strong> Account = $1,000? Max risk per trade = $10-$20. Account = $5,000? Max risk = $50-$100. This keeps you in the game through losing streaks.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-2" onchange="updateProgress()">
+                <label for="w5-2"><strong>Position Sizing Formula:</strong> Risk Amount ÷ (Entry Price - Stop Loss) = Number of Shares. Example: $50 risk ÷ ($100 entry - $98 stop) = 25 shares max.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-3" onchange="updateProgress()">
+                <label for="w5-3"><strong>Risk/Reward Ratio:</strong> Only take trades where potential profit is at LEAST 2x your risk. Risk $1 to make $2 minimum. This means you can be wrong 50% of the time and STILL profit.</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📝 Build Your Trading Plan</h3>
+            <p>Every successful trader has a written plan. No plan = gambling.</p>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-4" onchange="updateProgress()">
+                <label for="w5-4"><strong>What I Trade:</strong> Pick 5-10 stocks you watch daily. Start with liquid names (SPY, AAPL, TSLA, AMD, NVDA, QQQ). Know them well. Don't chase random tickers.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-5" onchange="updateProgress()">
+                <label for="w5-5"><strong>When I Trade:</strong> Best hours = 9:30-11:30 AM ET. Avoid 12-2 PM (lunch lull, choppy). Power hour 3-4 PM can be good. Pick your window and stick to it.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-6" onchange="updateProgress()">
+                <label for="w5-6"><strong>My Setup:</strong> Define exactly what needs to happen before you enter. Example: "Price above VWAP + 9 EMA crossed above 20 EMA + volume above average + clear support below for stop-loss."</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-7" onchange="updateProgress()">
+                <label for="w5-7"><strong>Entry Rules:</strong> How do you get in? Limit order? Market order? On breakout confirmation? On pullback to support? Write it down.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-8" onchange="updateProgress()">
+                <label for="w5-8"><strong>Exit Rules (Profit):</strong> Where do you take profit? At resistance? At 2:1 reward? Partial sells (sell half at target 1, rest at target 2)? Define BEFORE entering.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-9" onchange="updateProgress()">
+                <label for="w5-9"><strong>Exit Rules (Loss):</strong> Where is your stop-loss? Below support? Below VWAP? Fixed dollar amount? SET IT BEFORE YOU ENTER. Never move it further away.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-10" onchange="updateProgress()">
+                <label for="w5-10"><strong>Daily Max Loss:</strong> Set a daily stop. Lost $100 today? DONE. Walk away. No revenge trading. This saves accounts. Consider: 3 losses in a row = done for the day.</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🧠 Trading Psychology</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-11" onchange="updateProgress()">
+                <label for="w5-11"><strong>FOMO (Fear of Missing Out):</strong> "It's already up 20%, I need to get in!" — NO. Chasing = buying the top. If you missed it, you missed it. There's ALWAYS another trade tomorrow.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-12" onchange="updateProgress()">
+                <label for="w5-12"><strong>Revenge Trading:</strong> Lost money? Feel angry? Want to "make it back"? STOP. This is how small losses become catastrophic. Walk away. Come back tomorrow with a clear head.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-13" onchange="updateProgress()">
+                <label for="w5-13"><strong>Overtrading:</strong> Taking 20 trades/day doesn't make you a good trader. Taking 2-3 HIGH QUALITY setups = professional. Be a sniper, not a machine gunner.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w5-14" onchange="updateProgress()">
+                <label for="w5-14"><strong>The Mantra:</strong> "Protect capital first. Profits second." Survival is the ONLY thing that matters early on. You can't make money if you blow your account.</label>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            Week 5-6 Action: Write out YOUR trading plan. Every field above. Print it out or keep it next to your screen. Follow it religiously. Adjust it over time based on what works, but NEVER in the middle of a trade.
+        </div>
+    </div>
+
+    <!-- WEEK 7-8 TAB -->
+    <div class="tab-content" id="week78">
+        <div class="week-header">
+            <span class="week-badge">Week 7-8</span>
+            <span class="week-title">Paper Trading & Going Live</span>
+        </div>
+
+        <div class="card">
+            <h3>📋 Paper Trading (Practice Mode)</h3>
+            <p>Paper trading = simulated trading with fake money. Same charts, same prices, no real risk. This is your practice field.</p>
+
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-1" onchange="updateProgress()">
+                <label for="w7-1"><strong>Setup Paper Trading:</strong> TradingView has a built-in paper trading feature. Or use Webull's paper trading (free). Or simply write down your trades in a notebook/Excel and track them manually.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-2" onchange="updateProgress()">
+                <label for="w7-2"><strong>Trade Your Plan:</strong> Use your written trading plan from Week 5-6. Follow it EXACTLY. No deviations. Track every entry, exit, and the reason behind each trade.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-3" onchange="updateProgress()">
+                <label for="w7-3"><strong>Minimum 20 Paper Trades:</strong> Take at least 20 paper trades over 2 weeks. Review each one. Are you following your rules? What's your win rate? What's your average R:R?</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-4" onchange="updateProgress()">
+                <label for="w7-4"><strong>Profitability Check:</strong> If you're not profitable on paper, you won't be profitable with real money. Keep paper trading until you're green for at least 2 consecutive weeks.</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🚀 Going Live — The Transition</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-5" onchange="updateProgress()">
+                <label for="w7-5"><strong>Start TINY:</strong> First live trades should be 1-5 shares. Not to make money — to get used to the EMOTIONS of real money on the line. It hits different.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-6" onchange="updateProgress()">
+                <label for="w7-6"><strong>Scale Gradually:</strong> Only increase position size AFTER consistent profitability. 2 green weeks → increase slightly. Red week → go back down. Earn the right to size up.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-7" onchange="updateProgress()">
+                <label for="w7-7"><strong>Journal Everything:</strong> Use your Trading Journal (Excel tracker we'll build). Log: stock, entry, exit, P&L, setup type, what you did well, what you'd change. Review weekly.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="w7-8" onchange="updateProgress()">
+                <label for="w7-8"><strong>PDT Rule Management:</strong> Under $25K = 3 day trades per 5 days. Be SELECTIVE. Make those 3 count. Or use swing trading (hold overnight) to avoid PDT entirely.</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📅 Your Daily Routine (Once Live)</h3>
+            <table class="rules-table">
+                <tr><th>Time (CT)</th><th>Activity</th></tr>
+                <tr><td>7:00 - 8:00 AM</td><td>Pre-market scan: Check watchlist, news, pre-market movers, earnings calendar</td></tr>
+                <tr><td>8:00 - 8:25 AM</td><td>Mark key levels: Support/resistance, VWAP from yesterday, identify potential setups</td></tr>
+                <tr><td>8:30 AM</td><td>Market opens (CT). Wait first 5-10 min for chaos to settle</td></tr>
+                <tr><td>8:40 - 10:30 AM</td><td>TRADE WINDOW: Execute your plan. Best setups happen here.</td></tr>
+                <tr><td>10:30 AM</td><td>Evaluate: Hit your daily goal? Stop. Hit max loss? Stop. Otherwise, watch for afternoon setups.</td></tr>
+                <tr><td>After Close</td><td>Journal your trades. Review what worked. Prep for tomorrow.</td></tr>
+            </table>
+        </div>
+
+        <div class="tip-box">
+            Week 7-8 Action: Paper trade every day for 2 weeks. Treat it like it's real money. Follow your plan. Journal every trade. If you're profitable, transition to live trading with TINY positions. If not, keep paper trading. There's no rush.
+        </div>
+    </div>
+
+    <!-- GOLDEN RULES TAB -->
+    <div class="tab-content" id="rules">
+        <div class="week-header">
+            <span class="week-badge">Essential</span>
+            <span class="week-title">The 20 Golden Rules of Day Trading</span>
+        </div>
+
+        <div class="card">
+            <h3>🏆 Print These. Tape Them to Your Monitor.</h3>
+            <table class="rules-table">
+                <tr><th>#</th><th>Rule</th><th>Why</th></tr>
+                <tr><td>1</td><td><strong>Never risk more than 1-2% per trade</strong></td><td>Survival. One bad trade won't kill you.</td></tr>
+                <tr><td>2</td><td><strong>Always use a stop-loss</strong></td><td>Defines max loss BEFORE you enter.</td></tr>
+                <tr><td>3</td><td><strong>Never move your stop-loss further away</strong></td><td>You'll turn a small loss into a disaster.</td></tr>
+                <tr><td>4</td><td><strong>Plan the trade, trade the plan</strong></td><td>Removes emotion from decisions.</td></tr>
+                <tr><td>5</td><td><strong>Cut losers fast, let winners run</strong></td><td>Most beginners do the OPPOSITE.</td></tr>
+                <tr><td>6</td><td><strong>Never revenge trade</strong></td><td>Emotions + trading = blowing up.</td></tr>
+                <tr><td>7</td><td><strong>No FOMO — there's always another trade</strong></td><td>Chasing = buying tops.</td></tr>
+                <tr><td>8</td><td><strong>Trade with the trend, not against it</strong></td><td>Don't fight the market direction.</td></tr>
+                <tr><td>9</td><td><strong>Volume confirms everything</strong></td><td>No volume = don't trust the move.</td></tr>
+                <tr><td>10</td><td><strong>Set a daily loss limit and honor it</strong></td><td>Prevents one bad day from ruining your week.</td></tr>
+                <tr><td>11</td><td><strong>Only trade with money you can afford to lose</strong></td><td>Removes desperation. Trade calm.</td></tr>
+                <tr><td>12</td><td><strong>Journal every single trade</strong></td><td>Can't improve what you don't measure.</td></tr>
+                <tr><td>13</td><td><strong>Less is more — quality over quantity</strong></td><td>2-3 A+ setups beat 20 mediocre ones.</td></tr>
+                <tr><td>14</td><td><strong>Don't trade during news events (as a beginner)</strong></td><td>Unpredictable. Algos dominate.</td></tr>
+                <tr><td>15</td><td><strong>Respect the PDT rule (under $25K)</strong></td><td>Getting flagged locks your account 90 days.</td></tr>
+                <tr><td>16</td><td><strong>Never hold a day trade overnight (unless planned)</strong></td><td>Overnight risk: gaps, news, earnings.</td></tr>
+                <tr><td>17</td><td><strong>Master one strategy before adding another</strong></td><td>Jack of all trades = master of none.</td></tr>
+                <tr><td>18</td><td><strong>The market is always right — your opinion doesn't matter</strong></td><td>Price action > your feelings.</td></tr>
+                <tr><td>19</td><td><strong>Take breaks. Walk away. Exercise.</strong></td><td>Screen fatigue causes bad decisions.</td></tr>
+                <tr><td>20</td><td><strong>This is a marathon, not a sprint</strong></td><td>Consistency over months > one lucky day.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- GLOSSARY TAB -->
+    <div class="tab-content" id="glossary">
+        <div class="week-header">
+            <span class="week-badge">Reference</span>
+            <span class="week-title">Day Trading Glossary</span>
+        </div>
+
+        <div class="card">
+            <h3>📖 Key Terms</h3>
+            <table class="rules-table">
+                <tr><th>Term</th><th>Definition</th></tr>
+                <tr><td><strong>Ask</strong></td><td>Lowest price a seller will accept</td></tr>
+                <tr><td><strong>Bearish</strong></td><td>Expecting price to go DOWN</td></tr>
+                <tr><td><strong>Bid</strong></td><td>Highest price a buyer will pay</td></tr>
+                <tr><td><strong>Breakout</strong></td><td>Price moves above resistance or below support with volume</td></tr>
+                <tr><td><strong>Bullish</strong></td><td>Expecting price to go UP</td></tr>
+                <tr><td><strong>Catalyst</strong></td><td>News/event causing a stock to move (earnings, FDA approval, etc.)</td></tr>
+                <tr><td><strong>Consolidation</strong></td><td>Price moves sideways in a range (building energy for a move)</td></tr>
+                <tr><td><strong>Day Trade</strong></td><td>Buying and selling same stock in same trading day</td></tr>
+                <tr><td><strong>EMA</strong></td><td>Exponential Moving Average — weighted toward recent prices</td></tr>
+                <tr><td><strong>Entry</strong></td><td>The price/moment you open a trade (buy)</td></tr>
+                <tr><td><strong>Exit</strong></td><td>The price/moment you close a trade (sell)</td></tr>
+                <tr><td><strong>Float</strong></td><td>Number of shares available for public trading</td></tr>
+                <tr><td><strong>Gap Up/Down</strong></td><td>Stock opens significantly higher/lower than previous close</td></tr>
+                <tr><td><strong>Green/Red Day</strong></td><td>Profitable day / Losing day</td></tr>
+                <tr><td><strong>Liquidity</strong></td><td>How easily you can buy/sell without affecting price</td></tr>
+                <tr><td><strong>Long</strong></td><td>Buying a stock (betting it goes UP)</td></tr>
+                <tr><td><strong>MACD</strong></td><td>Moving Average Convergence Divergence — momentum indicator</td></tr>
+                <tr><td><strong>P&L</strong></td><td>Profit and Loss — your bottom line</td></tr>
+                <tr><td><strong>PDT</strong></td><td>Pattern Day Trader — SEC rule requiring $25K for unlimited day trades</td></tr>
+                <tr><td><strong>Pullback</strong></td><td>Temporary dip in an uptrend (often a buying opportunity)</td></tr>
+                <tr><td><strong>R:R (Risk/Reward)</strong></td><td>Ratio of potential loss to potential gain. Want 1:2 minimum.</td></tr>
+                <tr><td><strong>Resistance</strong></td><td>Price ceiling — level where selling pressure increases</td></tr>
+                <tr><td><strong>RSI</strong></td><td>Relative Strength Index — measures if overbought/oversold (0-100)</td></tr>
+                <tr><td><strong>Scalp</strong></td><td>Very short trade for small profit (seconds to minutes)</td></tr>
+                <tr><td><strong>Short</strong></td><td>Selling borrowed stock (betting it goes DOWN) — not on Robinhood for beginners</td></tr>
+                <tr><td><strong>Slippage</strong></td><td>Difference between expected price and actual fill price</td></tr>
+                <tr><td><strong>Spread</strong></td><td>Difference between bid and ask price</td></tr>
+                <tr><td><strong>Stop-Loss</strong></td><td>Order to automatically sell if price drops to your limit</td></tr>
+                <tr><td><strong>Support</strong></td><td>Price floor — level where buying pressure increases</td></tr>
+                <tr><td><strong>Swing Trade</strong></td><td>Holding a trade for days to weeks (not a day trade)</td></tr>
+                <tr><td><strong>Volume</strong></td><td>Number of shares traded in a period</td></tr>
+                <tr><td><strong>VWAP</strong></td><td>Volume Weighted Average Price — institutional benchmark, resets daily</td></tr>
+                <tr><td><strong>Watchlist</strong></td><td>Your curated list of stocks to monitor daily</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ROBINHOOD TIPS TAB -->
+    <div class="tab-content" id="robinhood">
+        <div class="week-header">
+            <span class="week-badge">Platform</span>
+            <span class="week-title">Robinhood-Specific Tips</span>
+        </div>
+
+        <div class="card">
+            <h3>📱 Robinhood Settings to Change NOW</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="rh-1" onchange="updateProgress()">
+                <label for="rh-1"><strong>Enable Extended Hours:</strong> Settings → Investing → Extended Hours Trading. Lets you trade pre-market (7 AM ET) and after-hours (until 8 PM ET).</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="rh-2" onchange="updateProgress()">
+                <label for="rh-2"><strong>Turn OFF Instant Settlement (if possible):</strong> Instant buying power uses margin. Know what you're trading with. Settled cash = no surprises.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="rh-3" onchange="updateProgress()">
+                <label for="rh-3"><strong>Check Your Day Trade Counter:</strong> Profile → Investing → Day Trade Settings. Shows your PDT count. WATCH THIS if under $25K.</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="rh-4" onchange="updateProgress()">
+                <label for="rh-4"><strong>Use Limit Orders (not Market):</strong> When buying, switch from "Market Order" to "Limit Order." You control the price. Especially important for volatile stocks.</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Robinhood Pros & Cons for Day Trading</h3>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h5>✅ Pros</h5>
+                    <p>Commission-free trades. Clean mobile UI. Fractional shares. Easy to start. No minimum to open account. Extended hours available.</p>
+                </div>
+                <div class="concept-card">
+                    <h5>❌ Cons</h5>
+                    <p>Limited charting (use TradingView instead). No Level 2 data without Gold. Slower execution vs. other brokers. No advanced order types. Limited scanners.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💡 Robinhood Gold ($5/month) — Worth It?</h3>
+            <p><strong>For day trading beginners: YES, eventually.</strong> Gold gives you:</p>
+            <ul>
+                <li><strong>Level 2 Market Data (Nasdaq):</strong> See the order book — who's buying/selling at what prices. Useful for reading momentum.</li>
+                <li><strong>Professional Research:</strong> Morningstar reports on stocks.</li>
+                <li><strong>Bigger Instant Deposits:</strong> Access to more buying power faster.</li>
+                <li><strong>Margin:</strong> Borrowing money to trade — DO NOT USE THIS AS A BEGINNER. Margin amplifies losses.</li>
+            </ul>
+            <br>
+            <p><strong>Recommendation:</strong> Start without Gold. Get it after Week 4 when you can actually use Level 2 data meaningfully.</p>
+        </div>
+
+        <div class="card">
+            <h3>🔄 PDT Rule Workarounds (Legal)</h3>
+            <ul>
+                <li><strong>Swing Trade:</strong> Hold overnight (not a day trade). Buy today, sell tomorrow.</li>
+                <li><strong>Use 3 Wisely:</strong> Only use your 3 day trades on A+ setups. Make them count.</li>
+                <li><strong>Multiple Accounts:</strong> You could open accounts at multiple brokers (Webull, Fidelity) — each gets 3 day trades. Legal but complex.</li>
+                <li><strong>Cash Account:</strong> Switch to cash account (no margin). No PDT rule, but must wait for trades to settle (T+1). Limits buying power.</li>
+                <li><strong>Get to $25K:</strong> The real solution. Save aggressively. Once over $25K = unlimited day trades.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- LONG-TERM HOLDS TAB -->
+    <div class="tab-content" id="longterm">
+        <div class="week-header">
+            <span class="week-badge">Wealth Builder</span>
+            <span class="week-title">Long-Term Holds — Buy, Hold & Grow</span>
+        </div>
+
+        <div class="warning-box">
+            <h3>&#x1F4A1; Why Long-Term Investing Matters</h3>
+            <p><strong>Day trading is income. Long-term investing is wealth.</strong> While you're learning to day trade, you should ALSO be building a portfolio of quality stocks/ETFs that compound over years. The S&amp;P 500 averages ~10% annually. $500/month at 10% = $1,000,000+ in 25 years. Let time do the heavy lifting.</p>
+        </div>
+
+        <div class="card">
+            <h3>&#x1F3AF; Criteria for Long-Term Holds</h3>
+            <p>Not every stock is worth holding forever. Look for these qualities:</p>
+            <ul>
+                <li><strong>Consistent Revenue Growth:</strong> Company grows revenue year-over-year (5+ years). Check earnings reports.</li>
+                <li><strong>Strong Competitive Moat:</strong> Brand power, patents, network effects, cost advantages (think Apple, Google, Amazon).</li>
+                <li><strong>Healthy Balance Sheet:</strong> Low debt-to-equity ratio. More cash than debt. Can survive downturns.</li>
+                <li><strong>Dividend Growth (bonus):</strong> Companies that pay AND grow dividends reward long holders (SCHD, JNJ, KO).</li>
+                <li><strong>Market Leadership:</strong> #1 or #2 in their industry. Leaders tend to stay leaders.</li>
+                <li><strong>You Understand the Business:</strong> If you can't explain what they do in one sentence, don't invest.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>&#x1F4BC; The "Set &amp; Forget" Starter Portfolio</h3>
+            <p>These are solid long-term building blocks. Not financial advice — do your research — but these are widely held for a reason:</p>
+            <table class="rules-table">
+                <tr><th>Ticker</th><th>What It Is</th><th>Why Hold It</th></tr>
+                <tr><td><strong>VOO</strong></td><td>S&amp;P 500 ETF (Vanguard)</td><td>Owns the top 500 US companies. ~10% avg annual return. The "just buy this" option.</td></tr>
+                <tr><td><strong>QQQ</strong></td><td>Nasdaq-100 ETF</td><td>Tech-heavy growth. Higher risk, higher reward. AAPL, MSFT, NVDA, AMZN, etc.</td></tr>
+                <tr><td><strong>SCHD</strong></td><td>Dividend Growth ETF</td><td>Quality dividend companies. Income + growth. Reinvest dividends for compounding.</td></tr>
+                <tr><td><strong>VTI</strong></td><td>Total US Market ETF</td><td>Even broader than VOO — includes small &amp; mid caps. Maximum diversification.</td></tr>
+                <tr><td><strong>AAPL</strong></td><td>Apple Inc.</td><td>Ecosystem lock-in, massive cash, consistent buybacks. Iconic compounder.</td></tr>
+                <tr><td><strong>MSFT</strong></td><td>Microsoft</td><td>Cloud (Azure), Office, AI (OpenAI). Enterprise dominance. Dividend grower.</td></tr>
+                <tr><td><strong>NVDA</strong></td><td>NVIDIA</td><td>AI infrastructure leader. GPUs power everything. Higher volatility but massive growth.</td></tr>
+                <tr><td><strong>AMZN</strong></td><td>Amazon</td><td>E-commerce + AWS cloud dominance. Long runway for growth.</td></tr>
+            </table>
+            <br>
+            <p style="color: #999;"><em>Start with 1-2 ETFs (VOO + SCHD is a classic combo), then add individual stocks as you learn more.</em></p>
+        </div>
+
+        <div class="card">
+            <h3>&#x1F4B0; Dollar-Cost Averaging (DCA) — Your Best Friend</h3>
+            <ul>
+                <li><strong>What:</strong> Invest the SAME dollar amount on a regular schedule (weekly, bi-weekly, monthly) regardless of price.</li>
+                <li><strong>Why:</strong> Removes emotion and timing. You buy more shares when cheap, fewer when expensive. Averages out over time.</li>
+                <li><strong>How on Robinhood:</strong> Set up Recurring Investments. Pick your stocks/ETFs, set amount ($25, $50, $100/week), pick your day. Done. Fully automated.</li>
+                <li><strong>The Math:</strong> $100/week into VOO = $5,200/year. At 10% avg return, that's ~$86,000 in 10 years, ~$340,000 in 20 years.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>&#x1F6A8; When to Sell a Long-Term Hold</h3>
+            <p>The goal is to hold for YEARS. But there are valid reasons to sell:</p>
+            <ul>
+                <li><strong>&#x2705; Sell:</strong> The company's fundamentals have CHANGED (not just stock price dipped). Revenue declining multiple quarters. Lost competitive edge.</li>
+                <li><strong>&#x2705; Sell:</strong> You need the money for a real life expense (not to day trade with).</li>
+                <li><strong>&#x2705; Sell:</strong> Your thesis was wrong and you can articulate WHY.</li>
+                <li><strong>&#x274C; DON'T Sell:</strong> Stock dropped 10-20% on market-wide fear. That's a buying opportunity, not an exit.</li>
+                <li><strong>&#x274C; DON'T Sell:</strong> You're bored or want to "trade it." Long-term means LONG TERM.</li>
+                <li><strong>&#x274C; DON'T Sell:</strong> Some random person on Reddit/Twitter said it's overvalued.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>&#x1F4CA; Compound Growth — Why Patience Wins</h3>
+            <p>Assuming 10% average annual return:</p>
+            <table class="rules-table">
+                <tr><th>Monthly Investment</th><th>5 Years</th><th>10 Years</th><th>20 Years</th><th>30 Years</th></tr>
+                <tr><td>$50/month</td><td>$3,900</td><td>$10,300</td><td>$38,000</td><td>$113,000</td></tr>
+                <tr><td>$100/month</td><td>$7,800</td><td>$20,600</td><td>$76,000</td><td>$226,000</td></tr>
+                <tr><td>$250/month</td><td>$19,500</td><td>$51,600</td><td>$190,000</td><td>$565,000</td></tr>
+                <tr><td>$500/month</td><td>$39,000</td><td>$103,000</td><td>$380,000</td><td>$1,130,000</td></tr>
+            </table>
+            <br>
+            <p><strong>The key insight:</strong> Most of the growth happens in the LAST 10 years. That's compounding. The earlier you start, the more insane the numbers get. Time in the market beats timing the market.</p>
+        </div>
+
+        <div class="card">
+            <h3>&#x2696;&#xFE0F; Day Trading vs. Long-Term — Use Both</h3>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h5>Day Trading Account</h5>
+                    <p>Active income. High effort. Use your skills to generate cash. Take profits and funnel them INTO your long-term portfolio. This is your "salary."</p>
+                </div>
+                <div class="concept-card">
+                    <h5>Long-Term Portfolio</h5>
+                    <p>Passive wealth building. Low effort. DCA every paycheck. Don't touch it. Let compounding work. This is your "retirement fund."</p>
+                </div>
+            </div>
+            <br>
+            <p><strong>Pro Strategy:</strong> Take day trading profits and invest them into your long-term holds. Active trading funds passive wealth. Best of both worlds.</p>
+        </div>
+
+        <div class="tip-box">
+            Action Item: Set up a Recurring Investment on Robinhood TODAY. Even $10/week into VOO or SCHD. Start the compound clock NOW while you learn to day trade. Future you will be grateful.
+        </div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    JT's Trading Academy | Built with Orcha | Remember: Protect Capital First 🐂
+</div>
+
+<script>
+    function showTab(tabId) {
+        // Hide all tabs
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+        
+        // Show selected tab
+        document.getElementById(tabId).classList.add('active');
+        
+        // Highlight nav tab
+        const tabs = ['overview', 'week12', 'week34', 'week56', 'week78', 'rules', 'glossary', 'robinhood', 'longterm'];
+        const index = tabs.indexOf(tabId);
+        document.querySelectorAll('.nav-tab')[index].classList.add('active');
+    }
+
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+        const percent = Math.round((checked.length / checkboxes.length) * 100);
+        
+        document.getElementById('overallProgress').style.width = percent + '%';
+        document.getElementById('progressPercent').textContent = percent + '%';
+        
+        // Save progress to localStorage
+        saveProgress();
+    }
+
+    function saveProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const state = {};
+        checkboxes.forEach(cb => {
+            state[cb.id] = cb.checked;
+        });
+        localStorage.setItem('daytrading_progress', JSON.stringify(state));
+    }
+
+    function loadProgress() {
+        const saved = localStorage.getItem('daytrading_progress');
+        if (saved) {
+            const state = JSON.parse(saved);
+            Object.keys(state).forEach(id => {
+                const cb = document.getElementById(id);
+                if (cb) cb.checked = state[id];
+            });
+            updateProgress();
+        }
+    }
+
+    // Load saved progress on page load
+    window.onload = loadProgress;
+</script>
+
+</body>
+</html>

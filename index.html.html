@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Rules Stock Analyzer | JT's Trading Academy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --uga-red: #BA0C2F; --uga-black: #000000; --uga-white: #FFFFFF; --uga-dark-gray: #1a1a1a; --uga-medium-gray: #2d2d2d; --uga-light-gray: #3a3a3a; --uga-text: #e0e0e0; --uga-red-dark: #8a0922; --uga-red-light: #d4324f; --green: #22c55e; --yellow: #eab308; --red-alert: #ef4444; --blue: #3b82f6; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--uga-dark-gray); color: var(--uga-text); line-height: 1.6; }
+        .header { background: linear-gradient(135deg, var(--uga-black) 0%, var(--uga-dark-gray) 50%, var(--uga-red-dark) 100%); padding: 30px 40px; border-bottom: 4px solid var(--uga-red); text-align: center; }
+        .header h1 { color: var(--uga-white); font-size: 2.2em; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .header h1 span { color: var(--uga-red); }
+        .header p { color: #aaa; margin-top: 8px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
+        /* Mode Tabs */
+        .mode-tabs { display: flex; gap: 0; margin-bottom: 25px; border-radius: 8px; overflow: hidden; border: 2px solid var(--uga-light-gray); }
+        .mode-tab { flex: 1; padding: 14px 20px; text-align: center; cursor: pointer; font-weight: 700; font-size: 0.95em; text-transform: uppercase; letter-spacing: 1px; background: var(--uga-medium-gray); color: #888; transition: all 0.3s; }
+        .mode-tab:hover { color: var(--uga-white); background: var(--uga-light-gray); }
+        .mode-tab.active { background: var(--uga-red); color: var(--uga-white); }
+        .mode-tab.active-blue { background: var(--blue); color: var(--uga-white); }
+        .mode-tab.active-green { background: var(--green); color: var(--uga-black); }
+        /* Search */
+        .search-section { background: var(--uga-medium-gray); border-radius: 12px; padding: 30px; margin-bottom: 25px; border: 1px solid var(--uga-light-gray); text-align: center; }
+        .search-section h2 { color: var(--uga-white); margin-bottom: 8px; }
+        .search-section .subtitle { color: #999; margin-bottom: 15px; font-size: 0.9em; }
+        .search-row { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
+        .search-input { background: var(--uga-dark-gray); border: 2px solid var(--uga-light-gray); color: var(--uga-white); padding: 14px 20px; font-size: 1.2em; border-radius: 8px; width: 200px; text-transform: uppercase; text-align: center; letter-spacing: 2px; }
+        .search-input:focus { outline: none; border-color: var(--uga-red); }
+        .btn { background: var(--uga-red); color: white; border: none; padding: 14px 30px; font-size: 1em; font-weight: 700; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; }
+        .btn:hover { background: var(--uga-red-light); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(186,12,47,0.4); }
+        .btn-blue { background: var(--blue); }
+        .btn-blue:hover { background: #2563eb; box-shadow: 0 4px 15px rgba(59,130,246,0.4); }
+        .btn-green { background: var(--green); color: #000; }
+        .btn-green:hover { background: #16a34a; box-shadow: 0 4px 15px rgba(34,197,94,0.4); }
+        .btn-sm { padding: 8px 16px; font-size: 0.8em; }
+        .btn-outline { background: transparent; border: 2px solid var(--uga-red); color: var(--uga-red); }
+        .btn-outline:hover { background: var(--uga-red); color: white; }
+        .btn-danger { background: var(--red-alert); }
+        /* Results */
+        .results-section { display: none; }
+        .results-section.active { display: block; }
+        .score-card { background: var(--uga-medium-gray); border-radius: 12px; padding: 30px; margin-bottom: 25px; text-align: center; border: 2px solid var(--uga-light-gray); }
+        .stock-name { font-size: 1.8em; color: var(--uga-white); font-weight: 700; margin-bottom: 5px; }
+        .stock-price { font-size: 1.2em; color: #aaa; margin-bottom: 20px; }
+        .score-circle { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; border: 6px solid; }
+        .score-circle.good { border-color: var(--green); }
+        .score-circle.ok { border-color: var(--yellow); }
+        .score-circle.bad { border-color: var(--red-alert); }
+        .score-number { font-size: 2.5em; font-weight: 700; color: var(--uga-white); }
+        .score-label { font-size: 0.85em; color: #aaa; }
+        .score-verdict { font-size: 1.2em; font-weight: 600; margin-top: 10px; }
+        .score-verdict.good { color: var(--green); }
+        .score-verdict.ok { color: var(--yellow); }
+        .score-verdict.bad { color: var(--red-alert); }
+        .rules-results { background: var(--uga-medium-gray); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .rules-results h3 { color: var(--uga-white); margin-bottom: 15px; font-size: 1.3em; }
+        .rule-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 15px; border-radius: 6px; margin-bottom: 8px; background: var(--uga-dark-gray); }
+        .rule-icon { font-size: 1.3em; min-width: 30px; text-align: center; }
+        .rule-text { flex: 1; }
+        .rule-name { color: var(--uga-white); font-weight: 600; }
+        .rule-detail { color: #999; font-size: 0.85em; margin-top: 3px; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .metric-card { background: var(--uga-medium-gray); border-radius: 8px; padding: 20px; text-align: center; border-top: 3px solid var(--uga-red); }
+        .metric-card.blue-top { border-top-color: var(--blue); }
+        .metric-card.green-top { border-top-color: var(--green); }
+        .metric-value { font-size: 1.5em; font-weight: 700; color: var(--uga-white); }
+        .metric-label { color: #999; font-size: 0.85em; margin-top: 5px; }
+        /* Watchlist */
+        .watchlist-section { background: var(--uga-medium-gray); border-radius: 12px; padding: 25px; margin-bottom: 25px; border: 1px solid var(--uga-light-gray); }
+        .watchlist-section h3 { color: var(--uga-white); margin-bottom: 15px; }
+        .watchlist-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .watchlist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+        .watchlist-card { background: var(--uga-dark-gray); border-radius: 8px; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--uga-light-gray); transition: all 0.3s; cursor: pointer; }
+        .watchlist-card:hover { border-left-color: var(--uga-red); background: var(--uga-light-gray); }
+        .watchlist-card.good { border-left-color: var(--green); }
+        .watchlist-card.ok { border-left-color: var(--yellow); }
+        .watchlist-card.bad { border-left-color: var(--red-alert); }
+        .wl-ticker { font-weight: 700; color: var(--uga-white); font-size: 1.1em; }
+        .wl-score { font-weight: 700; font-size: 1.1em; }
+        .wl-score.good { color: var(--green); }
+        .wl-score.ok { color: var(--yellow); }
+        .wl-score.bad { color: var(--red-alert); }
+        .wl-details { color: #999; font-size: 0.8em; }
+        .wl-remove { color: #666; cursor: pointer; font-size: 1.2em; padding: 5px; }
+        .wl-remove:hover { color: var(--red-alert); }
+        .wl-empty { text-align: center; color: #666; padding: 30px; font-style: italic; }
+        /* Loading */
+        .loading { display: none; text-align: center; padding: 40px; }
+        .loading.active { display: block; }
+        .spinner { width: 50px; height: 50px; border: 4px solid var(--uga-light-gray); border-top: 4px solid var(--uga-red); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 15px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .disclaimer { background: rgba(186,12,47,0.1); border: 1px solid rgba(186,12,47,0.3); border-radius: 8px; padding: 15px; margin-bottom: 25px; text-align: center; color: #999; font-size: 0.85em; }
+        .footer { text-align: center; padding: 20px; color: #555; font-size: 0.8em; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
+        .error-msg { background: rgba(239,68,68,0.1); border: 1px solid var(--red-alert); border-radius: 8px; padding: 20px; margin: 20px 0; color: var(--red-alert); text-align: center; display: none; }
+        .error-msg.active { display: block; }
+        .dual-score { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .dual-score .score-circle { margin: 0; }
+        @media (max-width: 768px) { .header h1 { font-size: 1.4em; } .container { padding: 15px; } .mode-tab { font-size: 0.75em; padding: 10px; } .watchlist-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>Golden Rules <span>Stock Analyzer</span></h1>
+    <p>JT's Trading Academy - Day Trade Score | Long-Term Hold Score | Watchlist Tracker</p>
+</div>
+<div class="container">
+    <div class="disclaimer">This tool is for <strong>educational purposes only</strong>. Not financial advice. Always do your own research.</div>
+    
+    <!-- Mode Tabs -->
+    <div class="mode-tabs">
+        <div class="mode-tab active" onclick="switchMode('daytrade')">Day Trade Analysis</div>
+        <div class="mode-tab" onclick="switchMode('longterm')">Long-Term Hold Score</div>
+        <div class="mode-tab" onclick="switchMode('watchlist')">Watchlist</div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section" id="searchSection">
+        <h2 id="searchTitle">Analyze a Stock</h2>
+        <p class="subtitle" id="searchSubtitle">Enter a ticker to score it against all 20 Golden Rules</p>
+        <div class="search-row">
+            <input type="text" class="search-input" id="tickerInput" placeholder="AAPL" maxlength="5">
+            <button class="btn" id="analyzeBtn" onclick="analyzeStock()">Analyze</button>
+            <button class="btn btn-sm btn-outline" id="addWatchlistBtn" onclick="addToWatchlist()" title="Add to Watchlist">+ Watchlist</button>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading" id="loadingSection"><div class="spinner"></div><p style="color:#aaa;" id="loadingText">Fetching market data...</p></div>
+    <div class="error-msg" id="errorSection"></div>
+
+    <!-- Results -->
+    <div class="results-section" id="resultsSection">
+        <div class="score-card" id="scoreCard"></div>
+        <div class="metrics-grid" id="metricsGrid"></div>
+        <div class="rules-results" id="rulesResults"></div>
+    </div>
+
+    <!-- Watchlist Section -->
+    <div class="watchlist-section" id="watchlistSection" style="display:none;">
+        <div class="watchlist-header">
+            <h3>My Watchlist</h3>
+            <div>
+                <button class="btn btn-sm" onclick="refreshWatchlist()">Refresh All</button>
+                <button class="btn btn-sm btn-danger" onclick="clearWatchlist()">Clear All</button>
+            </div>
+        </div>
+        <div class="watchlist-grid" id="watchlistGrid">
+            <div class="wl-empty">No stocks in watchlist. Add tickers using the + Watchlist button above.</div>
+        </div>
+    </div>
+</div>
+<div class="footer">JT's Trading Academy | Golden Rules Stock Analyzer | Built with Orcha</div>
+<script>
+let currentMode = 'daytrade';
+let watchlist = JSON.parse(localStorage.getItem('jt_watchlist') || '[]');
+
+document.getElementById('tickerInput').addEventListener('keypress', function(e) { if(e.key==='Enter') analyzeStock(); });
+
+function switchMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll('.mode-tab').forEach((t,i) => {
+        t.classList.remove('active','active-blue','active-green');
+        if (i === 0 && mode === 'daytrade') t.classList.add('active');
+        if (i === 1 && mode === 'longterm') t.classList.add('active-blue');
+        if (i === 2 && mode === 'watchlist') t.classList.add('active-green');
+    });
+    document.getElementById('resultsSection').classList.remove('active');
+    document.getElementById('errorSection').classList.remove('active');
+    if (mode === 'watchlist') {
+        document.getElementById('searchSection').style.display = 'block';
+        document.getElementById('watchlistSection').style.display = 'block';
+        document.getElementById('searchTitle').textContent = 'Add to Watchlist';
+        document.getElementById('searchSubtitle').textContent = 'Enter a ticker and click + Watchlist to track it';
+        renderWatchlist();
+    } else {
+        document.getElementById('watchlistSection').style.display = 'none';
+        document.getElementById('searchSection').style.display = 'block';
+        if (mode === 'daytrade') {
+            document.getElementById('searchTitle').textContent = 'Day Trade Analysis';
+            document.getElementById('searchSubtitle').textContent = 'Score against the 20 Golden Rules for day trading';
+            document.getElementById('analyzeBtn').className = 'btn';
+            document.getElementById('analyzeBtn').textContent = 'ANALYZE';
+        } else {
+            document.getElementById('searchTitle').textContent = 'Long-Term Hold Score';
+            document.getElementById('searchSubtitle').textContent = 'Evaluate if a stock is worth holding for years (fundamentals + trend)';
+            document.getElementById('analyzeBtn').className = 'btn btn-blue';
+            document.getElementById('analyzeBtn').textContent = 'EVALUATE';
+        }
+    }
+}
+
+async function analyzeStock() {
+    const ticker = document.getElementById('tickerInput').value.trim().toUpperCase();
+    if (!ticker) return;
+    document.getElementById('loadingSection').classList.add('active');
+    document.getElementById('resultsSection').classList.remove('active');
+    document.getElementById('errorSection').classList.remove('active');
+    document.getElementById('loadingText').textContent = currentMode === 'longterm' ? 'Evaluating long-term hold potential...' : 'Fetching market data & scoring...';
+    try {
+        const data = await fetchStockData(ticker);
+        if (currentMode === 'longterm') {
+            const results = scoreLongTerm(data);
+            displayLongTermResults(data, results);
+        } else {
+            const results = scoreAgainstRules(data);
+            displayResults(data, results);
+        }
+    } catch(err) {
+        document.getElementById('errorSection').innerHTML = '<strong>Error:</strong> Could not fetch data for "' + ticker + '". ' + err.message + '<br><br>Try: AAPL, TSLA, NVDA, AMD, MSFT, SPY, QQQ';
+        document.getElementById('errorSection').classList.add('active');
+    }
+    document.getElementById('loadingSection').classList.remove('active');
+}
+
+async function fetchStockData(ticker) {
+    // Strategy: Use Yahoo Finance via multiple methods to avoid CORS
+    // Method 1: Direct fetch (works if browser allows it)
+    // Method 2: allorigins proxy (CORS-friendly wrapper)
+    // Method 3: Script tag injection (no CORS restrictions at all)
+    const baseUrl = 'https://query2.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=6mo&includePrePost=false';
+    const baseUrl2 = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=6mo&includePrePost=false';
+    
+    // Method 1 & 2: Fetch-based approaches
+    const attempts = [
+        baseUrl,
+        baseUrl2,
+        'https://api.allorigins.win/raw?url=' + encodeURIComponent(baseUrl),
+        'https://corsproxy.io/?' + encodeURIComponent(baseUrl),
+    ];
+    for (const url of attempts) {
+        try {
+            const resp = await fetch(url, {mode: 'cors'});
+            if (!resp.ok) continue;
+            const text = await resp.text();
+            const json = JSON.parse(text);
+            if (json.chart && json.chart.result) return parseYahooData(json, ticker);
+        } catch(e) { /* try next */ }
+    }
+    
+    // Method 3: Use allorigins wrapped endpoint (returns JSON wrapper)
+    try {
+        const wrapUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(baseUrl);
+        const resp = await fetch(wrapUrl);
+        if (resp.ok) {
+            const wrapper = await resp.json();
+            if (wrapper.contents) {
+                const json = JSON.parse(wrapper.contents);
+                if (json.chart && json.chart.result) return parseYahooData(json, ticker);
+            }
+        }
+    } catch(e) { /* try next */ }
+
+    // Method 4: Try with no-cors and cache
+    try {
+        const resp = await fetch(baseUrl, {credentials: 'omit', headers: {'Accept': 'application/json'}});
+        if (resp.ok) {
+            const json = await resp.json();
+            if (json.chart && json.chart.result) return parseYahooData(json, ticker);
+        }
+    } catch(e) { /* final fallback */ }
+
+    throw new Error('Unable to fetch stock data. Your corporate network may be blocking external API calls. Try connecting to personal wifi/hotspot, or use this tool from a personal device.');
+}
+
+function parseYahooData(json, ticker) {
+    const chart = json.chart.result[0];
+    const meta = chart.meta;
+    const quotes = chart.indicators.quote[0];
+    const closes = quotes.close.filter(v => v !== null);
+    const volumes = quotes.volume.filter(v => v !== null);
+    const highs = quotes.high.filter(v => v !== null);
+    const lows = quotes.low.filter(v => v !== null);
+    const currentPrice = meta.regularMarketPrice;
+    const prevClose = meta.chartPreviousClose || closes[closes.length - 2];
+    const changePercent = ((currentPrice - prevClose) / prevClose) * 100;
+    const avgVol = volumes.reduce((a,b) => a+b, 0) / volumes.length;
+    const latestVol = volumes[volumes.length - 1];
+    const rvol = latestVol / avgVol;
+    const ema9 = calcEMA(closes, 9);
+    const ema20 = calcEMA(closes, 20);
+    const ema50 = calcEMA(closes, 50);
+    const rsi = calcRSI(closes, 14);
+    const high6mo = Math.max(...highs);
+    const low6mo = Math.min(...lows);
+    const dayHigh = highs[highs.length - 1] || currentPrice * 1.01;
+    const dayLow = lows[lows.length - 1] || currentPrice * 0.99;
+    const spread = (dayHigh - dayLow) / currentPrice * 100;
+    // 6-month return
+    const sixMoReturn = ((currentPrice - closes[0]) / closes[0]) * 100;
+    // 3-month return
+    const mid = Math.floor(closes.length / 2);
+    const threeMoReturn = ((currentPrice - closes[mid]) / closes[mid]) * 100;
+    // Volatility (std dev of daily returns)
+    let returns = [];
+    for (let i = 1; i < closes.length; i++) returns.push((closes[i] - closes[i-1]) / closes[i-1]);
+    const avgReturn = returns.reduce((a,b)=>a+b,0) / returns.length;
+    const volatility = Math.sqrt(returns.reduce((a,r) => a + Math.pow(r - avgReturn, 2), 0) / returns.length) * Math.sqrt(252) * 100;
+    // Trend consistency (% of days above 50 EMA)
+    let above50 = 0;
+    const ema50arr = calcEMAarray(closes, 50);
+    for (let i = 50; i < closes.length; i++) { if (closes[i] > ema50arr[i]) above50++; }
+    const trendConsistency = above50 / (closes.length - 50) * 100;
+
+    return {
+        ticker, currentPrice, prevClose, changePercent, dayHigh, dayLow,
+        avgVol, latestVol, rvol, ema9, ema20, ema50, rsi, high6mo, low6mo, spread,
+        closes, volumes, sixMoReturn, threeMoReturn, volatility, trendConsistency,
+        name: meta.shortName || meta.symbol || ticker,
+        exchange: meta.exchangeName || 'US'
+    };
+}
+
+function calcEMA(data, period) {
+    if (data.length < period) return data[data.length-1];
+    const k = 2 / (period + 1);
+    let ema = data.slice(0, period).reduce((a,b) => a+b, 0) / period;
+    for (let i = period; i < data.length; i++) { ema = data[i] * k + ema * (1-k); }
+    return ema;
+}
+
+function calcEMAarray(data, period) {
+    let arr = new Array(data.length).fill(0);
+    if (data.length < period) return arr;
+    const k = 2 / (period + 1);
+    arr[period-1] = data.slice(0, period).reduce((a,b) => a+b, 0) / period;
+    for (let i = period; i < data.length; i++) { arr[i] = data[i] * k + arr[i-1] * (1-k); }
+    return arr;
+}
+
+function calcRSI(data, period) {
+    if (data.length < period + 1) return 50;
+    let gains = 0, losses = 0;
+    for (let i = data.length - period; i < data.length; i++) {
+        const diff = data[i] - data[i-1];
+        if (diff > 0) gains += diff; else losses -= diff;
+    }
+    if (losses === 0) return 100;
+    return 100 - (100 / (1 + (gains/period) / (losses/period)));
+}
+
+// ======================== DAY TRADE SCORING ========================
+function scoreAgainstRules(d) {
+    const rules = [];
+    const p = d.currentPrice;
+    rules.push({ id:1, name:'Never risk more than 1-2% per trade', pass: true, detail:'For $1,000 account: max risk $10-20. Position size = Risk / (Entry - Stop).' });
+    const hasSupport = d.dayLow < p;
+    rules.push({ id:2, name:'Always use a stop-loss', pass: hasSupport, detail: hasSupport ? 'Low $' + d.dayLow.toFixed(2) + ' = stop level (' + ((p-d.dayLow)/p*100).toFixed(1) + '% risk).' : 'No clear support.' });
+    rules.push({ id:3, name:'Never move your stop further away', pass: true, detail:'Set it. Honor it. Small loss > big loss.' });
+    rules.push({ id:4, name:'Plan the trade, trade the plan', pass: true, detail:'Entry $' + p.toFixed(2) + ' | Stop $' + d.dayLow.toFixed(2) + ' | Target $' + (p+(p-d.dayLow)*2).toFixed(2) + ' (2:1)' });
+    const aboveEmas = p > d.ema9 && p > d.ema20;
+    rules.push({ id:5, name:'Cut losers fast, let winners run', pass: aboveEmas, detail: aboveEmas ? 'Above both EMAs - winner, let it ride.' : 'Below EMAs - loser territory. Consider cutting.' });
+    rules.push({ id:6, name:'Never revenge trade', pass: true, detail:'3 losses = done for day. Walk away.' });
+    const notFomo = d.rsi < 72;
+    rules.push({ id:7, name:'No FOMO', pass: notFomo, detail: notFomo ? 'RSI ' + d.rsi.toFixed(0) + ' - not overbought.' : 'RSI ' + d.rsi.toFixed(0) + ' - OVERBOUGHT! Possible FOMO zone.' });
+    const withTrend = p > d.ema20;
+    rules.push({ id:8, name:'Trade with the trend', pass: withTrend, detail: withTrend ? 'Above 20 EMA ($' + d.ema20.toFixed(2) + ') - uptrend.' : 'Below 20 EMA ($' + d.ema20.toFixed(2) + ') - downtrend!' });
+    const volOk = d.rvol >= 1.0;
+    rules.push({ id:9, name:'Volume confirms everything', pass: volOk, detail: 'RVOL ' + d.rvol.toFixed(2) + 'x. ' + (volOk ? 'Confirmed.' : 'Weak volume - dont trust.') });
+    rules.push({ id:10, name:'Daily loss limit', pass: true, detail:'Set max daily loss. Hit it = done.' });
+    rules.push({ id:11, name:'Only risk what you can lose', pass: true, detail:'No rent money. No emergency funds.' });
+    rules.push({ id:12, name:'Journal every trade', pass: true, detail:'Log: ' + d.ticker + ' | $' + p.toFixed(2) + ' | Setup | Result.' });
+    rules.push({ id:13, name:'Quality over quantity', pass: d.rvol >= 1.0 && Math.abs(d.changePercent) > 0.5, detail: d.rvol >= 1.0 ? 'Active + moving = quality setup.' : 'Low activity. Be a sniper - wait.' });
+    const bigMove = Math.abs(d.changePercent) > 8;
+    rules.push({ id:14, name:'Avoid news events (beginner)', pass: !bigMove, detail: bigMove ? d.changePercent.toFixed(1) + '% move = likely news. Dangerous!' : 'Normal action (' + d.changePercent.toFixed(1) + '%).' });
+    rules.push({ id:15, name:'Respect PDT rule', pass: true, detail:'3 day trades / 5 days under $25K.' });
+    const okSpread = d.spread < 5;
+    rules.push({ id:16, name:'Dont hold overnight', pass: okSpread, detail: okSpread ? 'Range ' + d.spread.toFixed(1) + '% - manageable.' : 'Wide range ' + d.spread.toFixed(1) + '% - volatile!' });
+    rules.push({ id:17, name:'Master one strategy first', pass: true, detail:'Stick to YOUR playbook.' });
+    rules.push({ id:18, name:'Market is always right', pass: true, detail:'Price $' + p.toFixed(2) + ' = reality.' });
+    rules.push({ id:19, name:'Take breaks', pass: true, detail:'Every 90 min, stand up.' });
+    const sustainable = Math.abs(d.changePercent) < 12;
+    rules.push({ id:20, name:'Marathon, not sprint', pass: sustainable, detail: sustainable ? 'Steady (' + d.changePercent.toFixed(1) + '%). Consistency wins.' : 'Extreme move! High risk.' });
+    return rules;
+}
+
+// ======================== LONG-TERM HOLD SCORING ========================
+function scoreLongTerm(d) {
+    const rules = [];
+    const p = d.currentPrice;
+    // 1. Trend: above 50 EMA
+    const above50 = p > d.ema50;
+    rules.push({ id:1, name:'Price above 50-day EMA (uptrend)', pass: above50, detail: above50 ? 'At $' + p.toFixed(2) + ' vs 50 EMA $' + d.ema50.toFixed(2) + ' - long-term uptrend intact.' : 'Below 50 EMA ($' + d.ema50.toFixed(2) + ') - may be in a downtrend.' });
+    // 2. 6-month return positive
+    const goodReturn = d.sixMoReturn > 0;
+    rules.push({ id:2, name:'Positive 6-month return', pass: goodReturn, detail: goodReturn ? 'Up ' + d.sixMoReturn.toFixed(1) + '% over 6 months - growth confirmed.' : 'Down ' + d.sixMoReturn.toFixed(1) + '% over 6 months - concerning.' });
+    // 3. 3-month return positive
+    const good3mo = d.threeMoReturn > 0;
+    rules.push({ id:3, name:'Positive 3-month return', pass: good3mo, detail: good3mo ? 'Up ' + d.threeMoReturn.toFixed(1) + '% last 3 months.' : 'Down ' + d.threeMoReturn.toFixed(1) + '% last 3 months - weakening.' });
+    // 4. Not overbought (RSI < 75)
+    const notOver = d.rsi < 75;
+    rules.push({ id:4, name:'Not overbought (RSI < 75)', pass: notOver, detail: notOver ? 'RSI ' + d.rsi.toFixed(0) + ' - still room to grow.' : 'RSI ' + d.rsi.toFixed(0) + ' - overextended. Wait for pullback to buy.' });
+    // 5. Not oversold / in freefall (RSI > 25)
+    const notCrash = d.rsi > 25;
+    rules.push({ id:5, name:'Not in freefall (RSI > 25)', pass: notCrash, detail: notCrash ? 'RSI ' + d.rsi.toFixed(0) + ' - not capitulating.' : 'RSI ' + d.rsi.toFixed(0) + ' - extreme selling. Could be distressed.' });
+    // 6. Manageable volatility (< 50% annualized)
+    const lowVol = d.volatility < 50;
+    rules.push({ id:6, name:'Manageable volatility (< 50% annual)', pass: lowVol, detail: lowVol ? 'Volatility ' + d.volatility.toFixed(0) + '% - reasonable for long hold.' : 'Volatility ' + d.volatility.toFixed(0) + '% - very volatile! Stomach for swings?' });
+    // 7. Not at all-time high (< 95% of 6mo high)
+    const notTop = p < d.high6mo * 0.95;
+    rules.push({ id:7, name:'Not buying at the very top', pass: notTop, detail: notTop ? 'At $' + p.toFixed(2) + ' vs 6mo high $' + d.high6mo.toFixed(2) + ' - not peak buying.' : 'Within 5% of 6mo high ($' + d.high6mo.toFixed(2) + '). Consider DCA instead of lump sum.' });
+    // 8. Well above 6-month low (> 15% from bottom)
+    const offBottom = ((p - d.low6mo) / d.low6mo * 100) > 15;
+    rules.push({ id:8, name:'Recovered from lows (>15% off bottom)', pass: offBottom, detail: offBottom ? 'Up ' + ((p-d.low6mo)/d.low6mo*100).toFixed(0) + '% from 6mo low - strength.' : 'Only ' + ((p-d.low6mo)/d.low6mo*100).toFixed(0) + '% off lows - still weak.' });
+    // 9. Trend consistency (above 50 EMA > 60% of time)
+    const consistent = d.trendConsistency > 60;
+    rules.push({ id:9, name:'Consistent uptrend (>60% days above 50 EMA)', pass: consistent, detail: consistent ? d.trendConsistency.toFixed(0) + '% of days above 50 EMA - reliable.' : 'Only ' + d.trendConsistency.toFixed(0) + '% above 50 EMA - choppy/unreliable.' });
+    // 10. Decent volume / liquidity
+    const liquid = d.avgVol > 1000000;
+    rules.push({ id:10, name:'Liquid stock (avg vol > 1M)', pass: liquid, detail: liquid ? 'Avg volume ' + (d.avgVol/1000000).toFixed(1) + 'M - liquid, easy to buy/sell.' : 'Avg volume ' + (d.avgVol/1000).toFixed(0) + 'K - low liquidity. Harder to exit.' });
+    return rules;
+}
+
+// ======================== DISPLAY: DAY TRADE ========================
+function displayResults(data, rules) {
+    const passed = rules.filter(r => r.pass).length;
+    const total = rules.length;
+    const pct = Math.round(passed / total * 100);
+    const grade = pct >= 75 ? 'good' : pct >= 50 ? 'ok' : 'bad';
+    const verdicts = { good: 'Strong Setup - Rules Aligned', ok: 'Caution - Some Concerns', bad: 'Weak - Too Many Red Flags' };
+    document.getElementById('scoreCard').innerHTML =
+        '<div class="stock-name">' + data.name + ' (' + data.ticker + ')</div>' +
+        '<div class="stock-price">$' + data.currentPrice.toFixed(2) + ' | ' + (data.changePercent>=0?'+':'') + data.changePercent.toFixed(2) + '% | ' + data.exchange + '</div>' +
+        '<div class="score-circle ' + grade + '"><span class="score-number">' + passed + '/' + total + '</span><span class="score-label">Day Trade Rules</span></div>' +
+        '<div class="score-verdict ' + grade + '">' + verdicts[grade] + '</div>';
+    document.getElementById('metricsGrid').innerHTML =
+        '<div class="metric-card"><div class="metric-value">' + data.rsi.toFixed(0) + '</div><div class="metric-label">RSI (14)</div></div>' +
+        '<div class="metric-card"><div class="metric-value">' + data.rvol.toFixed(2) + 'x</div><div class="metric-label">RVOL</div></div>' +
+        '<div class="metric-card"><div class="metric-value">$' + data.ema9.toFixed(2) + '</div><div class="metric-label">9 EMA</div></div>' +
+        '<div class="metric-card"><div class="metric-value">$' + data.ema20.toFixed(2) + '</div><div class="metric-label">20 EMA</div></div>' +
+        '<div class="metric-card"><div class="metric-value">' + (data.latestVol/1000000).toFixed(1) + 'M</div><div class="metric-label">Volume</div></div>' +
+        '<div class="metric-card"><div class="metric-value">' + data.spread.toFixed(1) + '%</div><div class="metric-label">Day Range</div></div>';
+    let html = '<h3>Rule-by-Rule Breakdown (Day Trade)</h3>';
+    rules.forEach(r => {
+        html += '<div class="rule-item"><div class="rule-icon">' + (r.pass?'&#x2705;':'&#x274C;') + '</div><div class="rule-text"><div class="rule-name">#' + r.id + ': ' + r.name + '</div><div class="rule-detail">' + r.detail + '</div></div></div>';
+    });
+    document.getElementById('rulesResults').innerHTML = html;
+    document.getElementById('resultsSection').classList.add('active');
+}
+
+// ======================== DISPLAY: LONG-TERM ========================
+function displayLongTermResults(data, rules) {
+    const passed = rules.filter(r => r.pass).length;
+    const total = rules.length;
+    const pct = Math.round(passed / total * 100);
+    const grade = pct >= 70 ? 'good' : pct >= 50 ? 'ok' : 'bad';
+    const verdicts = { good: 'Strong Long-Term Hold', ok: 'Mixed - Research More', bad: 'Weak Hold Candidate' };
+    document.getElementById('scoreCard').innerHTML =
+        '<div class="stock-name">' + data.name + ' (' + data.ticker + ')</div>' +
+        '<div class="stock-price">$' + data.currentPrice.toFixed(2) + ' | 6mo: ' + (data.sixMoReturn>=0?'+':'') + data.sixMoReturn.toFixed(1) + '% | ' + data.exchange + '</div>' +
+        '<div class="score-circle ' + grade + '"><span class="score-number">' + passed + '/' + total + '</span><span class="score-label">Hold Criteria</span></div>' +
+        '<div class="score-verdict ' + grade + '">' + verdicts[grade] + '</div>';
+    document.getElementById('metricsGrid').innerHTML =
+        '<div class="metric-card blue-top"><div class="metric-value">' + (data.sixMoReturn>=0?'+':'') + data.sixMoReturn.toFixed(1) + '%</div><div class="metric-label">6-Month Return</div></div>' +
+        '<div class="metric-card blue-top"><div class="metric-value">' + (data.threeMoReturn>=0?'+':'') + data.threeMoReturn.toFixed(1) + '%</div><div class="metric-label">3-Month Return</div></div>' +
+        '<div class="metric-card blue-top"><div class="metric-value">' + data.volatility.toFixed(0) + '%</div><div class="metric-label">Annualized Volatility</div></div>' +
+        '<div class="metric-card blue-top"><div class="metric-value">$' + data.ema50.toFixed(2) + '</div><div class="metric-label">50 EMA</div></div>' +
+        '<div class="metric-card blue-top"><div class="metric-value">' + data.trendConsistency.toFixed(0) + '%</div><div class="metric-label">Trend Consistency</div></div>' +
+        '<div class="metric-card blue-top"><div class="metric-value">' + (data.avgVol/1000000).toFixed(1) + 'M</div><div class="metric-label">Avg Volume</div></div>';
+    let html = '<h3>Long-Term Hold Criteria Breakdown</h3>';
+    rules.forEach(r => {
+        html += '<div class="rule-item"><div class="rule-icon">' + (r.pass?'&#x2705;':'&#x274C;') + '</div><div class="rule-text"><div class="rule-name">#' + r.id + ': ' + r.name + '</div><div class="rule-detail">' + r.detail + '</div></div></div>';
+    });
+    document.getElementById('rulesResults').innerHTML = html;
+    document.getElementById('resultsSection').classList.add('active');
+}
+
+// ======================== WATCHLIST ========================
+function addToWatchlist() {
+    const ticker = document.getElementById('tickerInput').value.trim().toUpperCase();
+    if (!ticker) return;
+    if (watchlist.includes(ticker)) { alert(ticker + ' is already in your watchlist!'); return; }
+    watchlist.push(ticker);
+    localStorage.setItem('jt_watchlist', JSON.stringify(watchlist));
+    document.getElementById('tickerInput').value = '';
+    if (currentMode === 'watchlist') renderWatchlist();
+    else { switchMode('watchlist'); }
+}
+
+function removeFromWatchlist(ticker) {
+    watchlist = watchlist.filter(t => t !== ticker);
+    localStorage.setItem('jt_watchlist', JSON.stringify(watchlist));
+    renderWatchlist();
+}
+
+function clearWatchlist() {
+    if (!confirm('Clear all tickers from watchlist?')) return;
+    watchlist = [];
+    localStorage.setItem('jt_watchlist', JSON.stringify(watchlist));
+    renderWatchlist();
+}
+
+function renderWatchlist() {
+    const grid = document.getElementById('watchlistGrid');
+    if (watchlist.length === 0) {
+        grid.innerHTML = '<div class="wl-empty">No stocks in watchlist yet. Enter a ticker above and click + Watchlist.</div>';
+        return;
+    }
+    grid.innerHTML = watchlist.map(t =>
+        '<div class="watchlist-card" id="wl-' + t + '" onclick="quickAnalyze(\'' + t + '\')">' +
+        '<div><div class="wl-ticker">' + t + '</div><div class="wl-details" id="wld-' + t + '">Click Refresh All to load scores</div></div>' +
+        '<div style="display:flex;align-items:center;gap:10px;"><span class="wl-score" id="wls-' + t + '">--</span>' +
+        '<span class="wl-remove" onclick="event.stopPropagation();removeFromWatchlist(\'' + t + '\')" title="Remove">&#x2716;</span></div></div>'
+    ).join('');
+}
+
+async function refreshWatchlist() {
+    if (watchlist.length === 0) return;
+    for (const ticker of watchlist) {
+        const el = document.getElementById('wld-' + ticker);
+        if (el) el.textContent = 'Loading...';
+        try {
+            const data = await fetchStockData(ticker);
+            const dtRules = scoreAgainstRules(data);
+            const ltRules = scoreLongTerm(data);
+            const dtPass = dtRules.filter(r=>r.pass).length;
+            const ltPass = ltRules.filter(r=>r.pass).length;
+            const dtTotal = dtRules.length;
+            const ltTotal = ltRules.length;
+            const dtPct = Math.round(dtPass/dtTotal*100);
+            const grade = dtPct >= 75 ? 'good' : dtPct >= 50 ? 'ok' : 'bad';
+            const card = document.getElementById('wl-' + ticker);
+            const score = document.getElementById('wls-' + ticker);
+            const detail = document.getElementById('wld-' + ticker);
+            if (card) { card.className = 'watchlist-card ' + grade; }
+            if (score) { score.textContent = dtPass + '/' + dtTotal; score.className = 'wl-score ' + grade; }
+            if (detail) { detail.textContent = '$' + data.currentPrice.toFixed(2) + ' | DT: ' + dtPass + '/' + dtTotal + ' | LT: ' + ltPass + '/' + ltTotal + ' | RSI ' + data.rsi.toFixed(0); }
+        } catch(e) {
+            const detail = document.getElementById('wld-' + ticker);
+            if (detail) detail.textContent = 'Error loading data';
+        }
+    }
+}
+
+function quickAnalyze(ticker) {
+    document.getElementById('tickerInput').value = ticker;
+    switchMode('daytrade');
+    analyzeStock();
+}
+
+// Init
+renderWatchlist();
+</script>
+</body>
+</html>

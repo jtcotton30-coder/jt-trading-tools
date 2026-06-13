@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Trading Cheat Sheet | Quick Reference</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --uga-red: #BA0C2F;
+            --uga-black: #000000;
+            --uga-white: #FFFFFF;
+            --uga-dark: #111111;
+            --uga-card: #1a1a1a;
+            --uga-border: #2a2a2a;
+            --uga-text: #e0e0e0;
+            --uga-muted: #888;
+            --green: #22c55e;
+            --red: #ef4444;
+            --yellow: #eab308;
+            --blue: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--uga-dark);
+            color: var(--uga-text);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: var(--uga-black);
+            border-bottom: 3px solid var(--uga-red);
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            color: var(--uga-white);
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        .header h1 span { color: var(--uga-red); }
+
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .size-btn {
+            background: var(--uga-card);
+            border: 1px solid var(--uga-border);
+            color: var(--uga-text);
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+
+        .size-btn:hover { border-color: var(--uga-red); }
+
+        /* Quick Nav */
+        .quick-nav {
+            background: var(--uga-black);
+            padding: 8px 25px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--uga-border);
+        }
+
+        .quick-nav a {
+            color: var(--uga-muted);
+            text-decoration: none;
+            font-size: 0.8em;
+            padding: 4px 10px;
+            border-radius: 3px;
+            background: var(--uga-card);
+            border: 1px solid var(--uga-border);
+            transition: all 0.2s;
+        }
+
+        .quick-nav a:hover {
+            color: var(--uga-white);
+            border-color: var(--uga-red);
+            background: rgba(186, 12, 47, 0.1);
+        }
+
+        /* Main Layout */
+        .main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cheat-card {
+            background: var(--uga-card);
+            border: 1px solid var(--uga-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cheat-card-header {
+            background: var(--uga-black);
+            padding: 10px 15px;
+            border-bottom: 2px solid var(--uga-red);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cheat-card-header h3 {
+            color: var(--uga-white);
+            font-size: 0.95em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cheat-card-body {
+            padding: 15px;
+        }
+
+        /* Signal Items */
+        .signal {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .signal:last-child { border-bottom: none; }
+
+        .signal-icon {
+            font-size: 1.1em;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .signal-text {
+            flex: 1;
+            font-size: 0.88em;
+        }
+
+        .signal-text strong {
+            color: var(--uga-white);
+        }
+
+        /* Buy/Sell Tags */
+        .tag-buy {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--green);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 700;
+        }
+
+        .tag-sell {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 700;
+        }
+
+        .tag-caution {
+            display: inline-block;
+            background: rgba(234, 179, 8, 0.15);
+            color: var(--yellow);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 700;
+        }
+
+        .tag-info {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--blue);
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-weight: 700;
+        }
+
+        /* Quick Reference Table */
+        .ref-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85em;
+        }
+
+        .ref-table th {
+            background: rgba(186, 12, 47, 0.2);
+            color: var(--uga-red);
+            padding: 8px 10px;
+            text-align: left;
+            font-size: 0.8em;
+            text-transform: uppercase;
+        }
+
+        .ref-table td {
+            padding: 7px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .ref-table tr:hover { background: rgba(255,255,255,0.02); }
+
+        /* Candle Patterns */
+        .pattern-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .pattern-name {
+            font-weight: 600;
+            color: var(--uga-white);
+            font-size: 0.88em;
+        }
+
+        .pattern-desc {
+            color: var(--uga-muted);
+            font-size: 0.8em;
+            max-width: 60%;
+            text-align: right;
+        }
+
+        /* Position Size Calculator */
+        .calc-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .calc-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .calc-field label {
+            font-size: 0.75em;
+            color: var(--uga-muted);
+            text-transform: uppercase;
+        }
+
+        .calc-field input {
+            background: var(--uga-dark);
+            border: 1px solid var(--uga-border);
+            color: var(--uga-white);
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .calc-field input:focus {
+            outline: none;
+            border-color: var(--uga-red);
+        }
+
+        .calc-btn {
+            grid-column: span 2;
+            background: var(--uga-red);
+            color: var(--uga-white);
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .calc-btn:hover { background: #d4324f; }
+
+        .calc-result {
+            grid-column: span 2;
+            background: var(--uga-dark);
+            border: 1px solid var(--uga-border);
+            border-radius: 4px;
+            padding: 12px;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calc-result .big-num {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--uga-red);
+        }
+
+        .calc-result .sub-text {
+            font-size: 0.8em;
+            color: var(--uga-muted);
+        }
+
+        /* Checklist Quick */
+        .quick-check {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 0.88em;
+        }
+
+        .quick-check input {
+            accent-color: var(--uga-red);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Hot Key Legend */
+        .hotkey {
+            display: inline-block;
+            background: var(--uga-dark);
+            border: 1px solid var(--uga-border);
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 0.8em;
+            color: var(--uga-red);
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .main { grid-template-columns: 1fr; padding: 10px; }
+            .header h1 { font-size: 1.1em; }
+        }
+
+        /* Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>⚡ Day Trading <span>Cheat Sheet</span></h1>
+    <div class="header-controls">
+        <button class="size-btn" onclick="adjustSize(-1)">A-</button>
+        <button class="size-btn" onclick="adjustSize(1)">A+</button>
+        <div class="live-dot" title="Keep this open while trading"></div>
+    </div>
+</div>
+
+<div class="quick-nav">
+    <a href="#entry-signals">Entry Signals</a>
+    <a href="#exit-signals">Exit Signals</a>
+    <a href="#indicators">Indicators</a>
+    <a href="#patterns">Patterns</a>
+    <a href="#calculator">Position Calc</a>
+    <a href="#pre-trade">Pre-Trade Check</a>
+    <a href="#candles">Candles</a>
+    <a href="#avoid">What to Avoid</a>
+    <a href="#timeframes">Timeframes</a>
+    <a href="#orderflow">Order Flow</a>
+</div>
+
+<div class="main">
+
+    <!-- ENTRY SIGNALS -->
+    <div class="cheat-card" id="entry-signals">
+        <div class="cheat-card-header">
+            <span>🟢</span>
+            <h3>Entry Signals (When to BUY)</h3>
+        </div>
+        <div class="cheat-card-body">
+            <div class="signal">
+                <span class="signal-icon">📈</span>
+                <div class="signal-text"><strong>Price above VWAP</strong> + pulling back to touch VWAP = buy the bounce <span class="tag-buy">HIGH PROB</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">✂️</span>
+                <div class="signal-text"><strong>9 EMA crosses above 20 EMA</strong> on 5-min chart = momentum shift bullish <span class="tag-buy">BUY</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">💥</span>
+                <div class="signal-text"><strong>Breakout above resistance</strong> with volume &gt; 2x average = strong entry <span class="tag-buy">BUY</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">🏁</span>
+                <div class="signal-text"><strong>Bull flag breakout</strong> — tight consolidation after sharp move up, breaks higher with volume <span class="tag-buy">BUY</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">🔄</span>
+                <div class="signal-text"><strong>Bounce off support</strong> with hammer candle + volume = reversal entry <span class="tag-buy">BUY</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">📊</span>
+                <div class="signal-text"><strong>RSI divergence</strong> — price making new low but RSI making higher low = hidden strength <span class="tag-buy">BUY</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">⏰</span>
+                <div class="signal-text"><strong>Opening Range Breakout</strong> — mark first 15min high/low. Break above high with volume = go long <span class="tag-buy">BUY</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXIT SIGNALS -->
+    <div class="cheat-card" id="exit-signals">
+        <div class="cheat-card-header">
+            <span>🔴</span>
+            <h3>Exit Signals (When to SELL)</h3>
+        </div>
+        <div class="cheat-card-body">
+            <div class="signal">
+                <span class="signal-icon">🎯</span>
+                <div class="signal-text"><strong>Hit profit target</strong> — pre-defined R:R reached (2:1 minimum). Take profit. Don't get greedy. <span class="tag-sell">SELL</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">🛑</span>
+                <div class="signal-text"><strong>Stop-loss hit</strong> — NO QUESTIONS. Exit immediately. Never move stop further away. <span class="tag-sell">SELL</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">📉</span>
+                <div class="signal-text"><strong>Price breaks below VWAP</strong> with volume after you're long = trend changing <span class="tag-sell">SELL</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">✂️</span>
+                <div class="signal-text"><strong>9 EMA crosses below 20 EMA</strong> = momentum dying. Take remaining profit or cut loss. <span class="tag-sell">SELL</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">🕯️</span>
+                <div class="signal-text"><strong>Bearish engulfing candle</strong> at resistance on high volume = sellers taking over <span class="tag-sell">SELL</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">📊</span>
+                <div class="signal-text"><strong>RSI above 70</strong> + price at resistance + volume fading = overbought, likely to pull back <span class="tag-sell">SELL</span></div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">⏳</span>
+                <div class="signal-text"><strong>Trade not working after 15-30 min</strong> — if it hasn't moved in your favor, cut it. Dead money. <span class="tag-caution">EXIT</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INDICATORS QUICK REF -->
+    <div class="cheat-card" id="indicators">
+        <div class="cheat-card-header">
+            <span>📊</span>
+            <h3>Indicator Quick Reference</h3>
+        </div>
+        <div class="cheat-card-body">
+            <table class="ref-table">
+                <tr><th>Indicator</th><th>Bullish</th><th>Bearish</th></tr>
+                <tr><td><strong>VWAP</strong></td><td>Price above</td><td>Price below</td></tr>
+                <tr><td><strong>9/20 EMA</strong></td><td>9 above 20</td><td>9 below 20</td></tr>
+                <tr><td><strong>RSI</strong></td><td>Rising from 30</td><td>Falling from 70</td></tr>
+                <tr><td><strong>MACD</strong></td><td>Cross above signal</td><td>Cross below signal</td></tr>
+                <tr><td><strong>Volume</strong></td><td>Increasing on green</td><td>Increasing on red</td></tr>
+                <tr><td><strong>Price/EMA</strong></td><td>Above both EMAs</td><td>Below both EMAs</td></tr>
+            </table>
+            <br>
+            <div class="signal">
+                <span class="signal-icon">⭐</span>
+                <div class="signal-text"><strong>Best combo for beginners:</strong> VWAP + 9/20 EMA + Volume. That's it. Don't overcomplicate.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHART PATTERNS -->
+    <div class="cheat-card" id="patterns">
+        <div class="cheat-card-header">
+            <span>📐</span>
+            <h3>Chart Patterns — Quick ID</h3>
+        </div>
+        <div class="cheat-card-body">
+            <div class="pattern-row">
+                <span class="pattern-name">Bull Flag 🏁</span>
+                <span class="pattern-desc">Sharp up → tight pullback → break up <span class="tag-buy">BUY</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Bear Flag 🚩</span>
+                <span class="pattern-desc">Sharp down → tight bounce → break down <span class="tag-sell">SHORT</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Ascending Triangle 📐</span>
+                <span class="pattern-desc">Flat top + higher lows → breaks up <span class="tag-buy">BUY</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Double Bottom (W)</span>
+                <span class="pattern-desc">Two bounces off same support → break up <span class="tag-buy">BUY</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Double Top (M)</span>
+                <span class="pattern-desc">Two rejections at same resistance → break down <span class="tag-sell">SELL</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Cup & Handle ☕</span>
+                <span class="pattern-desc">Round bottom + small pullback → break up <span class="tag-buy">BUY</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Head & Shoulders</span>
+                <span class="pattern-desc">Left peak, higher peak, right peak → neckline break <span class="tag-sell">SELL</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Wedge (Rising)</span>
+                <span class="pattern-desc">Converging higher highs/lows → usually breaks DOWN <span class="tag-caution">WAIT</span></span>
+            </div>
+            <div class="pattern-row">
+                <span class="pattern-name">Wedge (Falling)</span>
+                <span class="pattern-desc">Converging lower highs/lows → usually breaks UP <span class="tag-buy">BUY</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- POSITION SIZE CALCULATOR -->
+    <div class="cheat-card" id="calculator">
+        <div class="cheat-card-header">
+            <span>🧮</span>
+            <h3>Position Size Calculator</h3>
+        </div>
+        <div class="cheat-card-body">
+            <div class="calc-form">
+                <div class="calc-field">
+                    <label>Account Size ($)</label>
+                    <input type="number" id="acctSize" placeholder="5000" value="5000">
+                </div>
+                <div class="calc-field">
+                    <label>Risk % (1-2%)</label>
+                    <input type="number" id="riskPct" placeholder="1" value="1" step="0.5">
+                </div>
+                <div class="calc-field">
+                    <label>Entry Price ($)</label>
+                    <input type="number" id="entryPrice" placeholder="50.00" step="0.01">
+                </div>
+                <div class="calc-field">
+                    <label>Stop-Loss Price ($)</label>
+                    <input type="number" id="stopPrice" placeholder="48.50" step="0.01">
+                </div>
+                <button class="calc-btn" onclick="calculate()">CALCULATE POSITION</button>
+                <div class="calc-result" id="calcResult">
+                    <div>
+                        <div class="sub-text">Enter values above</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRE-TRADE CHECKLIST -->
+    <div class="cheat-card" id="pre-trade">
+        <div class="cheat-card-header">
+            <span>✅</span>
+            <h3>Pre-Trade Checklist (Before Every Trade)</h3>
+        </div>
+        <div class="cheat-card-body">
+            <div class="quick-check"><input type="checkbox" id="pt1"><label for="pt1">Is price above/below VWAP? (Am I trading WITH the trend?)</label></div>
+            <div class="quick-check"><input type="checkbox" id="pt2"><label for="pt2">Is volume above average? (Is this move real?)</label></div>
+            <div class="quick-check"><input type="checkbox" id="pt3"><label for="pt3">Do I have a clear stop-loss level? (Know my max loss)</label></div>
+            <div class="quick-check"><input type="checkbox" id="pt4"><label for="pt4">Is my R:R at least 2:1? (Risking $1 to make $2+)</label></div>
+            <div class="quick-check"><input type="checkbox" id="pt5"><label for="pt5">Am I within my daily risk budget? (Not overextended)</label></div>
+            <div class="quick-check"><input type="checkbox" id="pt6"><label for="pt6">Is there a catalyst/reason for this move?</label></div>
+            <div class="quick-check"><input type="checkbox" id="pt7"><label for="pt7">Have I checked the daily chart for major levels?</label></div>
+            <div class="quick-check"><input type="checkbox" id="pt8"><label for="pt8">Am I calm and focused? (Not emotional/revenge trading)</label></div>
+            <br>
+            <button class="size-btn" onclick="uncheckAll()" style="width:100%; padding:8px;">🔄 Reset Checklist</button>
+        </div>
+    </div>
+
+    <!-- CANDLESTICK PATTERNS -->
+    <div class="cheat-card" id="candles">
+        <div class="cheat-card-header">
+            <span>🕯️</span>
+            <h3>Candlestick Patterns</h3>
+        </div>
+        <div class="cheat-card-body">
+            <table class="ref-table">
+                <tr><th>Pattern</th><th>Looks Like</th><th>Signal</th></tr>
+                <tr><td><strong>Hammer</strong></td><td>Small body, long lower wick</td><td><span class="tag-buy">BULLISH</span> at support</td></tr>
+                <tr><td><strong>Shooting Star</strong></td><td>Small body, long upper wick</td><td><span class="tag-sell">BEARISH</span> at resistance</td></tr>
+                <tr><td><strong>Doji</strong></td><td>Cross/plus shape (open≈close)</td><td><span class="tag-caution">INDECISION</span> watch next candle</td></tr>
+                <tr><td><strong>Bullish Engulfing</strong></td><td>Big green swallows prior red</td><td><span class="tag-buy">BULLISH</span> reversal</td></tr>
+                <tr><td><strong>Bearish Engulfing</strong></td><td>Big red swallows prior green</td><td><span class="tag-sell">BEARISH</span> reversal</td></tr>
+                <tr><td><strong>Morning Star</strong></td><td>Red → small → big green (3 candle)</td><td><span class="tag-buy">BULLISH</span> reversal</td></tr>
+                <tr><td><strong>Evening Star</strong></td><td>Green → small → big red (3 candle)</td><td><span class="tag-sell">BEARISH</span> reversal</td></tr>
+                <tr><td><strong>Three White Soldiers</strong></td><td>3 consecutive big green candles</td><td><span class="tag-buy">STRONG BULLISH</span></td></tr>
+                <tr><td><strong>Three Black Crows</strong></td><td>3 consecutive big red candles</td><td><span class="tag-sell">STRONG BEARISH</span></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- WHAT TO AVOID -->
+    <div class="cheat-card" id="avoid">
+        <div class="cheat-card-header">
+            <span>🚫</span>
+            <h3>What to AVOID</h3>
+        </div>
+        <div class="cheat-card-body">
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Trading the first 5 minutes</strong> — Pure chaos. Let the open settle. Wait for a setup.</div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Low volume stocks</strong> — Hard to exit. Wide spreads. Unpredictable. Stay with liquid names.</div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Trading during lunch (12-2 PM ET)</strong> — Low volume, choppy, false moves. Take a break.</div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Holding through earnings</strong> — Binary event. Gamblers flip. Smart traders avoid or reduce position.</div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Averaging down on a loser</strong> — "It'll come back" = famous last words. Cut and move on.</div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Trading without a stop-loss</strong> — One bad trade without a stop can erase a month of gains.</div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Following "hot tips" on social media</strong> — By the time you see it, you're the exit liquidity.</div>
+            </div>
+            <div class="signal">
+                <span class="signal-icon">❌</span>
+                <div class="signal-text"><strong>Trading when emotional</strong> — Angry, tired, excited, desperate = BAD trades. Walk away.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIMEFRAME GUIDE -->
+    <div class="cheat-card" id="timeframes">
+        <div class="cheat-card-header">
+            <span>⏱️</span>
+            <h3>Timeframe Guide</h3>
+        </div>
+        <div class="cheat-card-body">
+            <table class="ref-table">
+                <tr><th>Timeframe</th><th>Use For</th><th>Hold Time</th></tr>
+                <tr><td><strong>1-min</strong></td><td>Scalping, precise entries</td><td>Seconds - 5 min</td></tr>
+                <tr><td><strong>5-min ⭐</strong></td><td>Primary day trading chart</td><td>5 min - 2 hours</td></tr>
+                <tr><td><strong>15-min</strong></td><td>Confirm trend direction</td><td>Context only</td></tr>
+                <tr><td><strong>1-hour</strong></td><td>Major support/resistance</td><td>Context only</td></tr>
+                <tr><td><strong>Daily</strong></td><td>Overall trend, key levels</td><td>Context only</td></tr>
+            </table>
+            <br>
+            <div class="signal">
+                <span class="signal-icon">💡</span>
+                <div class="signal-text"><strong>Multi-timeframe approach:</strong> Check Daily for trend → 15-min for levels → 5-min for entries. Trade in direction of larger timeframe.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ORDER FLOW / EXECUTION -->
+    <div class="cheat-card" id="orderflow">
+        <div class="cheat-card-header">
+            <span>⚡</span>
+            <h3>Execution & Order Types</h3>
+        </div>
+        <div class="cheat-card-body">
+            <table class="ref-table">
+                <tr><th>Order</th><th>When to Use</th><th>Risk</th></tr>
+                <tr><td><strong>Limit Buy</strong></td><td>Normal entries (control price)</td><td>Might not fill</td></tr>
+                <tr><td><strong>Market Buy</strong></td><td>Fast breakouts (need in NOW)</td><td>Slippage</td></tr>
+                <tr><td><strong>Stop-Loss</strong></td><td>ALWAYS. Set before entry.</td><td>Gaps can skip it</td></tr>
+                <tr><td><strong>Trailing Stop</strong></td><td>Lock in profits as price moves up</td><td>Can get stopped on normal pullback</td></tr>
+                <tr><td><strong>Limit Sell</strong></td><td>Take profit at target price</td><td>Might miss if runs past</td></tr>
+            </table>
+            <br>
+            <div class="signal">
+                <span class="signal-icon">🎯</span>
+                <div class="signal-text"><strong>Pro tip:</strong> Use limit orders 90% of the time. Only use market orders when you MUST get in/out immediately (breakout, stop-loss hit).</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MARKET HOURS -->
+    <div class="cheat-card">
+        <div class="cheat-card-header">
+            <span>🕐</span>
+            <h3>Market Hours & Best Times (Central Time)</h3>
+        </div>
+        <div class="cheat-card-body">
+            <table class="ref-table">
+                <tr><th>Time (CT)</th><th>Session</th><th>Action</th></tr>
+                <tr><td>3:00 AM</td><td>Pre-Market Opens</td><td>News scanning only</td></tr>
+                <tr><td>7:00 - 8:25 AM</td><td>Pre-Market</td><td>Scan movers, mark levels</td></tr>
+                <tr><td>8:30 - 8:40 AM</td><td>Open Chaos</td><td><span class="tag-caution">WAIT</span> Let it settle</td></tr>
+                <tr><td><strong>8:40 - 10:30 AM</strong></td><td><strong>Prime Time</strong></td><td><span class="tag-buy">TRADE</span> Best setups here</td></tr>
+                <tr><td>10:30 AM - 1:00 PM</td><td>Midday Lull</td><td><span class="tag-caution">AVOID</span> Choppy, low vol</td></tr>
+                <tr><td><strong>2:00 - 3:00 PM</strong></td><td><strong>Power Hour</strong></td><td><span class="tag-info">WATCH</span> Can be good setups</td></tr>
+                <tr><td>3:00 PM</td><td>Close</td><td>Done. Journal time.</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- R:R QUICK REFERENCE -->
+    <div class="cheat-card">
+        <div class="cheat-card-header">
+            <span>💰</span>
+            <h3>Risk/Reward Math (Why 2:1 Works)</h3>
+        </div>
+        <div class="cheat-card-body">
+            <table class="ref-table">
+                <tr><th>Win Rate</th><th>1:1 R:R</th><th>2:1 R:R</th><th>3:1 R:R</th></tr>
+                <tr><td>40%</td><td style="color:var(--red)">-$200/10 trades</td><td style="color:var(--green)">+$200/10 trades</td><td style="color:var(--green)">+$800/10 trades</td></tr>
+                <tr><td>50%</td><td style="color:var(--yellow)">Break even</td><td style="color:var(--green)">+$500/10 trades</td><td style="color:var(--green)">+$1000/10 trades</td></tr>
+                <tr><td>60%</td><td style="color:var(--green)">+$200/10 trades</td><td style="color:var(--green)">+$800/10 trades</td><td style="color:var(--green)">+$1200/10 trades</td></tr>
+            </table>
+            <br>
+            <div class="signal">
+                <span class="signal-icon">🔑</span>
+                <div class="signal-text"><strong>Key insight:</strong> With 2:1 R:R, you only need to be right 34% of the time to break even. Be right 50% = very profitable. This is why R:R matters more than win rate.</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function calculate() {
+        const acct = parseFloat(document.getElementById('acctSize').value);
+        const riskPct = parseFloat(document.getElementById('riskPct').value);
+        const entry = parseFloat(document.getElementById('entryPrice').value);
+        const stop = parseFloat(document.getElementById('stopPrice').value);
+
+        if (!acct || !riskPct || !entry || !stop) {
+            document.getElementById('calcResult').innerHTML = '<div><div class="sub-text">Please fill in all fields</div></div>';
+            return;
+        }
+
+        const riskAmount = acct * (riskPct / 100);
+        const riskPerShare = Math.abs(entry - stop);
+        const shares = Math.floor(riskAmount / riskPerShare);
+        const totalCost = (shares * entry).toFixed(2);
+
+        document.getElementById('calcResult').innerHTML = `
+            <div style="width:100%">
+                <div class="big-num">${shares} shares</div>
+                <div class="sub-text">
+                    Risk: $${riskAmount.toFixed(2)} | Per share: $${riskPerShare.toFixed(2)} | Total cost: $${totalCost}
+                </div>
+            </div>
+        `;
+    }
+
+    function uncheckAll() {
+        document.querySelectorAll('#pre-trade input[type="checkbox"]').forEach(cb => cb.checked = false);
+    }
+
+    function adjustSize(dir) {
+        const body = document.body;
+        const current = parseFloat(window.getComputedStyle(body).fontSize);
+        body.style.fontSize = (current + dir) + 'px';
+    }
+</script>
+
+</body>
+</html>
