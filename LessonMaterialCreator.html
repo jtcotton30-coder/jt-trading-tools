@@ -1,33 +1,16 @@
-<!--
-╔══════════════════════════════════════════════════════════════╗
-║  LESSON MATERIAL CREATOR                                     ║
-║  © 2026 JT Cotton. All Rights Reserved.                      ║
-║                                                              ║
-║  NOTICE: This software is the proprietary property of        ║
-║  JT Cotton. Unauthorized copying, modification, distribution,║
-║  or use of this software, via any medium, is strictly        ║
-║  prohibited. This software is protected under U.S. Copyright ║
-║  Law (Title 17, U.S. Code).                                 ║
-║                                                              ║
-║  Violators will be prosecuted to the fullest extent of law.  ║
-╚══════════════════════════════════════════════════════════════╝
--->
+<!-- LESSON MATERIAL CREATOR v2.0 | (c) 2026 JT Cotton | All Rights Reserved -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lesson Material Creator</title>
-<meta name="theme-color" content="#BA0C2F">
-<meta name="author" content="JT Cotton">
-<meta name="copyright" content="© 2026 JT Cotton. All Rights Reserved.">
+<title>Lesson Material Creator v2</title>
 <meta name="robots" content="noindex, nofollow">
-<meta http-equiv="X-Content-Type-Options" content="nosniff">
-<link rel="manifest" href="manifest.json">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--red:#BA0C2F;--black:#1a1a1a;--dark:#0d0d0d;--white:#ffffff;--gray:#2a2a2a;--light-gray:#3a3a3a;--text:#f0f0f0;--text-muted:#999;--success:#28a745;--warning:#ffc107;--danger:#dc3545;--card-bg:#1e1e1e;--border:#333}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden}
+body.light-mode{--dark:#f0f0f0;--black:#fff;--card-bg:#fff;--gray:#e8e8e8;--light-gray:#ddd;--text:#1a1a1a;--text-muted:#666;--border:#ccc}
 .app{display:flex;height:100vh}
 .sidebar{width:260px;background:var(--black);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;height:100vh;z-index:100}
 .sidebar-header{padding:20px;border-bottom:1px solid var(--border);text-align:center}
@@ -38,7 +21,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:va
 .nav-item:hover{background:var(--gray);color:var(--text)}
 .nav-item.active{background:var(--red);color:var(--white);font-weight:600}
 .nav-item .icon{font-size:1.1rem;width:24px;text-align:center}
-.main{margin-left:260px;flex:1;overflow-y:auto;padding:30px;padding-bottom:60px}
+.main{margin-left:260px;flex:1;overflow-y:auto;padding:30px;padding-bottom:80px}
 .page{display:none}.page.active{display:block}
 .page-header{margin-bottom:30px}
 .page-header h2{font-size:1.8rem;font-weight:700;color:var(--white)}
@@ -58,14 +41,11 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:va
 .checkbox-item.checked{background:var(--red);border-color:var(--red);color:var(--white)}
 .checkbox-item input{display:none}
 .btn{padding:10px 20px;border:none;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
-.btn-primary{background:var(--red);color:var(--white)}
-.btn-primary:hover{background:#9a0a27;transform:translateY(-1px)}
-.btn-secondary{background:var(--gray);color:var(--text);border:1px solid var(--border)}
-.btn-secondary:hover{background:var(--light-gray)}
+.btn-primary{background:var(--red);color:var(--white)}.btn-primary:hover{background:#9a0a27;transform:translateY(-1px)}
+.btn-secondary{background:var(--gray);color:var(--text);border:1px solid var(--border)}.btn-secondary:hover{background:var(--light-gray)}
 .btn-success{background:var(--success);color:var(--white)}
 .btn-danger{background:var(--danger);color:var(--white)}
-.btn-sm{padding:6px 12px;font-size:0.75rem}
-.btn-block{width:100%;justify-content:center}
+.btn-sm{padding:6px 12px;font-size:0.75rem}.btn-block{width:100%;justify-content:center}
 .badge{padding:3px 10px;border-radius:12px;font-size:0.7rem;font-weight:600;text-transform:uppercase}
 .badge-outline{background:rgba(186,12,47,0.15);color:var(--red)}
 .badge-draft{background:rgba(255,193,7,0.15);color:var(--warning)}
@@ -74,39 +54,40 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:va
 .badge-published{background:rgba(186,12,47,0.15);color:var(--red)}
 .progress-bar{height:6px;background:var(--gray);border-radius:3px;overflow:hidden;margin-top:8px}
 .progress-bar .fill{height:100%;background:var(--red);border-radius:3px;transition:width 0.3s}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:24px}
 .stat-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center}
 .stat-card .number{font-size:2rem;font-weight:700;color:var(--red)}
 .stat-card .label{font-size:0.75rem;color:var(--text-muted);margin-top:4px;text-transform:uppercase}
 .material-item{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;cursor:pointer;transition:all 0.2s}
 .material-item:hover{border-color:var(--red);transform:translateX(4px)}
-.material-item .info{flex:1}
-.material-item .title{font-weight:600;font-size:0.9rem;margin-bottom:4px}
-.material-item .meta{font-size:0.75rem;color:var(--text-muted);display:flex;gap:12px;flex-wrap:wrap}
-.material-item .actions{display:flex;gap:8px}
-.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center}
+.material-item .info{flex:1}.material-item .title{font-weight:600;font-size:0.9rem;margin-bottom:4px}
+.material-item .meta{font-size:0.75rem;color:var(--text-muted);display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.material-item .actions{display:flex;gap:8px;flex-shrink:0}
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:1000;align-items:center;justify-content:center}
 .modal-overlay.active{display:flex}
-.modal{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:30px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto}
+.modal{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:30px;max-width:720px;width:90%;max-height:88vh;overflow-y:auto}
 .modal h3{font-size:1.2rem;margin-bottom:16px;color:var(--white)}
-.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
-.generated-content{background:var(--gray);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:12px;font-size:0.85rem;line-height:1.7;white-space:pre-wrap}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+.wc-bar{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.wc-badge{font-size:0.72rem;color:var(--text-muted);background:var(--gray);padding:3px 10px;border-radius:12px;border:1px solid var(--border)}
+.autosave{font-size:0.72rem;color:var(--success);opacity:0;transition:opacity 0.5s}
+.autosave.show{opacity:1}
+.generated-content{background:var(--gray);border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:8px;font-size:0.85rem;line-height:1.7;white-space:pre-wrap;min-height:180px}
 .export-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .export-card{background:var(--gray);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:all 0.2s}
 .export-card:hover{border-color:var(--red);transform:translateY(-2px)}
 .export-card .icon{font-size:2rem;margin-bottom:8px}
 .export-card .name{font-weight:600;font-size:0.9rem}
 .export-card .desc{font-size:0.75rem;color:var(--text-muted);margin-top:4px}
-.toast{position:fixed;bottom:20px;right:20px;background:var(--success);color:var(--white);padding:12px 20px;border-radius:8px;font-size:0.85rem;z-index:2000;transform:translateY(100px);opacity:0;transition:all 0.3s}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--success);color:var(--white);padding:12px 20px;border-radius:8px;font-size:0.85rem;z-index:3000;transform:translateY(100px);opacity:0;transition:all 0.3s;max-width:340px}
 .toast.show{transform:translateY(0);opacity:1}
-.preview-pane{background:var(--white);color:#222;padding:40px;border-radius:8px;font-family:Georgia,serif;line-height:1.8;max-height:70vh;overflow-y:auto}
+.preview-pane{background:var(--white);color:#222;padding:40px;border-radius:8px;font-family:Georgia,serif;line-height:1.8;max-height:68vh;overflow-y:auto}
 .preview-pane h1{color:#BA0C2F;font-size:1.8rem;margin-bottom:10px}
-.preview-pane h2{color:#333;font-size:1.3rem;margin-top:20px;margin-bottom:8px}
-.preview-pane h3{color:#555;font-size:1.1rem;margin-top:16px}
-.preview-pane ul{margin-left:20px;margin-bottom:12px}
-.preview-pane li{margin-bottom:4px}
+.preview-pane h2{color:#333;font-size:1.3rem;margin-top:22px;margin-bottom:8px;border-bottom:2px solid #BA0C2F;padding-bottom:4px}
+.preview-pane ul{margin-left:20px;margin-bottom:12px}.preview-pane li{margin-bottom:4px}
 .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:16px}
-.calendar-day{padding:10px 6px;text-align:center;border-radius:6px;font-size:0.75rem;background:var(--gray);border:1px solid var(--border);min-height:60px}
-.calendar-day.has-item{background:rgba(186,12,47,0.2);border-color:var(--red)}
+.calendar-day{padding:10px 6px;text-align:center;border-radius:6px;font-size:0.75rem;background:var(--gray);border:1px solid var(--border);min-height:60px;cursor:pointer;transition:border-color 0.2s}
+.calendar-day:hover{border-color:var(--red)}.calendar-day.has-item{background:rgba(186,12,47,0.2);border-color:var(--red)}
 .calendar-day .day-num{font-weight:600;margin-bottom:4px}
 .calendar-day .day-item{font-size:0.65rem;color:var(--red);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .sales-table{width:100%;border-collapse:collapse}
@@ -114,35 +95,50 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:va
 .sales-table td{padding:10px;font-size:0.85rem;border-bottom:1px solid var(--border)}
 .quick-block{background:var(--gray);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
 .quick-block .text{flex:1;font-size:0.85rem;margin-right:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tab-bar{display:flex;gap:4px;margin-bottom:20px;border-bottom:1px solid var(--border)}
-.tab-btn{padding:10px 16px;cursor:pointer;font-size:0.85rem;color:var(--text-muted);border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s}
-.tab-btn:hover{color:var(--text)}
-.tab-btn.active{color:var(--red);border-bottom-color:var(--red);font-weight:600}
+.tab-bar{display:flex;gap:2px;margin-bottom:20px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.tab-btn{padding:10px 14px;cursor:pointer;font-size:0.82rem;color:var(--text-muted);border:none;background:none;border-bottom:2px solid transparent;transition:all 0.2s}
+.tab-btn:hover{color:var(--text)}.tab-btn.active{color:var(--red);border-bottom-color:var(--red);font-weight:600}
 .empty-state{text-align:center;padding:60px 20px;color:var(--text-muted)}
-.empty-state .icon{font-size:3rem;margin-bottom:16px}
-.empty-state p{margin-bottom:20px}
-@media(max-width:768px){.sidebar{width:60px}.sidebar-header h1,.sidebar-header p,.nav-item span{display:none}.nav-item{justify-content:center;padding:12px}.main{margin-left:60px;padding:16px}.form-row,.form-row-3,.export-options{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr}}
+.empty-state .icon{font-size:3rem;margin-bottom:16px}.empty-state p{margin-bottom:20px}
+.checklist-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--gray);border:1px solid var(--border);border-radius:8px;margin-bottom:8px;font-size:0.85rem;transition:all 0.2s}
+.checklist-item.done{border-color:var(--success);background:rgba(40,167,69,0.08)}
+.checklist-item .ck{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;cursor:pointer;transition:all 0.2s}
+.checklist-item.done .ck{background:var(--success);border-color:var(--success);color:#fff}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:12px}
+.price-tier{background:var(--gray);border:2px solid var(--border);border-radius:12px;padding:18px;text-align:center;cursor:pointer;transition:all 0.2s}
+.price-tier:hover{border-color:var(--red);background:rgba(186,12,47,0.08)}
+.price-tier .p-amt{font-size:1.8rem;font-weight:700;color:var(--red)}
+.price-tier .p-name{font-weight:600;font-size:0.85rem;margin-bottom:4px}
+.price-tier .p-desc{font-size:0.72rem;color:var(--text-muted)}
+.gumroad-step{background:var(--gray);border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:10px}
+.gumroad-step .step-num{font-size:0.7rem;color:var(--red);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.gumroad-step .step-title{font-weight:600;font-size:0.9rem;margin-bottom:4px}
+.gumroad-step .step-desc{font-size:0.8rem;color:var(--text-muted)}
+.footer{position:fixed;bottom:0;left:260px;right:0;padding:8px 20px;background:var(--black);border-top:1px solid var(--border);font-size:0.7rem;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center;z-index:50}
+.theme-btn{position:fixed;top:14px;right:16px;z-index:200;background:var(--gray);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:0.78rem;cursor:pointer;color:var(--text)}
+.theme-btn:hover{border-color:var(--red)}
+@media(max-width:768px){.sidebar{width:60px}.sidebar-header h1,.sidebar-header p,.nav-item span{display:none}.nav-item{justify-content:center;padding:12px}.main{margin-left:60px;padding:16px}.footer{left:60px}.form-row,.form-row-3,.export-options{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
+<button class="theme-btn" onclick="toggleTheme()" id="themeBtn">&#9728;&#65039; Light Mode</button>
 <div class="app">
 <div class="sidebar">
-<div class="sidebar-header">
-<h1>📚 Lesson Creator</h1>
-<p>JT Cotton • WHS/Safety Content Creator</p>
-</div>
+<div class="sidebar-header"><h1>&#128218; Lesson Creator</h1><p>JT Cotton &#8226; WHS Creator v2</p></div>
 <nav class="nav">
-<div class="nav-item active" data-page="dashboard"><span class="icon">📊</span><span>Dashboard</span></div>
-<div class="nav-item" data-page="create"><span class="icon">✏️</span><span>Create New</span></div>
-<div class="nav-item" data-page="library"><span class="icon">📖</span><span>Expertise Library</span></div>
-<div class="nav-item" data-page="calendar"><span class="icon">📅</span><span>Content Calendar</span></div>
-<div class="nav-item" data-page="sales"><span class="icon">💰</span><span>Sales Tracker</span></div>
-<div class="nav-item" data-page="settings"><span class="icon">⚙️</span><span>Settings</span></div>
+<div class="nav-item active" data-page="dashboard"><span class="icon">&#128202;</span><span>Dashboard</span></div>
+<div class="nav-item" data-page="create"><span class="icon">&#9998;&#65039;</span><span>Create New</span></div>
+<div class="nav-item" data-page="library"><span class="icon">&#128214;</span><span>Expertise Library</span></div>
+<div class="nav-item" data-page="calendar"><span class="icon">&#128197;</span><span>Content Calendar</span></div>
+<div class="nav-item" data-page="sales"><span class="icon">&#128176;</span><span>Sales Tracker</span></div>
+<div class="nav-item" data-page="pricing"><span class="icon">&#127991;&#65039;</span><span>Pricing Guide</span></div>
+<div class="nav-item" data-page="publish"><span class="icon">&#128640;</span><span>Publish Checklist</span></div>
+<div class="nav-item" data-page="settings"><span class="icon">&#9881;&#65039;</span><span>Settings</span></div>
 </nav>
 </div>
 <div class="main">
 
-<!-- DASHBOARD PAGE -->
+<!-- DASHBOARD -->
 <div class="page active" id="page-dashboard">
 <div class="page-header"><h2>Dashboard</h2><p>Your lesson materials at a glance</p></div>
 <div class="stats-grid">
@@ -150,22 +146,20 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:va
 <div class="stat-card"><div class="number" id="stat-progress">0</div><div class="label">In Progress</div></div>
 <div class="stat-card"><div class="number" id="stat-ready">0</div><div class="label">Ready to Sell</div></div>
 <div class="stat-card"><div class="number" id="stat-published">0</div><div class="label">Published</div></div>
+<div class="stat-card"><div class="number" id="stat-revenue">$0</div><div class="label">Total Revenue</div></div>
 </div>
-<div class="card">
-<div class="card-title">📋 All Materials</div>
-<div id="dashboard-list"><div class="empty-state"><div class="icon">📚</div><p>No materials yet. Create your first one!</p><button class="btn btn-primary" onclick="navigateTo('create')">+ Create Material</button></div></div>
-</div>
-</div>
+<div class="card"><div class="card-title">&#128203; All Materials</div>
+<div id="dashboard-list"><div class="empty-state"><div class="icon">&#128218;</div><p>No materials yet. Create your first one!</p><button class="btn btn-primary" onclick="navigateTo('create')">+ Create Material</button></div></div>
+</div></div>
 
-<!-- CREATE NEW PAGE -->
+<!-- CREATE NEW -->
 <div class="page" id="page-create">
-<div class="page-header"><h2>Create New Material</h2><p>Build your lesson from scratch or with AI assistance</p></div>
-<div class="card">
-<div class="card-title">📝 Core Details</div>
-<div class="form-group"><label>Topic / Title</label><input type="text" id="inp-title" placeholder="e.g., OSHA 30 Safety Culture Essentials"></div>
+<div class="page-header"><h2>Create New Material</h2><p>Build professional WHS lesson content</p></div>
+<div class="card"><div class="card-title">&#128221; Core Details</div>
+<div class="form-group"><label>Topic / Title</label><input type="text" id="inp-title" placeholder="e.g., OSHA 30 Safety Culture Essentials" oninput="scheduleAutosave()"></div>
 <div class="form-row">
-<div class="form-group"><label>Target Audience</label><input type="text" id="inp-audience" placeholder="e.g., Safety managers, Healthcare workers"></div>
-<div class="form-group"><label>Target Platform</label><select id="inp-platform"><option value="Gumroad">Gumroad</option><option value="Teachable">Teachable</option><option value="Blog">Blog Post</option><option value="PDF">Standalone PDF</option><option value="Other">Other</option></select></div>
+<div class="form-group"><label>Target Audience</label><input type="text" id="inp-audience" placeholder="e.g., Safety managers, Warehouse supervisors" oninput="scheduleAutosave()"></div>
+<div class="form-group"><label>Target Platform</label><select id="inp-platform" onchange="scheduleAutosave()"><option value="Gumroad">Gumroad</option><option value="Teachable">Teachable</option><option value="Blog">Blog Post</option><option value="PDF">Standalone PDF</option><option value="Other">Other</option></select></div>
 </div>
 <div class="form-group"><label>Expertise Areas</label>
 <div class="checkbox-group" id="expertise-checks">
@@ -179,509 +173,563 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--dark);color:va
 <div class="checkbox-item" onclick="toggleCheck(this)"><input type="checkbox" value="Emergency Mgmt">Emergency Mgmt</div>
 </div></div>
 <div class="form-row-3">
-<div class="form-group"><label>Difficulty Level</label><select id="inp-difficulty"><option value="Beginner">Beginner</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select></div>
-<div class="form-group"><label>Est. Reading Time (min)</label><input type="number" id="inp-reading-time" placeholder="Auto-calculated if blank"></div>
+<div class="form-group"><label>Difficulty Level</label><select id="inp-difficulty" onchange="scheduleAutosave()"><option value="Beginner">Beginner</option><option value="Intermediate">Intermediate</option><option value="Advanced">Advanced</option></select></div>
+<div class="form-group"><label>Status</label><select id="inp-status" onchange="scheduleAutosave()"><option value="Outline">Outline</option><option value="First Draft">First Draft</option><option value="Edited">Edited</option><option value="Ready to Sell">Ready to Sell</option><option value="Published">Published</option></select></div>
+<div class="form-group"><label>Sale URL (Gumroad etc.)</label><input type="text" id="inp-url" placeholder="https://gumroad.com/l/..." oninput="scheduleAutosave()"></div>
+</div>
+<div class="form-row">
+<div class="form-group"><label>Est. Reading Time (min)</label><input type="number" id="inp-reading-time" placeholder="Auto-calculated"></div>
 <div class="form-group"><label>Suggested Price ($)</label><input type="number" id="inp-price" step="0.01" placeholder="Auto-suggested"></div>
 </div>
-<div class="form-group"><label>Notes / Marketing Angle</label><textarea id="inp-notes" placeholder="Pricing ideas, target keywords, marketing approach..."></textarea></div>
+<div class="form-group"><label>Notes / Marketing Angle</label><textarea id="inp-notes" placeholder="Pricing ideas, keywords, marketing approach..." oninput="scheduleAutosave()"></textarea></div>
 </div>
-<div class="card">
-<div class="card-title">🤖 Generate Content</div>
-<p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px">Click below to auto-generate an outline using templates or AI. You can edit everything after.</p>
+<div class="card"><div class="card-title">&#129302; Generate Content</div>
+<p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px">Auto-generate a full outline using templates or AI. Edit everything after.</p>
 <div style="display:flex;gap:12px;flex-wrap:wrap">
-<button class="btn btn-primary" onclick="generateOutline('template')">📋 Build Outline (Template)</button>
-<button class="btn btn-secondary" onclick="generateOutline('ai')">🤖 Build Outline (AI)</button>
-<button class="btn btn-secondary" onclick="insertQuickBlock()">⚡ Insert Quick Block</button>
+<button class="btn btn-primary" onclick="generateOutline('template')">&#128203; Build Outline (Template)</button>
+<button class="btn btn-secondary" onclick="generateOutline('ai')">&#129302; Build Outline (AI)</button>
+<button class="btn btn-secondary" onclick="insertQuickBlock()">&#9889; Insert Quick Block</button>
 </div>
 <div id="generated-output" style="display:none;margin-top:20px">
 <div class="tab-bar">
-<button class="tab-btn active" onclick="showGenTab('objectives')">Objectives</button>
-<button class="tab-btn" onclick="showGenTab('modules')">Modules</button>
-<button class="tab-btn" onclick="showGenTab('takeaways')">Takeaways</button>
-<button class="tab-btn" onclick="showGenTab('quiz')">Quiz</button>
-<button class="tab-btn" onclick="showGenTab('resources')">Resources</button>
-<button class="tab-btn" onclick="showGenTab('cta')">CTA</button>
+<button class="tab-btn active" data-tab="objectives">Objectives</button>
+<button class="tab-btn" data-tab="modules">Modules</button>
+<button class="tab-btn" data-tab="takeaways">Takeaways</button>
+<button class="tab-btn" data-tab="quiz">Quiz</button>
+<button class="tab-btn" data-tab="resources">Resources</button>
+<button class="tab-btn" data-tab="cta">CTA</button>
 </div>
+<div class="wc-bar"><span class="wc-badge" id="wc-display">Words: 0</span><span class="autosave" id="autosave-indicator">&#10003; Auto-saved</span></div>
 <div class="generated-content" id="gen-content" contenteditable="true"></div>
-</div>
-</div>
-<div style="display:flex;gap:12px;margin-top:20px">
-<button class="btn btn-success" onclick="saveMaterial()">💾 Save Material</button>
-<button class="btn btn-secondary" onclick="previewMaterial()">👁️ Preview</button>
-<button class="btn btn-secondary" onclick="exportMaterial()">📤 Export</button>
+</div></div>
+<div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap">
+<button class="btn btn-success" onclick="saveMaterial()">&#128190; Save Material</button>
+<button class="btn btn-secondary" onclick="previewMaterial()">&#128065;&#65039; Preview</button>
+<button class="btn btn-secondary" onclick="exportMaterial()">&#128228; Export</button>
+<button class="btn btn-secondary" onclick="clearCreateForm()">&#128465;&#65039; Clear</button>
 </div>
 </div>
 
-<!-- EXPERTISE LIBRARY PAGE -->
+<!-- EXPERTISE LIBRARY -->
 <div class="page" id="page-library">
 <div class="page-header"><h2>Expertise Library</h2><p>Your credentials, certifications, and reusable content blocks</p></div>
-<div class="card">
-<div class="card-title">🎓 My Credentials & Certifications</div>
+<div class="card"><div class="card-title">&#127891; My Credentials</div>
 <div id="cred-list"></div>
 <div style="display:flex;gap:8px;margin-top:12px">
 <input type="text" id="new-cred" placeholder="Add credential (e.g., OSHA 30, ASP Candidate)" style="flex:1;padding:10px;background:var(--gray);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:0.85rem">
 <button class="btn btn-primary btn-sm" onclick="addCredential()">+ Add</button>
-</div>
-</div>
-<div class="card">
-<div class="card-title">⚡ Quick-Insert Blocks</div>
-<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px">Reusable text snippets you can insert into any material</p>
+</div></div>
+<div class="card"><div class="card-title">&#9889; Quick-Insert Blocks</div>
+<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px">Reusable text snippets for any material</p>
 <div id="blocks-list"></div>
 <button class="btn btn-secondary" onclick="showAddBlockModal()" style="margin-top:12px">+ Add Quick Block</button>
 </div>
-<div class="card">
-<div class="card-title">📁 Past Templates</div>
-<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px">Previously saved materials you can clone as templates</p>
+<div class="card"><div class="card-title">&#128193; Past Templates</div>
+<p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px">Clone published materials as templates</p>
 <div id="templates-list"></div>
-</div>
-</div>
+</div></div>
 
-<!-- CONTENT CALENDAR PAGE -->
+<!-- CONTENT CALENDAR -->
 <div class="page" id="page-calendar">
 <div class="page-header"><h2>Content Calendar</h2><p>Plan your materials month by month</p></div>
 <div class="card">
 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-<button class="btn btn-sm btn-secondary" onclick="changeMonth(-1)">◀ Prev</button>
+<button class="btn btn-sm btn-secondary" onclick="changeMonth(-1)">&#9664; Prev</button>
 <h3 id="calendar-month" style="font-size:1.1rem"></h3>
-<button class="btn btn-sm btn-secondary" onclick="changeMonth(1)">Next ▶</button>
+<button class="btn btn-sm btn-secondary" onclick="changeMonth(1)">Next &#9654;</button>
 </div>
 <div class="calendar-grid" id="calendar-grid"></div>
 </div>
-<div class="card">
-<div class="card-title">📌 Scheduled Items</div>
-<div id="calendar-items"><div class="empty-state"><div class="icon">📅</div><p>No items scheduled. Click a day to add one.</p></div></div>
-</div>
-</div>
+<div class="card"><div class="card-title">&#128204; Scheduled Items</div>
+<div id="calendar-items"><div class="empty-state"><div class="icon">&#128197;</div><p>No items scheduled. Click a day to add one.</p></div></div>
+</div></div>
 
-<!-- SALES TRACKER PAGE -->
+<!-- SALES TRACKER -->
 <div class="page" id="page-sales">
 <div class="page-header"><h2>Sales Tracker</h2><p>Track your material performance and revenue</p></div>
 <div class="stats-grid">
-<div class="stat-card"><div class="number" id="stat-revenue">$0</div><div class="label">Total Revenue</div></div>
-<div class="stat-card"><div class="number" id="stat-units">0</div><div class="label">Units Sold</div></div>
-<div class="stat-card"><div class="number" id="stat-avg-price">$0</div><div class="label">Avg Price</div></div>
+<div class="stat-card"><div class="number" id="st-revenue">$0</div><div class="label">Total Revenue</div></div>
+<div class="stat-card"><div class="number" id="st-units">0</div><div class="label">Units Sold</div></div>
+<div class="stat-card"><div class="number" id="st-avg">$0</div><div class="label">Avg Price</div></div>
 </div>
-<div class="card">
-<div class="card-title">📈 Sales Log</div>
-<div id="sales-list">
+<div class="card"><div class="card-title">&#128200; Sales Log</div>
 <table class="sales-table"><thead><tr><th>Material</th><th>Platform</th><th>Units</th><th>Revenue</th><th>Notes</th></tr></thead><tbody id="sales-tbody"></tbody></table>
-</div>
 <button class="btn btn-primary" onclick="showAddSaleModal()" style="margin-top:16px">+ Log Sale</button>
-</div>
-</div>
+</div></div>
 
-<!-- SETTINGS PAGE -->
+<!-- PRICING GUIDE -->
+<div class="page" id="page-pricing">
+<div class="page-header"><h2>&#127991;&#65039; Pricing Guide</h2><p>WHS content pricing strategy — based on real market data</p></div>
+<div class="card"><div class="card-title">&#128161; Recommended Price Tiers</div>
+<p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px">WHS/safety content commands a premium — professionals pay for quality.</p>
+<div class="price-grid">
+<div class="price-tier"><div class="p-name">Quick Guide</div><div class="p-amt">$7–$15</div><div class="p-desc">Cheat sheet, checklist, or reference card. 500–1,500 words. Great entry product.</div></div>
+<div class="price-tier"><div class="p-name">Mini Course</div><div class="p-amt">$15–$29</div><div class="p-desc">3–5 module PDF guide with quiz. 2,000–5,000 words. Best-seller sweet spot.</div></div>
+<div class="price-tier"><div class="p-name">Full Course</div><div class="p-amt">$29–$49</div><div class="p-desc">7+ modules, case studies, answer key. 5,000–10,000 words. Premium positioning.</div></div>
+<div class="price-tier"><div class="p-name">Expert Bundle</div><div class="p-amt">$49–$97</div><div class="p-desc">3+ full courses bundled. Templates + tools included. For serious buyers.</div></div>
+<div class="price-tier"><div class="p-name">Consulting Kit</div><div class="p-amt">$97–$197</div><div class="p-desc">Ready-to-deploy safety program templates. For HR/EHS managers. Highest margin.</div></div>
+</div></div>
+<div class="card"><div class="card-title">&#127919; Your Positioning</div>
+<div style="font-size:0.85rem;line-height:1.9">
+<p style="margin-bottom:10px"><strong style="color:var(--red)">Your edge:</strong> You are a working WHS Specialist at Amazon LBB5 — one of the highest-volume fulfillment operations in the world. That real-world credibility is your competitive moat.</p>
+<p style="margin-bottom:10px"><strong>Positioning statement:</strong> <em>"Practical WHS training built by someone who works the floor, not just the classroom."</em></p>
+<p style="margin-bottom:8px"><strong>Best first products:</strong></p>
+<ul style="margin-left:20px;margin-bottom:12px">
+<li>OSHA 10/30 Study Guide — massive search volume, motivated buyers</li>
+<li>Warehouse Safety Fundamentals — directly in your lane at Amazon</li>
+<li>Incident Investigation Toolkit — HR managers pay well for this</li>
+<li>New Employee Safety Orientation Pack — every employer needs it</li>
+<li>Ergonomics in the Warehouse — huge demand post-COVID</li>
+</ul>
+<p><strong>Platform:</strong> Start on <strong>Gumroad</strong> (zero monthly fee, 10% per sale). Move to Teachable once you hit $500/mo revenue.</p>
+</div></div>
+<div class="card"><div class="card-title">&#128202; Revenue Projections</div>
+<table class="sales-table">
+<thead><tr><th>Scenario</th><th style="text-align:right">Products</th><th style="text-align:right">Sales/Mo</th><th style="text-align:right">Revenue/Mo</th></tr></thead>
+<tbody>
+<tr><td>Getting started</td><td style="text-align:right">2</td><td style="text-align:right">5–10</td><td style="text-align:right;color:var(--success)">$75–$200</td></tr>
+<tr><td>Growing library</td><td style="text-align:right">5</td><td style="text-align:right">20–40</td><td style="text-align:right;color:var(--success)">$400–$800</td></tr>
+<tr><td>Established creator</td><td style="text-align:right">10+</td><td style="text-align:right">50–100</td><td style="text-align:right;color:var(--success)">$1,000–$2,500</td></tr>
+<tr><td><strong>Authority brand</strong></td><td style="text-align:right"><strong>20+</strong></td><td style="text-align:right"><strong>100–200</strong></td><td style="text-align:right;color:var(--red);font-weight:700">$3,000–$8,000</td></tr>
+</tbody>
+</table>
+</div></div>
+
+<!-- PUBLISH CHECKLIST -->
+<div class="page" id="page-publish">
+<div class="page-header"><h2>&#128640; Publish Checklist</h2><p>Step-by-step guide to get your material live on Gumroad</p></div>
+<div class="card"><div class="card-title">&#9989; Pre-Publish Checklist</div>
+<p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px">Click each step when complete.</p>
+<div id="checklist-container"></div>
+</div>
+<div class="card"><div class="card-title">&#128203; Gumroad Launch Steps</div>
+<div class="gumroad-step"><div class="step-num">Step 1</div><div class="step-title">Create your Gumroad account</div><div class="step-desc">Go to gumroad.com &#8594; Sign up free. No monthly fee. Gumroad takes 10% per sale.</div></div>
+<div class="gumroad-step"><div class="step-num">Step 2</div><div class="step-title">Export your material as PDF</div><div class="step-desc">Use Export &#8594; PDF in Create New. Polish in Word or Google Docs if needed.</div></div>
+<div class="gumroad-step"><div class="step-num">Step 3</div><div class="step-title">Create a new product on Gumroad</div><div class="step-desc">Click "New Product" &#8594; Upload PDF &#8594; Set price using the Pricing Guide &#8594; Write a compelling description.</div></div>
+<div class="gumroad-step"><div class="step-num">Step 4</div><div class="step-title">Write your product description</div><div class="step-desc">Lead with the problem it solves. List exactly what's included. Add your credentials. 150–300 words ideal.</div></div>
+<div class="gumroad-step"><div class="step-num">Step 5</div><div class="step-title">Create a thumbnail (Canva — free)</div><div class="step-desc">Search "ebook cover" in Canva. Use red/black to match your brand. A good cover dramatically increases sales.</div></div>
+<div class="gumroad-step"><div class="step-num">Step 6</div><div class="step-title">Publish and share</div><div class="step-desc">Hit Publish &#8594; Share on LinkedIn, r/occupationalhealth, EHS LinkedIn groups, safety forums.</div></div>
+<div class="gumroad-step"><div class="step-num">Step 7</div><div class="step-title">Save your Gumroad URL in the Creator</div><div class="step-desc">Go to Create New &#8594; open your material &#8594; paste your Gumroad link in the Sale URL field &#8594; track revenue in Sales Tracker.</div></div>
+</div></div>
+
+<!-- SETTINGS -->
 <div class="page" id="page-settings">
 <div class="page-header"><h2>Settings</h2><p>Configure your Lesson Material Creator</p></div>
-<div class="card">
-<div class="card-title">🤖 AI Configuration</div>
+<div class="card"><div class="card-title">&#129302; AI Configuration</div>
 <div class="form-group"><label>AI Provider</label><select id="set-ai-provider"><option value="openai">OpenAI (GPT-4o)</option><option value="anthropic">Anthropic (Claude)</option></select></div>
-<div class="form-group"><label>API Key</label><input type="password" id="set-api-key" placeholder="Enter your API key (stored locally only)"></div>
+<div class="form-group"><label>API Key (stored locally only)</label><input type="password" id="set-api-key" placeholder="Enter your API key"></div>
 <button class="btn btn-primary btn-sm" onclick="saveSettings()">Save AI Settings</button>
 </div>
-<div class="card">
-<div class="card-title">👤 Profile / Branding</div>
+<div class="card"><div class="card-title">&#128100; Profile / Branding</div>
 <div class="form-row">
 <div class="form-group"><label>Display Name</label><input type="text" id="set-name" value="JT Cotton"></div>
-<div class="form-group"><label>Tagline</label><input type="text" id="set-tagline" placeholder="e.g., WHS Specialist & Safety Educator"></div>
+<div class="form-group"><label>Tagline</label><input type="text" id="set-tagline" placeholder="e.g., WHS Specialist &amp; Safety Educator"></div>
 </div>
 <div class="form-group"><label>Mission Statement</label><textarea id="set-mission" placeholder="Your safety education mission..."></textarea></div>
 <button class="btn btn-primary btn-sm" onclick="saveProfile()">Save Profile</button>
 </div>
-<div class="card">
-<div class="card-title">💾 Data Management</div>
+<div class="card"><div class="card-title">&#128190; Data Management</div>
 <div style="display:flex;gap:12px;flex-wrap:wrap">
-<button class="btn btn-secondary" onclick="exportAllData()">📥 Export All Data (JSON)</button>
-<button class="btn btn-secondary" onclick="importData()">📤 Import Data</button>
-<button class="btn btn-danger" onclick="clearAllData()">🗑️ Reset All Data</button>
-</div>
-</div>
+<button class="btn btn-secondary" onclick="exportAllData()">&#128229; Export All Data (JSON)</button>
+<button class="btn btn-secondary" onclick="importData()">&#128228; Import Data</button>
+<button class="btn btn-danger" onclick="clearAllData()">&#128465;&#65039; Reset All Data</button>
+</div></div>
 </div>
 
-</div>
-</div>
-<footer style="position:fixed;bottom:0;left:260px;right:0;padding:8px 20px;background:var(--black);border-top:1px solid var(--border);font-size:0.7rem;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center;z-index:50"><span>© 2026 JT Cotton. All Rights Reserved. Unauthorized reproduction or distribution prohibited.</span><span>Protected under U.S. Copyright Law • WHS/Safety Content Creator</span></footer>
+</div><!-- end .main -->
+</div><!-- end .app -->
+<footer class="footer"><span>&#169; 2026 JT Cotton. All Rights Reserved. Protected under U.S. Copyright Law.</span><span>WHS Safety Content Creator v2.0</span></footer>
 <div class="toast" id="toast"></div>
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()"><div class="modal" id="modalContent"></div></div>
 <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
+
 <script>
-// ===================== DATA LAYER =====================
-const DB_KEY = 'lessonCreatorData';
-let appData = loadData();
-
-function defaultData(){return{materials:[],credentials:['OSHA 30','ASP Candidate','WHS Specialist','Warehouse Safety Professional'],quickBlocks:[{id:genId(),name:'Safety Disclaimer',text:'This material is for educational purposes only. Always follow your organization\'s specific safety protocols and consult qualified professionals for site-specific guidance.'},{id:genId(),name:'About the Author',text:'JT Cotton is a certified WHS Specialist with expertise in OSHA compliance, warehouse and distribution safety, and emergency management. With hands-on experience in high-volume operations, he brings real-world knowledge to every lesson.'}],calendarItems:[],sales:[],settings:{aiProvider:'openai',apiKey:'',name:'JT Cotton',tagline:'WHS Specialist & Safety Content Creator',mission:'Every worker deserves to go home safe. My mission is to bridge the gap between certification and real-world application — turning safety knowledge into practical, actionable programs that protect lives on the ground. Whether you are a new safety professional or a seasoned leader, I create content that equips you to build cultures where people look out for each other, hazards get reported without fear, and continuous improvement is the standard — not the exception.'},currentMonth:new Date().getMonth(),currentYear:new Date().getFullYear()}}
-function loadData(){const d=localStorage.getItem(DB_KEY);return d?JSON.parse(d):defaultData()}
-function saveData(){localStorage.setItem(DB_KEY,JSON.stringify(appData))}
-function genId(){return Date.now().toString(36)+Math.random().toString(36).substr(2,5)}
-
-// ===================== NAVIGATION =====================
-document.querySelectorAll('.nav-item').forEach(item=>{item.addEventListener('click',()=>{navigateTo(item.dataset.page)})});
-function navigateTo(page){document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelector(`[data-page="${page}"]`).classList.add('active');document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+page).classList.add('active');if(page==='dashboard')renderDashboard();if(page==='library')renderLibrary();if(page==='calendar')renderCalendar();if(page==='sales')renderSales()}
-
-// ===================== TOAST =====================
-function showToast(msg,type='success'){const t=document.getElementById('toast');t.textContent=msg;t.style.background=type==='error'?'var(--danger)':'var(--success)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
-
-// ===================== MODAL =====================
-function showModal(html){document.getElementById('modalContent').innerHTML=html;document.getElementById('modalOverlay').classList.add('active')}
-function closeModal(){document.getElementById('modalOverlay').classList.remove('active')}
-
-// ===================== CHECKBOX TOGGLE =====================
-function toggleCheck(el){el.classList.toggle('checked');el.querySelector('input').checked=el.classList.contains('checked')}
-
-// ===================== DASHBOARD =====================
-function renderDashboard(){
-const mats=appData.materials;
-document.getElementById('stat-total').textContent=mats.length;
-document.getElementById('stat-progress').textContent=mats.filter(m=>['Outline','First Draft','Edited'].includes(m.status)).length;
-document.getElementById('stat-ready').textContent=mats.filter(m=>m.status==='Ready to Sell').length;
-document.getElementById('stat-published').textContent=mats.filter(m=>m.status==='Published').length;
-const list=document.getElementById('dashboard-list');
-if(!mats.length){list.innerHTML='<div class="empty-state"><div class="icon">📚</div><p>No materials yet. Create your first one!</p><button class="btn btn-primary" onclick="navigateTo(\'create\')">+ Create Material</button></div>';return}
-list.innerHTML=mats.map(m=>{
-const prog=getProgress(m.status);
-const badgeClass={'Outline':'badge-outline','First Draft':'badge-draft','Edited':'badge-edited','Ready to Sell':'badge-ready','Published':'badge-published'}[m.status]||'badge-outline';
-return`<div class="material-item" onclick="editMaterial('${m.id}')"><div class="info"><div class="title">${m.title}</div><div class="meta"><span>${m.platform}</span><span>${m.audience}</span><span>${new Date(m.created).toLocaleDateString()}</span><span class="badge ${badgeClass}">${m.status}</span></div><div class="progress-bar"><div class="fill" style="width:${prog}%"></div></div></div><div class="actions"><button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();changeStatus('${m.id}')">↑ Status</button><button class="btn btn-sm btn-danger" onclick="event.stopPropagation();deleteMaterial('${m.id}')">🗑️</button></div></div>`}).join('')}
-function getProgress(status){return{'Outline':20,'First Draft':40,'Edited':60,'Ready to Sell':80,'Published':100}[status]||0}
-function changeStatus(id){const m=appData.materials.find(x=>x.id===id);const order=['Outline','First Draft','Edited','Ready to Sell','Published'];const idx=order.indexOf(m.status);if(idx<order.length-1){m.status=order[idx+1];saveData();renderDashboard();showToast(`Status updated to: ${m.status}`)}}
-function deleteMaterial(id){if(!confirm('Delete this material?'))return;appData.materials=appData.materials.filter(m=>m.id!==id);saveData();renderDashboard();showToast('Material deleted')}
-
-// ===================== CREATE / EDIT MATERIAL =====================
+const DB_KEY='lessonCreatorData';
+let appData=loadData();
+let autosaveTimer=null;
+let activeGenTab='objectives';
 let currentEditId=null;
 let generatedData={objectives:'',modules:'',takeaways:'',quiz:'',resources:'',cta:''};
-let activeGenTab='objectives';
 
-function editMaterial(id){
-currentEditId=id;
-const m=appData.materials.find(x=>x.id===id);
-navigateTo('create');
-document.getElementById('inp-title').value=m.title||'';
-document.getElementById('inp-audience').value=m.audience||'';
-document.getElementById('inp-platform').value=m.platform||'Gumroad';
-document.getElementById('inp-difficulty').value=m.difficulty||'Beginner';
-document.getElementById('inp-reading-time').value=m.readingTime||'';
-document.getElementById('inp-price').value=m.price||'';
-document.getElementById('inp-notes').value=m.notes||'';
-// Set expertise checks
-document.querySelectorAll('#expertise-checks .checkbox-item').forEach(el=>{const v=el.querySelector('input').value;if(m.expertise&&m.expertise.includes(v)){el.classList.add('checked');el.querySelector('input').checked=true}else{el.classList.remove('checked');el.querySelector('input').checked=false}});
-if(m.generated){generatedData=m.generated;document.getElementById('generated-output').style.display='block';showGenTab('objectives')}
+function defaultData(){
+  return{
+    materials:[],
+    credentials:['OSHA 30','ASP Candidate','WHS Specialist','Warehouse Safety Professional'],
+    quickBlocks:[
+      {id:genId(),name:'Safety Disclaimer',text:'This material is for educational purposes only. Always follow your organization\'s specific safety protocols and consult qualified professionals for site-specific guidance.'},
+      {id:genId(),name:'About the Author',text:'JT Cotton is a WHS Specialist with hands-on experience in high-volume warehouse operations, OSHA compliance, and safety culture development at Amazon LBB5. He brings real-world knowledge from active field work to every lesson.'}
+    ],
+    calendarItems:[],sales:[],
+    publishChecklist:[
+      {id:'c1',text:'Topic and title finalized',done:false},
+      {id:'c2',text:'Target audience defined',done:false},
+      {id:'c3',text:'Outline generated and reviewed',done:false},
+      {id:'c4',text:'All 6 sections written (Objectives, Modules, Takeaways, Quiz, Resources, CTA)',done:false},
+      {id:'c5',text:'Content edited and proofread',done:false},
+      {id:'c6',text:'PDF exported and formatted',done:false},
+      {id:'c7',text:'Price set using Pricing Guide',done:false},
+      {id:'c8',text:'Gumroad product created',done:false},
+      {id:'c9',text:'Product description written (150-300 words)',done:false},
+      {id:'c10',text:'Cover thumbnail created in Canva',done:false},
+      {id:'c11',text:'Product published and live',done:false},
+      {id:'c12',text:'Sale URL saved in material record',done:false},
+      {id:'c13',text:'Shared on LinkedIn and safety forums',done:false}
+    ],
+    settings:{aiProvider:'openai',apiKey:'',name:'JT Cotton',tagline:'WHS Specialist & Safety Content Creator',mission:'Every worker deserves to go home safe. My mission is to bridge the gap between certification and real-world application.',lightMode:false},
+    currentMonth:new Date().getMonth(),
+    currentYear:new Date().getFullYear()
+  };
 }
 
-function showGenTab(tab){
-activeGenTab=tab;
-document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-event.target.classList.add('active');
-document.getElementById('gen-content').textContent=generatedData[tab]||'(No content generated yet)';
+function loadData(){const d=localStorage.getItem(DB_KEY);if(d){const p=JSON.parse(d);if(!p.publishChecklist)p.publishChecklist=defaultData().publishChecklist;return p;}return defaultData();}
+function saveData(){localStorage.setItem(DB_KEY,JSON.stringify(appData));}
+function genId(){return Date.now().toString(36)+Math.random().toString(36).substr(2,5);}
+
+// NAVIGATION
+document.querySelectorAll('.nav-item').forEach(item=>{item.addEventListener('click',()=>navigateTo(item.dataset.page));});
+function navigateTo(page){
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const navEl=document.querySelector('[data-page="'+page+'"]');
+  if(navEl)navEl.classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pageEl=document.getElementById('page-'+page);
+  if(pageEl)pageEl.classList.add('active');
+  if(page==='dashboard')renderDashboard();
+  if(page==='library')renderLibrary();
+  if(page==='calendar')renderCalendar();
+  if(page==='sales')renderSales();
+  if(page==='publish')renderChecklist();
+}
+
+// THEME
+function toggleTheme(){appData.settings.lightMode=!appData.settings.lightMode;applyTheme();saveData();}
+function applyTheme(){const l=appData.settings.lightMode;document.body.classList.toggle('light-mode',l);document.getElementById('themeBtn').textContent=l?'🌙 Dark Mode':'☀️ Light Mode';}
+
+// TOAST
+function showToast(msg,type){const t=document.getElementById('toast');t.textContent=msg;t.style.background=(type==='error')?'var(--danger)':'var(--success)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+
+// MODAL
+function showModal(html){document.getElementById('modalContent').innerHTML=html;document.getElementById('modalOverlay').classList.add('active');}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active');}
+function toggleCheck(el){el.classList.toggle('checked');el.querySelector('input').checked=el.classList.contains('checked');}
+
+// AUTOSAVE
+function scheduleAutosave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(()=>{const ind=document.getElementById('autosave-indicator');if(ind){ind.classList.add('show');setTimeout(()=>ind.classList.remove('show'),2000);}},2000);}
+
+// WORD COUNT
+function updateWordCount(){
+  const content=generatedData[activeGenTab]||'';
+  const words=content.trim()?content.trim().split(/\s+/).length:0;
+  const el=document.getElementById('wc-display');
+  if(el)el.textContent='Words: '+words.toLocaleString();
+}
+
+// TAB SWITCHING — FIXED (uses data-tab, saves before switching)
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    const genEl=document.getElementById('gen-content');
+    if(genEl)generatedData[activeGenTab]=genEl.textContent;
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    const tab=this.dataset.tab;
+    if(tab){
+      activeGenTab=tab;
+      genEl.textContent=generatedData[tab]||'(No content generated yet)';
+      updateWordCount();
+    }
+  });
+});
+
+document.getElementById('gen-content').addEventListener('blur',function(){generatedData[activeGenTab]=this.textContent;updateWordCount();});
+document.getElementById('gen-content').addEventListener('input',function(){generatedData[activeGenTab]=this.textContent;updateWordCount();scheduleAutosave();});
+
+// DASHBOARD
+function renderDashboard(){
+  const mats=appData.materials;
+  document.getElementById('stat-total').textContent=mats.length;
+  document.getElementById('stat-progress').textContent=mats.filter(m=>['Outline','First Draft','Edited'].includes(m.status)).length;
+  document.getElementById('stat-ready').textContent=mats.filter(m=>m.status==='Ready to Sell').length;
+  document.getElementById('stat-published').textContent=mats.filter(m=>m.status==='Published').length;
+  const totalRev=appData.sales.reduce((s,x)=>s+parseFloat(x.revenue||0),0);
+  document.getElementById('stat-revenue').textContent='$'+totalRev.toFixed(0);
+  const list=document.getElementById('dashboard-list');
+  if(!mats.length){list.innerHTML='<div class="empty-state"><div class="icon">📚</div><p>No materials yet. Create your first one!</p><button class="btn btn-primary" onclick="navigateTo(\'create\')">+ Create Material</button></div>';return;}
+  list.innerHTML=mats.map(m=>{
+    const prog={Outline:20,'First Draft':40,Edited:60,'Ready to Sell':80,Published:100}[m.status]||0;
+    const bc={Outline:'badge-outline','First Draft':'badge-draft',Edited:'badge-edited','Ready to Sell':'badge-ready',Published:'badge-published'}[m.status]||'badge-outline';
+    const urlBtn=m.url?'<a href="'+m.url+'" target="_blank" onclick="event.stopPropagation()" class="btn btn-sm btn-success">🔗 View</a>':'';
+    return '<div class="material-item" onclick="editMaterial(\''+m.id+'\')"><div class="info"><div class="title">'+m.title+'</div><div class="meta"><span>'+m.platform+'</span><span>'+(m.audience||'—')+'</span><span>'+new Date(m.created).toLocaleDateString()+'</span><span>$'+parseFloat(m.price||0).toFixed(2)+'</span><span class="badge '+bc+'">'+m.status+'</span></div><div class="progress-bar"><div class="fill" style="width:'+prog+'%"></div></div></div><div class="actions">'+urlBtn+'<button class="btn btn-sm btn-secondary" onclick="event.stopPropagation();changeStatus(\''+m.id+'\')">↑ Status</button><button class="btn btn-sm btn-danger" onclick="event.stopPropagation();deleteMaterial(\''+m.id+'\')">🗑️</button></div></div>';
+  }).join('');
+}
+
+function changeStatus(id){const m=appData.materials.find(x=>x.id===id);const order=['Outline','First Draft','Edited','Ready to Sell','Published'];const idx=order.indexOf(m.status);if(idx<order.length-1){m.status=order[idx+1];saveData();renderDashboard();showToast('Status: '+m.status);}}
+function deleteMaterial(id){if(!confirm('Delete this material?'))return;appData.materials=appData.materials.filter(m=>m.id!==id);saveData();renderDashboard();showToast('Material deleted');}
+
+// CREATE / EDIT
+function editMaterial(id){
+  currentEditId=id;
+  const m=appData.materials.find(x=>x.id===id);
+  navigateTo('create');
+  document.getElementById('inp-title').value=m.title||'';
+  document.getElementById('inp-audience').value=m.audience||'';
+  document.getElementById('inp-platform').value=m.platform||'Gumroad';
+  document.getElementById('inp-difficulty').value=m.difficulty||'Beginner';
+  document.getElementById('inp-status').value=m.status||'Outline';
+  document.getElementById('inp-reading-time').value=m.readingTime||'';
+  document.getElementById('inp-price').value=m.price||'';
+  document.getElementById('inp-url').value=m.url||'';
+  document.getElementById('inp-notes').value=m.notes||'';
+  document.querySelectorAll('#expertise-checks .checkbox-item').forEach(el=>{const v=el.querySelector('input').value;const chk=m.expertise&&m.expertise.includes(v);el.classList.toggle('checked',chk);el.querySelector('input').checked=chk;});
+  if(m.generated){generatedData=JSON.parse(JSON.stringify(m.generated));document.getElementById('generated-output').style.display='block';activeGenTab='objectives';document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===0));document.getElementById('gen-content').textContent=generatedData.objectives||'';updateWordCount();}
 }
 
 function saveMaterial(){
-const title=document.getElementById('inp-title').value.trim();
-if(!title){showToast('Please enter a title','error');return}
-const expertise=[];document.querySelectorAll('#expertise-checks .checkbox-item.checked input').forEach(i=>expertise.push(i.value));
-const mat={
-id:currentEditId||genId(),
-title:title,
-audience:document.getElementById('inp-audience').value.trim(),
-platform:document.getElementById('inp-platform').value,
-expertise:expertise,
-difficulty:document.getElementById('inp-difficulty').value,
-readingTime:document.getElementById('inp-reading-time').value||autoReadTime(),
-price:document.getElementById('inp-price').value||suggestPrice(),
-notes:document.getElementById('inp-notes').value,
-generated:generatedData,
-status:currentEditId?appData.materials.find(m=>m.id===currentEditId).status:'Outline',
-created:currentEditId?appData.materials.find(m=>m.id===currentEditId).created:new Date().toISOString(),
-updated:new Date().toISOString()
-};
-if(currentEditId){const idx=appData.materials.findIndex(m=>m.id===currentEditId);appData.materials[idx]=mat}else{appData.materials.push(mat)}
-saveData();currentEditId=null;clearCreateForm();showToast('Material saved!');navigateTo('dashboard')}
+  const title=document.getElementById('inp-title').value.trim();
+  if(!title){showToast('Please enter a title','error');return;}
+  const expertise=[];document.querySelectorAll('#expertise-checks .checkbox-item.checked input').forEach(i=>expertise.push(i.value));
+  const genCopy=JSON.parse(JSON.stringify(generatedData)); // deep clone — fixes shallow copy bug
+  const existing=currentEditId?appData.materials.find(m=>m.id===currentEditId):null;
+  const mat={id:currentEditId||genId(),title,audience:document.getElementById('inp-audience').value.trim(),platform:document.getElementById('inp-platform').value,expertise,difficulty:document.getElementById('inp-difficulty').value,status:document.getElementById('inp-status').value,readingTime:document.getElementById('inp-reading-time').value||autoReadTime(),price:document.getElementById('inp-price').value||suggestPrice(),url:document.getElementById('inp-url').value.trim(),notes:document.getElementById('inp-notes').value,generated:genCopy,created:existing?existing.created:new Date().toISOString(),updated:new Date().toISOString()};
+  if(currentEditId){const idx=appData.materials.findIndex(m=>m.id===currentEditId);appData.materials[idx]=mat;}else{appData.materials.push(mat);}
+  saveData();currentEditId=null;clearCreateForm();showToast('Material saved!');navigateTo('dashboard');
+}
 
-function clearCreateForm(){document.getElementById('inp-title').value='';document.getElementById('inp-audience').value='';document.getElementById('inp-notes').value='';document.getElementById('inp-reading-time').value='';document.getElementById('inp-price').value='';document.querySelectorAll('#expertise-checks .checkbox-item').forEach(el=>{el.classList.remove('checked');el.querySelector('input').checked=false});document.getElementById('generated-output').style.display='none';generatedData={objectives:'',modules:'',takeaways:'',quiz:'',resources:'',cta:''};}
-function autoReadTime(){const content=Object.values(generatedData).join(' ');const words=content.split(/\s+/).length;return Math.max(5,Math.ceil(words/200))}
-function suggestPrice(){const diff=document.getElementById('inp-difficulty').value;const content=Object.values(generatedData).join(' ').length;if(content<500)return'4.99';if(diff==='Advanced')return'19.99';if(diff==='Intermediate')return'12.99';return'7.99'}
+function clearCreateForm(){
+  ['inp-title','inp-audience','inp-notes','inp-reading-time','inp-price','inp-url'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('inp-status').value='Outline';
+  document.querySelectorAll('#expertise-checks .checkbox-item').forEach(el=>{el.classList.remove('checked');el.querySelector('input').checked=false;});
+  document.getElementById('generated-output').style.display='none';
+  generatedData={objectives:'',modules:'',takeaways:'',quiz:'',resources:'',cta:''};
+  currentEditId=null;showToast('Form cleared');
+}
 
-// ===================== OUTLINE GENERATOR =====================
+function autoReadTime(){const content=Object.values(generatedData).join(' ');const words=content.split(/\s+/).length;return Math.max(5,Math.ceil(words/200));}
+function suggestPrice(){const diff=document.getElementById('inp-difficulty').value;const words=Object.values(generatedData).join(' ').split(/\s+/).length;if(words<500)return'9.99';if(diff==='Advanced'||words>5000)return'29.99';if(diff==='Intermediate'||words>2000)return'19.99';return'14.99';}
+</script>
+
+<script>
+// OUTLINE GENERATOR
 function generateOutline(mode){
-const title=document.getElementById('inp-title').value.trim();
-if(!title){showToast('Enter a topic/title first','error');return}
-const audience=document.getElementById('inp-audience').value.trim()||'Safety professionals';
-const difficulty=document.getElementById('inp-difficulty').value;
-const expertise=[];document.querySelectorAll('#expertise-checks .checkbox-item.checked input').forEach(i=>expertise.push(i.value));
-if(mode==='ai'){generateWithAI(title,audience,difficulty,expertise);return}
-// Template-based generation
-generatedData.objectives=generateObjectives(title,audience,difficulty);
-generatedData.modules=generateModules(title,difficulty,expertise);
-generatedData.takeaways=generateTakeaways(title);
-generatedData.quiz=generateQuiz(title,difficulty);
-generatedData.resources=generateResources(expertise);
-generatedData.cta=generateCTA(title,audience);
-document.getElementById('generated-output').style.display='block';
-activeGenTab='objectives';
-document.querySelectorAll('.tab-btn').forEach((b,i)=>{b.classList.toggle('active',i===0)});
-document.getElementById('gen-content').textContent=generatedData.objectives;
-showToast('Outline generated! Click tabs to review each section.');
-// Auto-suggest price
-if(!document.getElementById('inp-price').value)document.getElementById('inp-price').value=suggestPrice();
-if(!document.getElementById('inp-reading-time').value)document.getElementById('inp-reading-time').value=autoReadTime();
+  const title=document.getElementById('inp-title').value.trim();
+  if(!title){showToast('Enter a topic/title first','error');return;}
+  const audience=document.getElementById('inp-audience').value.trim()||'Safety professionals';
+  const difficulty=document.getElementById('inp-difficulty').value;
+  const expertise=[];document.querySelectorAll('#expertise-checks .checkbox-item.checked input').forEach(i=>expertise.push(i.value));
+  if(mode==='ai'){generateWithAI(title,audience,difficulty,expertise);return;}
+  generatedData.objectives=genObjectives(title,audience,difficulty);
+  generatedData.modules=genModules(title,difficulty,expertise);
+  generatedData.takeaways=genTakeaways(title);
+  generatedData.quiz=genQuiz(title,difficulty);
+  generatedData.resources=genResources(expertise);
+  generatedData.cta=genCTA(title,audience);
+  document.getElementById('generated-output').style.display='block';
+  activeGenTab='objectives';
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.getElementById('gen-content').textContent=generatedData.objectives;
+  updateWordCount();
+  showToast('Outline generated! Review each tab.');
+  if(!document.getElementById('inp-price').value)document.getElementById('inp-price').value=suggestPrice();
+  if(!document.getElementById('inp-reading-time').value)document.getElementById('inp-reading-time').value=autoReadTime();
 }
 
-function generateObjectives(title,audience,diff){
-const levels={Beginner:['Identify','Describe','List','Recognize','Define'],Intermediate:['Explain','Apply','Demonstrate','Analyze','Compare'],Advanced:['Evaluate','Design','Integrate','Critique','Develop']};
-const verbs=levels[diff]||levels.Beginner;
-return`LEARNING OBJECTIVES\n━━━━━━━━━━━━━━━━━━━━\nBy the end of this material, ${audience} will be able to:\n\n• ${verbs[0]} the core principles of ${title}\n• ${verbs[1]} key frameworks and standards relevant to ${title}\n• ${verbs[2]} practical strategies for implementing ${title} concepts\n• ${verbs[3]} common challenges and solutions in ${title}\n• ${verbs[4]} an action plan for applying ${title} in their workplace`}
+function genObjectives(title,audience,diff){
+  const lvl={Beginner:['Identify','Describe','List','Recognize','Define'],Intermediate:['Explain','Apply','Demonstrate','Analyze','Compare'],Advanced:['Evaluate','Design','Integrate','Critique','Develop']};
+  const v=lvl[diff]||lvl.Beginner;
+  return 'LEARNING OBJECTIVES\n━━━━━━━━━━━━━━━━━━━━\nBy the end of this material, '+audience+' will be able to:\n\n• '+v[0]+' the core principles of '+title+'\n• '+v[1]+' key frameworks and standards relevant to '+title+'\n• '+v[2]+' practical strategies for implementing '+title+' concepts\n• '+v[3]+' common challenges and solutions in '+title+'\n• '+v[4]+' an action plan for applying '+title+' in their workplace';
+}
 
-function generateModules(title,diff,expertise){
-const expertiseStr=expertise.length?` (Focus areas: ${expertise.join(', ')})`:'';
-return`MODULE STRUCTURE${expertiseStr}\n━━━━━━━━━━━━━━━━━━━━\n\nModule 1: Introduction & Foundation\n  1.1 What is ${title}?\n  1.2 Why it matters in today's workplace\n  1.3 Key definitions and terminology\n\nModule 2: Regulatory Framework\n  2.1 Applicable standards and regulations\n  2.2 Compliance requirements\n  2.3 Industry best practices\n\nModule 3: Core Concepts & Principles\n  3.1 Fundamental principles\n  3.2 Risk assessment methodology\n  3.3 Hierarchy of controls\n\nModule 4: Implementation Strategies\n  4.1 Planning and preparation\n  4.2 Step-by-step implementation\n  4.3 Common pitfalls to avoid\n\nModule 5: Case Studies & Real-World Applications\n  5.1 Success stories\n  5.2 Lessons learned from incidents\n  5.3 Industry-specific examples\n\nModule 6: Assessment & Continuous Improvement\n  6.1 Measuring effectiveness\n  6.2 KPIs and metrics\n  6.3 Continuous improvement cycle\n\nModule 7: Summary & Next Steps\n  7.1 Key takeaways recap\n  7.2 Resources for further learning\n  7.3 Action plan template`}
+function genModules(title,diff,expertise){
+  const es=expertise.length?' (Focus: '+expertise.join(', ')+')':'';
+  return 'MODULE STRUCTURE'+es+'\n━━━━━━━━━━━━━━━━━━━━\n\nModule 1: Introduction & Foundation\n  1.1 What is '+title+'?\n  1.2 Why it matters in today\'s workplace\n  1.3 Key definitions and terminology\n\nModule 2: Regulatory Framework\n  2.1 Applicable OSHA standards and regulations\n  2.2 Compliance requirements\n  2.3 Industry best practices\n\nModule 3: Core Concepts & Principles\n  3.1 Fundamental principles\n  3.2 Risk assessment methodology\n  3.3 Hierarchy of controls\n\nModule 4: Implementation Strategies\n  4.1 Planning and preparation\n  4.2 Step-by-step implementation\n  4.3 Common pitfalls to avoid\n\nModule 5: Real-World Applications\n  5.1 Warehouse/distribution examples\n  5.2 Lessons learned from incidents\n  5.3 Industry-specific case studies\n\nModule 6: Assessment & Continuous Improvement\n  6.1 Measuring effectiveness\n  6.2 KPIs and leading indicators\n  6.3 Continuous improvement cycle\n\nModule 7: Summary & Next Steps\n  7.1 Key takeaways recap\n  7.2 Resources for further learning\n  7.3 90-day action plan template';
+}
 
-function generateTakeaways(title){
-return`KEY TAKEAWAYS\n━━━━━━━━━━━━━━━━━━━━\n\n✅ ${title} is essential for maintaining a safe and compliant workplace\n✅ A systematic approach to implementation yields the best results\n✅ Regular assessment and auditing ensure ongoing effectiveness\n✅ Leadership commitment is the #1 factor in program success\n✅ Documentation and training are non-negotiable components\n✅ Continuous improvement drives long-term safety culture\n✅ Every worker has a role in maintaining safety standards`}
+function genTakeaways(title){
+  return 'KEY TAKEAWAYS\n━━━━━━━━━━━━━━━━━━━━\n\n✅ '+title+' is essential for maintaining a safe and compliant workplace\n✅ A systematic approach to implementation yields the best results\n✅ Regular assessment and auditing ensure ongoing effectiveness\n✅ Leadership commitment is the #1 factor in program success\n✅ Documentation and training are non-negotiable components\n✅ Continuous improvement drives long-term safety culture\n✅ Every worker has a role in maintaining safety standards';
+}
 
-function generateQuiz(title,diff){
-if(diff==='Beginner'){
-return`ASSESSMENT — ${title}\n━━━━━━━━━━━━━━━━━━━━\nLevel: Beginner | Format: Multiple Choice + Short Answer + Scenario\n\n--- MULTIPLE CHOICE (Choose the best answer) ---\n\n1. Under OSHA's General Duty Clause 5(a)(1), employers are required to:\n   a) Provide free PPE to all employees\n   b) Maintain a workplace free from recognized hazards\n   c) Conduct daily safety meetings\n   d) Hire a full-time safety manager\n\n2. A new employee reports a tripping hazard in the walkway. What is the correct first response?\n   a) Document it and review at the next safety meeting\n   b) Tell the employee to walk around it\n   c) Immediately mitigate the hazard and document the corrective action\n   d) File an OSHA report\n\n3. The Hierarchy of Controls lists these from MOST to LEAST effective:\n   a) PPE → Engineering → Elimination → Administrative\n   b) Elimination → Substitution → Engineering → Administrative → PPE\n   c) Administrative → Engineering → PPE → Elimination\n   d) Substitution → PPE → Administrative → Engineering\n\n4. Which of the following is NOT required in a written safety program?\n   a) Emergency action procedures\n   b) Hazard identification methods\n   c) Employee birthday calendar\n   d) Training documentation requirements\n\n5. A worker refuses to perform a task they believe is immediately dangerous. Under OSHA, this is:\n   a) Grounds for termination\n   b) Protected under whistleblower provisions\n   c) Only allowed with supervisor approval\n   d) Considered insubordination\n\n--- SCENARIO-BASED (Choose the best answer) ---\n\n6. You're conducting a walkthrough and notice a forklift operator without a seatbelt in a busy warehouse. What's your best course of action?\n   a) Ignore it — they're experienced\n   b) Stop the operation, coach the operator, and document the observation\n   c) Send an email to their manager later\n   d) Wait until the shift safety meeting to address it\n\n7. During orientation, a new hire asks "What do I do if I see something unsafe?" The BEST answer is:\n   a) "Tell your supervisor at the end of shift"\n   b) "Stop the task, report it immediately, and don't resume until it's resolved"\n   c) "Fill out a form and submit it to HR"\n   d) "It's not your job to worry about that yet"\n\n--- SHORT ANSWER ---\n\n8. Name three elements that must be included in an effective written safety program.\n\n9. A warehouse has experienced 3 slip-and-fall incidents this month. Describe the steps you would take to investigate and prevent future occurrences.\n\n10. Explain the difference between a safety policy and a safety procedure, and give one example of each.\n\n\n━━━━━━━━━━━━━━━━━━━━\nANSWER KEY\n━━━━━━━━━━━━━━━━━━━━\n1. B — The General Duty Clause requires employers to maintain a hazard-free workplace\n2. C — Immediate mitigation prevents injury; documentation creates accountability\n3. B — Elimination is most effective; PPE is last resort\n4. C — Birthday calendars are not a compliance requirement\n5. B — OSHA Section 11(c) protects workers who refuse imminent danger tasks\n6. B — Stop, coach, document is the proper safety leadership response\n7. B — Stop Work Authority empowers all employees to halt unsafe conditions\n8. Sample: (1) Hazard identification/assessment, (2) Employee training requirements, (3) Emergency action procedures. Also acceptable: incident reporting, PPE requirements, management responsibilities\n9. Sample: Review incident reports for patterns → inspect the area for root causes (wet floors, poor lighting, footwear issues) → implement corrective actions (signage, mats, shoe policy) → monitor for recurrence → update training\n10. Policy = high-level commitment statement (e.g., "All employees will wear PPE in designated areas"). Procedure = step-by-step instructions (e.g., "How to properly don and doff a respirator")`}
-if(diff==='Intermediate'){
-return`ASSESSMENT — ${title}\n━━━━━━━━━━━━━━━━━━━━\nLevel: Intermediate | Format: Multiple Choice + Scenario Analysis + Short Answer\n\n--- MULTIPLE CHOICE (Choose the best answer) ---\n\n1. When conducting a Job Hazard Analysis (JHA), the correct sequence is:\n   a) Identify hazards → List job steps → Determine controls\n   b) List job steps → Identify hazards → Determine controls\n   c) Determine controls → Identify hazards → List job steps\n   d) Observe the job → Write the report → File it\n\n2. An employee's near-miss report reveals a systemic process failure. The MOST effective response is:\n   a) Thank the employee and file the report\n   b) Conduct a root cause analysis and implement systemic corrective actions\n   c) Retrain the individual employee\n   d) Add the topic to next month's safety meeting\n\n3. Leading indicators in safety performance include:\n   a) TRIR and DART rates\n   b) Number of fatalities per year\n   c) Safety observations completed, training attendance, and hazard reports submitted\n   d) Workers' compensation costs\n\n4. Under OSHA's multi-employer worksite policy, which employer type has the PRIMARY duty to correct hazards?\n   a) Creating employer\n   b) Exposing employer\n   c) Controlling employer\n   d) Correcting employer\n\n5. A safety committee's MOST important function is:\n   a) Planning the annual safety banquet\n   b) Identifying hazards, recommending solutions, and driving accountability\n   c) Reviewing incident reports after the fact\n   d) Ensuring OSHA poster compliance\n\n--- SCENARIO ANALYSIS ---\n\n6. Your facility's TRIR has increased 40% over two quarters. Management asks for a corrective action plan. Describe your approach:\n   a) Increase disciplinary actions for unsafe behavior\n   b) Analyze incident data for trends, conduct root cause analyses on top injury types, implement engineering/administrative controls, and measure effectiveness\n   c) Hire more safety staff\n   d) Require mandatory overtime safety training\n\n7. Two departments have vastly different safety cultures — one reports near-misses regularly, the other reports almost none. This likely indicates:\n   a) The second department is safer\n   b) The second department has underreporting due to fear of retaliation or lack of trust\n   c) The first department is less safe\n   d) Near-miss reporting doesn't matter\n\n--- SHORT ANSWER ---\n\n8. Compare and contrast leading vs. lagging safety indicators. Give two examples of each and explain why leading indicators are more valuable for prevention.\n\n9. Design a 90-day safety culture improvement plan for a facility with low employee engagement in safety programs.\n\n10. A contractor on your site is not following lockout/tagout procedures. Outline your response including regulatory requirements, communication steps, and documentation.\n\n\n━━━━━━━━━━━━━━━━━━━━\nANSWER KEY\n━━━━━━━━━━━━━━━━━━━━\n1. B — JHA follows: break job into steps → identify hazards per step → determine preventive controls\n2. B — Systemic failures require root cause analysis, not individual retraining\n3. C — Leading indicators are proactive metrics; TRIR/DART are lagging (after-the-fact)\n4. D — The correcting employer has authority and responsibility to fix hazards\n5. B — Committees exist to proactively identify hazards and drive solutions\n6. B — Data-driven approach addresses root causes rather than symptoms\n7. B — Low near-miss reporting typically signals cultural issues, not safety excellence\n8. Sample: Leading = safety observations conducted, training completion rate (predictive/proactive). Lagging = TRIR, DART rate (reactive/after injury). Leading indicators allow intervention BEFORE injuries occur\n9. Sample: Weeks 1-2: Assess current state (survey, observations). Weeks 3-4: Launch near-miss reporting with positive recognition. Weeks 5-8: Safety champion program, visible leadership engagement. Weeks 9-12: Measure participation, celebrate wins, adjust approach\n10. Sample: Stop work immediately → notify contractor supervisor → reference 29 CFR 1910.147 requirements → document the violation → require corrective action plan before work resumes → notify controlling employer if applicable`}
-// Advanced
-return`ASSESSMENT — ${title}\n━━━━━━━━━━━━━━━━━━━━\nLevel: Advanced | Format: Select All That Apply + Case Study + Strategic Response\n\n--- MULTIPLE CHOICE (Select ALL that apply) ---\n\n1. Which of the following are elements of an effective Safety Management System (SMS) per ANSI Z10?\n   a) Management leadership and employee participation\n   b) Planning based on risk assessment\n   c) Annual pizza party for zero injuries\n   d) Implementation and operation of controls\n   e) Evaluation and corrective action\n   f) Management review for continual improvement\n\n2. When integrating Human & Organizational Performance (HOP) principles, which are true?\n   a) Error is normal — humans are fallible\n   b) Blame fixes problems\n   c) Context drives behavior\n   d) Leaders must create learning environments\n   e) Punishment is the most effective deterrent\n   f) Systems should be designed to tolerate error\n\n3. An effective leading indicator program should:\n   a) Measure activities that PREDICT future performance\n   b) Focus exclusively on injury rates\n   c) Be tied to operational goals and visible at all levels\n   d) Include both quality and quantity metrics\n   e) Only be reviewed annually\n   f) Drive proactive interventions before incidents occur\n\n--- CASE STUDY ---\n\n4. A distribution center (500+ employees, 3 shifts) has the following data:\n   • TRIR increased from 3.2 to 5.8 over 12 months\n   • 60% of injuries are musculoskeletal (manual handling)\n   • Night shift has 3x the injury rate of day shift\n   • Near-miss reports dropped 70% after a recent management change\n   • Employee engagement survey shows 40% distrust safety reporting\n\n   Develop a comprehensive strategic response that addresses:\n   a) Root cause analysis approach\n   b) Short-term immediate interventions (0-30 days)\n   c) Medium-term systemic changes (30-90 days)\n   d) Long-term cultural transformation (90-365 days)\n   e) Metrics you would track to measure success\n   f) How you would present this to senior leadership\n\n--- STRATEGIC RESPONSE ---\n\n5. Your organization is transitioning from a compliance-based safety program to a values-based safety culture. Outline the change management strategy including stakeholder engagement, communication plan, and how you would measure cultural shift.\n\n6. Design a safety incentive program that avoids the common pitfall of discouraging incident reporting. Include structure, metrics, recognition methods, and safeguards.\n\n7. A regulatory agency has cited your facility for 3 serious violations. Develop your response plan including immediate actions, contest/settlement strategy, systemic corrections, and how you prevent recurrence.\n\n\n━━━━━━━━━━━━━━━━━━━━\nANSWER KEY\n━━━━━━━━━━━━━━━━━━━━\n1. A, B, D, E, F — ANSI Z10 elements include leadership, planning, implementation, evaluation, and management review. Pizza parties are not SMS elements.\n2. A, C, D, F — HOP principles recognize human fallibility, context-driven behavior, learning environments, and error-tolerant systems. Blame and punishment are counterproductive.\n3. A, C, D, F — Leading indicators are predictive, tied to goals, multi-dimensional, and drive proactive action. Annual-only review is insufficient.\n4. Sample framework:\n   • Root cause: Data analysis shows MSD concentration + shift disparity + reporting culture collapse post-management change\n   • 0-30 days: Ergonomic assessments on top MSD tasks, night shift leadership coaching, anonymous reporting channel, stop-work authority reinforcement\n   • 30-90 days: Job rotation program, ergonomic engineering controls, supervisor safety leadership training, rebuild trust through visible follow-up on reports\n   • 90-365 days: Safety culture survey and action planning, HOP integration, employee-led safety teams, redesign incentive structure\n   • Metrics: Near-miss reports (trending up = trust rebuilding), MSD rate by shift, safety perception survey scores, leadership safety engagement hours\n   • Executive presentation: Business case with cost of injuries, trend visualization, phased plan with milestones, ROI projections\n5. Sample elements: Stakeholder mapping → leadership alignment workshops → communication cascade (why, what, how) → pilot program in one area → measure: reporting rates, survey scores, observation quality, leadership participation → scale with lessons learned\n6. Sample: Recognize PROACTIVE behaviors (observations, suggestions, training) NOT outcomes (zero injuries). Use peer recognition, team-based goals, visible leadership acknowledgment. Safeguard: Never tie incentives to injury rates alone — this discourages reporting.\n7. Sample: Immediate: Secure citations, photograph conditions, correct hazards. Strategy: Evaluate contest vs. informal conference vs. settlement. Systemic: Root cause of each violation, corrective action with verification, management accountability. Prevention: Audit program, compliance calendar, regulatory monitoring`}
+function genQuiz(title,diff){
+  if(diff==='Beginner'){return 'ASSESSMENT — '+title+'\n━━━━━━━━━━━━━━━━━━━━\nLevel: Beginner | Multiple Choice + Scenario + Short Answer\n\n--- MULTIPLE CHOICE ---\n\n1. Under OSHA\'s General Duty Clause 5(a)(1), employers are required to:\n   a) Provide free PPE to all employees\n   b) Maintain a workplace free from recognized hazards ✓\n   c) Conduct daily safety meetings\n   d) Hire a full-time safety manager\n\n2. The Hierarchy of Controls from MOST to LEAST effective:\n   a) PPE → Engineering → Elimination\n   b) Elimination → Substitution → Engineering → Administrative → PPE ✓\n   c) Administrative → Engineering → PPE\n   d) Substitution → PPE → Administrative\n\n3. A worker refuses a task they believe is immediately dangerous. Under OSHA:\n   a) Grounds for termination\n   b) Protected under Section 11(c) whistleblower provisions ✓\n   c) Only allowed with supervisor approval\n   d) Considered insubordination\n\n--- SCENARIO ---\n\n4. You notice a forklift operator without a seatbelt. Best response:\n   a) Ignore it — they\'re experienced\n   b) Stop the operation, coach the operator, document the observation ✓\n   c) Send an email to their manager later\n   d) Wait until the shift safety meeting\n\n--- SHORT ANSWER ---\n\n5. Name three elements required in a written safety program.\n\n6. A warehouse has 3 slip-and-fall incidents this month. Describe your investigation steps.\n\n7. Explain the difference between a safety policy and a safety procedure.\n\n━━━━━━━━━━━━━━━━━━━━\nANSWER KEY\n━━━━━━━━━━━━━━━━━━━━\n1. B — General Duty Clause requires hazard-free workplace\n2. B — Elimination most effective; PPE is last resort\n3. B — OSHA Section 11(c) whistleblower protections\n4. B — Stop, coach, document is correct safety leadership response\n5. Sample: Hazard identification, training requirements, emergency procedures\n6. Sample: Review reports → inspect area → identify root cause → implement controls → monitor\n7. Policy = commitment statement. Procedure = step-by-step instructions';}
+  if(diff==='Intermediate'){return 'ASSESSMENT — '+title+'\n━━━━━━━━━━━━━━━━━━━━\nLevel: Intermediate | Multiple Choice + Scenario Analysis + Short Answer\n\n--- MULTIPLE CHOICE ---\n\n1. Correct JHA sequence:\n   a) Identify hazards → List job steps → Determine controls\n   b) List job steps → Identify hazards → Determine controls ✓\n   c) Determine controls → List steps → Identify hazards\n   d) Observe → Write report → File\n\n2. Leading safety indicators include:\n   a) TRIR and DART rates\n   b) Number of fatalities per year\n   c) Safety observations, training attendance, hazard reports submitted ✓\n   d) Workers\' compensation costs\n\n3. TRIR increased 40% over two quarters. Best approach:\n   a) Increase disciplinary actions\n   b) Analyze incident data, conduct root cause analyses, implement controls, measure effectiveness ✓\n   c) Hire more safety staff\n   d) Require mandatory overtime training\n\n--- SHORT ANSWER ---\n\n4. Compare leading vs. lagging safety indicators. Give two examples of each.\n\n5. Design a 90-day safety culture improvement plan for a facility with low engagement.\n\n6. A contractor violates LOTO procedures. Outline your response.\n\n━━━━━━━━━━━━━━━━━━━━\nANSWER KEY\n━━━━━━━━━━━━━━━━━━━━\n1. B — JHA: break steps → identify hazards → determine controls\n2. C — Leading = proactive; TRIR/DART = lagging\n3. B — Data-driven root cause approach addresses systemic issues\n4. Leading: observations, training completion. Lagging: TRIR, DART\n5. Sample: Wk 1-2: assess. Wk 3-4: near-miss launch. Wk 5-8: champions. Wk 9-12: measure\n6. Stop work → notify supervisor → cite 29 CFR 1910.147 → document → require corrective plan';}
+  return 'ASSESSMENT — '+title+'\n━━━━━━━━━━━━━━━━━━━━\nLevel: Advanced | Select All That Apply + Case Study\n\n--- SELECT ALL THAT APPLY ---\n\n1. ANSI Z10 SMS elements:\n   a) Management leadership & employee participation ✓\n   b) Planning based on risk assessment ✓\n   c) Annual pizza party for zero injuries\n   d) Implementation and operation of controls ✓\n   e) Evaluation and corrective action ✓\n   f) Management review for continual improvement ✓\n\n2. HOP (Human & Organizational Performance) principles:\n   a) Error is normal — humans are fallible ✓\n   b) Blame fixes problems\n   c) Context drives behavior ✓\n   d) Leaders must create learning environments ✓\n   e) Systems should be designed to tolerate error ✓\n\n--- CASE STUDY ---\n\n3. A 500+ employee DC: TRIR up 3.2→5.8; 60% MSDs; night shift 3x injury rate; near-miss reports down 70% after management change; 40% distrust reporting.\n\nDevelop a strategic response:\n   a) Root cause analysis approach\n   b) 0-30 day interventions\n   c) 30-90 day systemic changes\n   d) 90-365 day cultural transformation\n   e) Success metrics\n   f) Executive presentation strategy\n\n━━━━━━━━━━━━━━━━━━━━\nANSWER KEY\n━━━━━━━━━━━━━━━━━━━━\n1. A, B, D, E, F\n2. A, C, D, F\n3. Root cause: MSD concentration + shift disparity + reporting collapse\n   0-30: Ergonomic assessments, night shift coaching, anonymous reporting channel\n   30-90: Job rotation, engineering controls, supervisor training, trust rebuilding\n   90-365: Culture survey, HOP integration, employee-led safety teams\n   Metrics: Near-miss trends, MSD rate by shift, perception survey scores\n   Exec: Business case with injury costs, phased plan with ROI projections';
+}
 
-function generateResources(expertise){
-let res=`RESOURCES & REFERENCES\n━━━━━━━━━━━━━━━━━━━━\n\n📚 Standards & Regulations:\n`;
-if(expertise.includes('OSHA'))res+=`• OSHA Standards (29 CFR 1910/1926)\n• OSHA Training Institute Education Centers\n`;
-if(expertise.includes('Healthcare WHS'))res+=`• Joint Commission Standards\n• CDC/NIOSH Healthcare Worker Safety Guidelines\n`;
-if(expertise.includes('HAZMAT'))res+=`• 49 CFR Hazardous Materials Regulations\n• EPA RCRA Requirements\n`;
-if(expertise.includes('Fire Service'))res+=`• NFPA Standards (1001, 1500, 1710)\n• IFSTA Training Materials\n`;
-res+=`• ANSI/ASSP Z10 - OHS Management Systems\n• ISO 45001 - Occupational Health and Safety\n\n📖 Recommended Reading:\n• "Safety Culture: An Innovative Leadership Approach" by Nathan Crutchfield & James Roughton\n• "Whiting's Complete Guide to OSHA Compliance" by Robert Whiting\n• "The Safety Anarchist" by Sidney Dekker\n• "Principles of Risk Management and Insurance" by George Rejda\n• "Industrial Safety and Health Management" by Asfahl & Rieske\n\n🔗 Online Resources:\n• OSHA.gov/training — Free outreach materials & training guides\n• NSC.org — National Safety Council\n• ASSP.org — American Society of Safety Professionals\n• SafetyBLR.com — Compliance tools & training resources\n• NIOSH.cdc.gov — Research & workplace health data\n• OSHAcademy.com — Free/low-cost safety courses\n\n👤 Author Credentials:\n`;
-appData.credentials.forEach(c=>{res+=`• ${c}\n`});
-return res}
+function genResources(expertise){
+  let r='RESOURCES & REFERENCES\n━━━━━━━━━━━━━━━━━━━━\n\n📚 Standards & Regulations:\n';
+  if(expertise.includes('OSHA'))r+='• OSHA Standards (29 CFR 1910/1926)\n• OSHA Training Institute Education Centers\n';
+  if(expertise.includes('Healthcare WHS'))r+='• Joint Commission Standards\n• CDC/NIOSH Healthcare Worker Safety\n';
+  if(expertise.includes('HAZMAT'))r+='• 49 CFR Hazardous Materials Regulations\n• EPA RCRA Requirements\n';
+  if(expertise.includes('Fire Service'))r+='• NFPA Standards (1001, 1500, 1710)\n• IFSTA Training Materials\n';
+  r+='• ANSI/ASSP Z10 - OHS Management Systems\n• ISO 45001 - Occupational Health and Safety\n\n📖 Recommended Reading:\n• "Safety Culture: An Innovative Leadership Approach" — Crutchfield & Roughton\n• "The Safety Anarchist" — Sidney Dekker\n• "Principles of Risk Management and Insurance" — Rejda\n• "Industrial Safety and Health Management" — Asfahl & Rieske\n\n🔗 Online Resources:\n• OSHA.gov/training — Free outreach materials\n• NSC.org — National Safety Council\n• ASSP.org — American Society of Safety Professionals\n• NIOSH.cdc.gov — Research & workplace health data\n• OSHAcademy.com — Free/low-cost safety courses\n\n👤 Author Credentials:\n';
+  appData.credentials.forEach(c=>{r+='• '+c+'\n';});
+  return r;
+}
 
-function generateCTA(title,audience){
-return`CALL TO ACTION & NEXT STEPS\n━━━━━━━━━━━━━━━━━━━━\n\n🎯 Immediate Actions (This Week):\n1. Assess your current ${title} program status\n2. Identify top 3 gaps or improvement areas\n3. Schedule a planning meeting with key stakeholders\n\n📋 Short-term Goals (30 Days):\n1. Develop an implementation timeline\n2. Assign roles and responsibilities\n3. Begin documentation updates\n\n🚀 Long-term Vision (90 Days):\n1. Full program implementation\n2. Initial effectiveness assessment\n3. Continuous improvement plan active\n\n💬 Stay Connected:\n• Follow for more ${title} content\n• Share your implementation success stories\n• Connect with other ${audience} in our community\n\n📧 Questions? Reach out: [Your contact info]\n\n⭐ If this material helped you, please leave a review!`}
+function genCTA(title,audience){
+  return 'CALL TO ACTION & NEXT STEPS\n━━━━━━━━━━━━━━━━━━━━\n\n🎯 Immediate Actions (This Week):\n1. Assess your current '+title+' program status\n2. Identify your top 3 gaps or improvement areas\n3. Schedule a planning meeting with key stakeholders\n\n📋 Short-term Goals (30 Days):\n1. Develop an implementation timeline\n2. Assign roles and responsibilities\n3. Begin documentation updates\n\n🚀 Long-term Vision (90 Days):\n1. Full program implementation\n2. Initial effectiveness assessment\n3. Continuous improvement plan active\n\n💬 Stay Connected:\n• Follow for more WHS/safety content\n• Share your implementation success stories\n• Connect with other '+audience+' in our community\n\n📧 Questions? Reach out to JT Cotton — WHS Specialist & Safety Educator\n\n⭐ If this material helped you, please leave a review on Gumroad!';
+}
+</script>
 
-// ===================== AI GENERATION =====================
+<script>
+// AI GENERATION
 async function generateWithAI(title,audience,difficulty,expertise){
-const settings=appData.settings;
-if(!settings.apiKey){showToast('Add your API key in Settings first','error');return}
-showToast('Generating with AI... please wait');
-const prompt=`You are a professional course content creator. Create a comprehensive lesson material outline for:\n\nTopic: ${title}\nAudience: ${audience}\nDifficulty: ${difficulty}\nExpertise Areas: ${expertise.join(', ')}\nAuthor Credentials: ${appData.credentials.join(', ')}\n\nProvide the following in clearly labeled sections:\n1. LEARNING OBJECTIVES (5 bullet points using Bloom's taxonomy verbs for ${difficulty} level)\n2. MODULE STRUCTURE (6-7 modules with 3 subsections each)\n3. KEY TAKEAWAYS (7 bullet points)\n4. QUIZ QUESTIONS (5 multiple choice with answers + 5 short answer)\n5. RESOURCES & REFERENCES (relevant to the expertise areas)\n6. CALL TO ACTION (immediate, 30-day, and 90-day action items)\n\nFormat clearly with headers and bullet points.`;
-try{
-let response;
-if(settings.aiProvider==='openai'){
-response=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${settings.apiKey}`},body:JSON.stringify({model:'gpt-4o',messages:[{role:'system',content:'You are an expert course content creator specializing in safety and professional education.'},{role:'user',content:prompt}],temperature:0.7,max_tokens:3000})});
-const data=await response.json();
-if(data.error){showToast('AI Error: '+data.error.message,'error');return}
-parseAIResponse(data.choices[0].message.content);
-}else{
-response=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':settings.apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:3000,messages:[{role:'user',content:prompt}]})});
-const data=await response.json();
-if(data.error){showToast('AI Error: '+data.error.message,'error');return}
-parseAIResponse(data.content[0].text);
+  if(!appData.settings.apiKey){showToast('Add your API key in Settings first','error');return;}
+  showToast('Generating with AI... please wait');
+  const prompt='You are a professional WHS/safety course content creator. Create a comprehensive lesson material outline for:\n\nTopic: '+title+'\nAudience: '+audience+'\nDifficulty: '+difficulty+'\nExpertise Areas: '+expertise.join(', ')+'\nAuthor Credentials: '+appData.credentials.join(', ')+'\n\nProvide these clearly labeled sections:\n1. LEARNING OBJECTIVES (5 bullets, Bloom\'s taxonomy for '+difficulty+')\n2. MODULE STRUCTURE (7 modules, 3 subsections each)\n3. KEY TAKEAWAYS (7 bullets)\n4. QUIZ QUESTIONS (scenario-based with answer key)\n5. RESOURCES & REFERENCES (standards, books, online)\n6. CALL TO ACTION (immediate, 30-day, 90-day)\n\nFormat clearly with headers.';
+  try{
+    let response;
+    if(appData.settings.aiProvider==='openai'){
+      response=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+appData.settings.apiKey},body:JSON.stringify({model:'gpt-4o',messages:[{role:'system',content:'You are an expert WHS/safety course content creator.'},{role:'user',content:prompt}],temperature:0.7,max_tokens:3000})});
+      const data=await response.json();
+      if(data.error){showToast('AI Error: '+data.error.message,'error');return;}
+      parseAIResponse(data.choices[0].message.content);
+    }else{
+      response=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':appData.settings.apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-opus-4-5',max_tokens:3000,messages:[{role:'user',content:prompt}]})});
+      const data=await response.json();
+      if(data.error){showToast('AI Error: '+data.error.message,'error');return;}
+      parseAIResponse(data.content[0].text);
+    }
+    showToast('AI outline generated! Review each tab.');
+  }catch(e){showToast('AI request failed: '+e.message,'error');}
 }
-showToast('AI outline generated! Review each tab.');
-}catch(e){showToast('AI request failed: '+e.message,'error')}}
 
 function parseAIResponse(text){
-const sections=text.split(/(?=\d+\.\s+(?:LEARNING|MODULE|KEY|QUIZ|RESOURCES|CALL))/i);
-generatedData.objectives=extractSection(text,'LEARNING OBJECTIVES','MODULE');
-generatedData.modules=extractSection(text,'MODULE STRUCTURE','KEY TAKEAWAYS');
-generatedData.takeaways=extractSection(text,'KEY TAKEAWAYS','QUIZ');
-generatedData.quiz=extractSection(text,'QUIZ','RESOURCES');
-generatedData.resources=extractSection(text,'RESOURCES','CALL TO ACTION');
-generatedData.cta=extractSection(text,'CALL TO ACTION','$$$END$$$');
-document.getElementById('generated-output').style.display='block';
-document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
-document.getElementById('gen-content').textContent=generatedData.objectives;
-if(!document.getElementById('inp-price').value)document.getElementById('inp-price').value=suggestPrice();
-if(!document.getElementById('inp-reading-time').value)document.getElementById('inp-reading-time').value=autoReadTime()}
+  generatedData.objectives=extractSection(text,'LEARNING OBJECTIVES','MODULE');
+  generatedData.modules=extractSection(text,'MODULE STRUCTURE','KEY TAKEAWAYS');
+  generatedData.takeaways=extractSection(text,'KEY TAKEAWAYS','QUIZ');
+  generatedData.quiz=extractSection(text,'QUIZ','RESOURCES');
+  generatedData.resources=extractSection(text,'RESOURCES','CALL TO ACTION');
+  generatedData.cta=extractSection(text,'CALL TO ACTION','$$$END$$$');
+  document.getElementById('generated-output').style.display='block';
+  activeGenTab='objectives';
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.getElementById('gen-content').textContent=generatedData.objectives;
+  updateWordCount();
+  if(!document.getElementById('inp-price').value)document.getElementById('inp-price').value=suggestPrice();
+  if(!document.getElementById('inp-reading-time').value)document.getElementById('inp-reading-time').value=autoReadTime();
+}
 
 function extractSection(text,startKey,endKey){
-const startIdx=text.toUpperCase().indexOf(startKey.toUpperCase());
-if(startIdx===-1)return'(Section not found in AI response)';
-const endIdx=endKey==='$$$END$$$'?text.length:text.toUpperCase().indexOf(endKey.toUpperCase(),startIdx+startKey.length);
-return text.substring(startIdx,endIdx===-1?text.length:endIdx).trim()}
+  const si=text.toUpperCase().indexOf(startKey.toUpperCase());
+  if(si===-1)return'(Section not found in AI response)';
+  const ei=endKey==='$$$END$$$'?text.length:text.toUpperCase().indexOf(endKey.toUpperCase(),si+startKey.length);
+  return text.substring(si,ei===-1?text.length:ei).trim();
+}
 
-// ===================== QUICK BLOCKS & INSERT =====================
+// QUICK BLOCKS
 function insertQuickBlock(){
-if(!appData.quickBlocks.length){showToast('No quick blocks. Add some in Expertise Library.','error');return}
-let html='<h3>⚡ Insert Quick Block</h3><p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px">Click a block to insert into your current content</p>';
-appData.quickBlocks.forEach(b=>{html+=`<div class="quick-block" onclick="doInsertBlock('${b.id}')"><div class="text"><strong>${b.name}</strong><br><span style="color:var(--text-muted);font-size:0.8rem">${b.text.substring(0,80)}...</span></div><button class="btn btn-sm btn-primary">Insert</button></div>`});
-html+='<div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Close</button></div>';
-showModal(html)}
-function doInsertBlock(id){const b=appData.quickBlocks.find(x=>x.id===id);if(!b)return;const genEl=document.getElementById('gen-content');if(genEl&&document.getElementById('generated-output').style.display!=='none'){generatedData[activeGenTab]+='\n\n'+b.text;genEl.textContent=generatedData[activeGenTab]}else{document.getElementById('inp-notes').value+='\n\n'+b.text}closeModal();showToast('Block inserted!')}
+  if(!appData.quickBlocks.length){showToast('No quick blocks. Add some in Expertise Library.','error');return;}
+  let html='<h3>⚡ Insert Quick Block</h3><p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:16px">Click to insert</p>';
+  appData.quickBlocks.forEach(b=>{html+='<div class="quick-block" onclick="doInsertBlock(\''+b.id+'\')"><div class="text"><strong>'+b.name+'</strong><br><span style="color:var(--text-muted);font-size:0.8rem">'+b.text.substring(0,80)+'...</span></div><button class="btn btn-sm btn-primary">Insert</button></div>';});
+  html+='<div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Close</button></div>';
+  showModal(html);
+}
+function doInsertBlock(id){const b=appData.quickBlocks.find(x=>x.id===id);if(!b)return;const genEl=document.getElementById('gen-content');if(genEl&&document.getElementById('generated-output').style.display!=='none'){generatedData[activeGenTab]+='\n\n'+b.text;genEl.textContent=generatedData[activeGenTab];updateWordCount();}else{document.getElementById('inp-notes').value+='\n\n'+b.text;}closeModal();showToast('Block inserted!');}
 
-// ===================== EXPERTISE LIBRARY =====================
+// EXPERTISE LIBRARY
 function renderLibrary(){
-const credList=document.getElementById('cred-list');
-credList.innerHTML=appData.credentials.map((c,i)=>`<div class="quick-block"><div class="text">🎓 ${c}</div><button class="btn btn-sm btn-danger" onclick="removeCred(${i})">✕</button></div>`).join('');
-const blocksList=document.getElementById('blocks-list');
-blocksList.innerHTML=appData.quickBlocks.length?appData.quickBlocks.map(b=>`<div class="quick-block"><div class="text"><strong>${b.name}</strong> — ${b.text.substring(0,60)}...</div><div style="display:flex;gap:6px"><button class="btn btn-sm btn-secondary" onclick="editBlock('${b.id}')">✏️</button><button class="btn btn-sm btn-danger" onclick="removeBlock('${b.id}')">✕</button></div></div>`).join(''):'<p style="color:var(--text-muted);font-size:0.85rem">No quick blocks yet.</p>';
-const tmpList=document.getElementById('templates-list');
-const published=appData.materials.filter(m=>m.status==='Published'||m.status==='Ready to Sell');
-tmpList.innerHTML=published.length?published.map(m=>`<div class="quick-block"><div class="text">📄 ${m.title}</div><button class="btn btn-sm btn-secondary" onclick="cloneMaterial('${m.id}')">Clone</button></div>`).join(''):'<p style="color:var(--text-muted);font-size:0.85rem">Published materials will appear here as reusable templates.</p>'}
+  document.getElementById('cred-list').innerHTML=appData.credentials.map((c,i)=>'<div class="quick-block"><div class="text">🎓 '+c+'</div><button class="btn btn-sm btn-danger" onclick="removeCred('+i+')">✕</button></div>').join('');
+  document.getElementById('blocks-list').innerHTML=appData.quickBlocks.length?appData.quickBlocks.map(b=>'<div class="quick-block"><div class="text"><strong>'+b.name+'</strong> — '+b.text.substring(0,60)+'...</div><div style="display:flex;gap:6px"><button class="btn btn-sm btn-secondary" onclick="editBlock(\''+b.id+'\')">✏️</button><button class="btn btn-sm btn-danger" onclick="removeBlock(\''+b.id+'\')">✕</button></div></div>').join(''):'<p style="color:var(--text-muted);font-size:0.85rem">No quick blocks yet.</p>';
+  const published=appData.materials.filter(m=>m.status==='Published'||m.status==='Ready to Sell');
+  document.getElementById('templates-list').innerHTML=published.length?published.map(m=>'<div class="quick-block"><div class="text">📄 '+m.title+'</div><button class="btn btn-sm btn-secondary" onclick="cloneMaterial(\''+m.id+'\')">Clone</button></div>').join(''):'<p style="color:var(--text-muted);font-size:0.85rem">Published materials will appear here.</p>';
+}
+function addCredential(){const inp=document.getElementById('new-cred');const v=inp.value.trim();if(!v)return;appData.credentials.push(v);saveData();inp.value='';renderLibrary();showToast('Credential added!');}
+function removeCred(i){appData.credentials.splice(i,1);saveData();renderLibrary();}
+function showAddBlockModal(){showModal('<h3>Add Quick Block</h3><div class="form-group"><label>Block Name</label><input type="text" id="block-name" placeholder="e.g., Safety Disclaimer"></div><div class="form-group"><label>Block Content</label><textarea id="block-text" rows="5" placeholder="Reusable text content..."></textarea></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewBlock()">Save Block</button></div>');}
+function saveNewBlock(){const name=document.getElementById('block-name').value.trim();const text=document.getElementById('block-text').value.trim();if(!name||!text){showToast('Fill in both fields','error');return;}appData.quickBlocks.push({id:genId(),name,text});saveData();closeModal();renderLibrary();showToast('Block saved!');}
+function editBlock(id){const b=appData.quickBlocks.find(x=>x.id===id);showModal('<h3>Edit Quick Block</h3><div class="form-group"><label>Block Name</label><input type="text" id="block-name" value="'+b.name+'"></div><div class="form-group"><label>Block Content</label><textarea id="block-text" rows="5">'+b.text+'</textarea></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="updateBlock(\''+id+'\')">Update</button></div>');}
+function updateBlock(id){const b=appData.quickBlocks.find(x=>x.id===id);b.name=document.getElementById('block-name').value.trim();b.text=document.getElementById('block-text').value.trim();saveData();closeModal();renderLibrary();showToast('Block updated!');}
+function removeBlock(id){appData.quickBlocks=appData.quickBlocks.filter(x=>x.id!==id);saveData();renderLibrary();}
+function cloneMaterial(id){const m=appData.materials.find(x=>x.id===id);const clone=JSON.parse(JSON.stringify(m));clone.id=genId();clone.title=m.title+' (Copy)';clone.status='Outline';clone.created=new Date().toISOString();clone.updated=new Date().toISOString();appData.materials.push(clone);saveData();showToast('Material cloned!');navigateTo('dashboard');}
 
-function addCredential(){const inp=document.getElementById('new-cred');const v=inp.value.trim();if(!v)return;appData.credentials.push(v);saveData();inp.value='';renderLibrary();showToast('Credential added!')}
-function removeCred(i){appData.credentials.splice(i,1);saveData();renderLibrary()}
-function showAddBlockModal(){showModal(`<h3>Add Quick Block</h3><div class="form-group"><label>Block Name</label><input type="text" id="block-name" placeholder="e.g., Safety Disclaimer"></div><div class="form-group"><label>Block Content</label><textarea id="block-text" rows="5" placeholder="The reusable text content..."></textarea></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewBlock()">Save Block</button></div>`)}
-function saveNewBlock(){const name=document.getElementById('block-name').value.trim();const text=document.getElementById('block-text').value.trim();if(!name||!text){showToast('Fill in both fields','error');return}appData.quickBlocks.push({id:genId(),name,text});saveData();closeModal();renderLibrary();showToast('Block saved!')}
-function editBlock(id){const b=appData.quickBlocks.find(x=>x.id===id);showModal(`<h3>Edit Quick Block</h3><div class="form-group"><label>Block Name</label><input type="text" id="block-name" value="${b.name}"></div><div class="form-group"><label>Block Content</label><textarea id="block-text" rows="5">${b.text}</textarea></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="updateBlock('${id}')">Update</button></div>`)}
-function updateBlock(id){const b=appData.quickBlocks.find(x=>x.id===id);b.name=document.getElementById('block-name').value.trim();b.text=document.getElementById('block-text').value.trim();saveData();closeModal();renderLibrary();showToast('Block updated!')}
-function removeBlock(id){appData.quickBlocks=appData.quickBlocks.filter(x=>x.id!==id);saveData();renderLibrary()}
-function cloneMaterial(id){const m=appData.materials.find(x=>x.id===id);const clone={...m,id:genId(),title:m.title+' (Copy)',status:'Outline',created:new Date().toISOString(),updated:new Date().toISOString()};appData.materials.push(clone);saveData();showToast('Material cloned!');navigateTo('dashboard')}
-
-// ===================== CONTENT CALENDAR =====================
+// CALENDAR
 function renderCalendar(){
-const year=appData.settings.currentYear;const month=appData.settings.currentMonth;
-document.getElementById('calendar-month').textContent=new Date(year,month).toLocaleString('default',{month:'long',year:'numeric'});
-const grid=document.getElementById('calendar-grid');
-const firstDay=new Date(year,month,1).getDay();
-const daysInMonth=new Date(year,month+1,0).getDate();
-const today=new Date();
-let html='<div class="calendar-day" style="font-weight:600;background:transparent;border:none">Sun</div><div class="calendar-day" style="font-weight:600;background:transparent;border:none">Mon</div><div class="calendar-day" style="font-weight:600;background:transparent;border:none">Tue</div><div class="calendar-day" style="font-weight:600;background:transparent;border:none">Wed</div><div class="calendar-day" style="font-weight:600;background:transparent;border:none">Thu</div><div class="calendar-day" style="font-weight:600;background:transparent;border:none">Fri</div><div class="calendar-day" style="font-weight:600;background:transparent;border:none">Sat</div>';
-for(let i=0;i<firstDay;i++)html+='<div class="calendar-day" style="opacity:0.3"></div>';
-for(let d=1;d<=daysInMonth;d++){
-const dateStr=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-const items=appData.calendarItems.filter(x=>x.date===dateStr);
-const isToday=today.getFullYear()===year&&today.getMonth()===month&&today.getDate()===d;
-const hasItem=items.length>0;
-html+=`<div class="calendar-day${hasItem?' has-item':''}" style="${isToday?'border-color:var(--white);':''}" onclick="calendarDayClick('${dateStr}')"><div class="day-num">${d}</div>${items.map(i=>`<div class="day-item">${i.title}</div>`).join('')}</div>`}
-grid.innerHTML=html;
-// Render scheduled items list
-const itemsEl=document.getElementById('calendar-items');
-const allItems=appData.calendarItems.filter(x=>{const d=new Date(x.date);return d.getMonth()===month&&d.getFullYear()===year}).sort((a,b)=>a.date.localeCompare(b.date));
-if(!allItems.length){itemsEl.innerHTML='<div class="empty-state"><div class="icon">📅</div><p>No items scheduled this month.</p></div>';return}
-itemsEl.innerHTML=allItems.map(i=>`<div class="quick-block"><div class="text"><strong>${i.date}</strong> — ${i.title}</div><button class="btn btn-sm btn-danger" onclick="removeCalItem('${i.id}')">✕</button></div>`).join('')}
+  const year=appData.settings.currentYear||new Date().getFullYear();
+  const month=appData.settings.currentMonth||0;
+  document.getElementById('calendar-month').textContent=new Date(year,month).toLocaleString('default',{month:'long',year:'numeric'});
+  const grid=document.getElementById('calendar-grid');
+  const firstDay=new Date(year,month,1).getDay();
+  const daysInMonth=new Date(year,month+1,0).getDate();
+  const today=new Date();
+  let html=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>'<div class="calendar-day" style="font-weight:600;background:transparent;border:none;cursor:default">'+d+'</div>').join('');
+  for(let i=0;i<firstDay;i++)html+='<div class="calendar-day" style="opacity:0.3;cursor:default"></div>';
+  for(let d=1;d<=daysInMonth;d++){const ds=year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');const items=appData.calendarItems.filter(x=>x.date===ds);const isToday=today.getFullYear()===year&&today.getMonth()===month&&today.getDate()===d;html+='<div class="calendar-day'+(items.length?' has-item':'')+'" style="'+(isToday?'border-color:var(--white);font-weight:bold':'')+'" onclick="calendarDayClick(\''+ds+'\')"><div class="day-num">'+d+'</div>'+items.map(i=>'<div class="day-item">'+i.title+'</div>').join('')+'</div>';}
+  grid.innerHTML=html;
+  const allItems=appData.calendarItems.filter(x=>{const dd=new Date(x.date);return dd.getMonth()===month&&dd.getFullYear()===year;}).sort((a,b)=>a.date.localeCompare(b.date));
+  document.getElementById('calendar-items').innerHTML=allItems.length?allItems.map(i=>'<div class="quick-block"><div class="text"><strong>'+i.date+'</strong> — '+i.title+'</div><button class="btn btn-sm btn-danger" onclick="removeCalItem(\''+i.id+'\')">✕</button></div>').join(''):'<div class="empty-state"><div class="icon">📅</div><p>No items scheduled this month.</p></div>';
+}
+function changeMonth(dir){appData.settings.currentMonth=(appData.settings.currentMonth||0)+dir;if(appData.settings.currentMonth>11){appData.settings.currentMonth=0;appData.settings.currentYear=(appData.settings.currentYear||new Date().getFullYear())+1;}if(appData.settings.currentMonth<0){appData.settings.currentMonth=11;appData.settings.currentYear=(appData.settings.currentYear||new Date().getFullYear())-1;}saveData();renderCalendar();}
+function calendarDayClick(date){showModal('<h3>📅 Schedule for '+date+'</h3><div class="form-group"><label>Title</label><input type="text" id="cal-title" placeholder="What are you working on?"></div><div class="form-group"><label>Notes</label><textarea id="cal-notes" placeholder="Optional notes..."></textarea></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="addCalItem(\''+date+'\')">Add</button></div>');}
+function addCalItem(date){const title=document.getElementById('cal-title').value.trim();if(!title){showToast('Enter a title','error');return;}appData.calendarItems.push({id:genId(),date,title,notes:document.getElementById('cal-notes').value});saveData();closeModal();renderCalendar();showToast('Item scheduled!');}
+function removeCalItem(id){appData.calendarItems=appData.calendarItems.filter(x=>x.id!==id);saveData();renderCalendar();}
 
-function changeMonth(dir){appData.settings.currentMonth+=dir;if(appData.settings.currentMonth>11){appData.settings.currentMonth=0;appData.settings.currentYear++}if(appData.settings.currentMonth<0){appData.settings.currentMonth=11;appData.settings.currentYear--}saveData();renderCalendar()}
-function calendarDayClick(date){showModal(`<h3>📅 Schedule Item for ${date}</h3><div class="form-group"><label>Title / Material</label><input type="text" id="cal-title" placeholder="What are you working on?"></div><div class="form-group"><label>Notes</label><textarea id="cal-notes" placeholder="Optional notes..."></textarea></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="addCalItem('${date}')">Add to Calendar</button></div>`)}
-function addCalItem(date){const title=document.getElementById('cal-title').value.trim();if(!title){showToast('Enter a title','error');return}appData.calendarItems.push({id:genId(),date,title,notes:document.getElementById('cal-notes').value});saveData();closeModal();renderCalendar();showToast('Item scheduled!')}
-function removeCalItem(id){appData.calendarItems=appData.calendarItems.filter(x=>x.id!==id);saveData();renderCalendar()}
-
-// ===================== SALES TRACKER =====================
+// SALES
 function renderSales(){
-const sales=appData.sales;
-const totalRev=sales.reduce((s,x)=>s+parseFloat(x.revenue||0),0);
-const totalUnits=sales.reduce((s,x)=>s+parseInt(x.units||0),0);
-document.getElementById('stat-revenue').textContent='$'+totalRev.toFixed(2);
-document.getElementById('stat-units').textContent=totalUnits;
-document.getElementById('stat-avg-price').textContent=totalUnits?'$'+(totalRev/totalUnits).toFixed(2):'$0';
-const tbody=document.getElementById('sales-tbody');
-tbody.innerHTML=sales.length?sales.map(s=>`<tr><td>${s.material}</td><td>${s.platform}</td><td>${s.units}</td><td>$${parseFloat(s.revenue).toFixed(2)}</td><td style="font-size:0.8rem;color:var(--text-muted)">${s.notes||'—'}</td></tr>`).join(''):'<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:20px">No sales logged yet</td></tr>'}
+  const sales=appData.sales;
+  const totalRev=sales.reduce((s,x)=>s+parseFloat(x.revenue||0),0);
+  const totalUnits=sales.reduce((s,x)=>s+parseInt(x.units||0),0);
+  document.getElementById('st-revenue').textContent='$'+totalRev.toFixed(2);
+  document.getElementById('st-units').textContent=totalUnits;
+  document.getElementById('st-avg').textContent=totalUnits?'$'+(totalRev/totalUnits).toFixed(2):'$0';
+  document.getElementById('sales-tbody').innerHTML=sales.length?sales.map(s=>'<tr><td>'+s.material+'</td><td>'+s.platform+'</td><td>'+s.units+'</td><td>$'+parseFloat(s.revenue).toFixed(2)+'</td><td style="font-size:0.8rem;color:var(--text-muted)">'+(s.notes||'—')+'</td></tr>').join(''):'<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:20px">No sales logged yet</td></tr>';
+}
+function showAddSaleModal(){const opts=appData.materials.map(m=>'<option value="'+m.title+'">'+m.title+'</option>').join('');showModal('<h3>💰 Log a Sale</h3><div class="form-group"><label>Material</label><select id="sale-material"><option value="">Select...</option>'+opts+'<option value="__custom">Custom entry...</option></select></div><div class="form-group"><label>Platform</label><select id="sale-platform"><option value="Gumroad">Gumroad</option><option value="Teachable">Teachable</option><option value="Other">Other</option></select></div><div class="form-row"><div class="form-group"><label>Units Sold</label><input type="number" id="sale-units" value="1"></div><div class="form-group"><label>Revenue ($)</label><input type="number" id="sale-revenue" step="0.01" placeholder="0.00"></div></div><div class="form-group"><label>Notes</label><input type="text" id="sale-notes" placeholder="Optional"></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-success" onclick="saveSale()">Log Sale</button></div>');}
+function saveSale(){const mat=document.getElementById('sale-material').value;const rev=document.getElementById('sale-revenue').value;if(!mat||!rev){showToast('Fill material and revenue','error');return;}appData.sales.push({id:genId(),material:mat,platform:document.getElementById('sale-platform').value,units:document.getElementById('sale-units').value||1,revenue:rev,notes:document.getElementById('sale-notes').value,date:new Date().toISOString()});saveData();closeModal();renderSales();showToast('Sale logged!');}
 
-function showAddSaleModal(){
-const matOptions=appData.materials.map(m=>`<option value="${m.title}">${m.title}</option>`).join('');
-showModal(`<h3>💰 Log a Sale</h3><div class="form-group"><label>Material</label><select id="sale-material"><option value="">Select material...</option>${matOptions}<option value="__custom">Custom entry...</option></select></div><div class="form-group"><label>Platform</label><select id="sale-platform"><option value="Gumroad">Gumroad</option><option value="Teachable">Teachable</option><option value="Blog">Blog</option><option value="Other">Other</option></select></div><div class="form-row"><div class="form-group"><label>Units Sold</label><input type="number" id="sale-units" value="1"></div><div class="form-group"><label>Revenue ($)</label><input type="number" id="sale-revenue" step="0.01" placeholder="0.00"></div></div><div class="form-group"><label>Notes</label><input type="text" id="sale-notes" placeholder="Optional notes"></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button><button class="btn btn-success" onclick="saveSale()">Log Sale</button></div>`)}
-function saveSale(){const mat=document.getElementById('sale-material').value;const units=document.getElementById('sale-units').value;const rev=document.getElementById('sale-revenue').value;if(!mat||!rev){showToast('Fill material and revenue','error');return}appData.sales.push({id:genId(),material:mat,platform:document.getElementById('sale-platform').value,units:units||1,revenue:rev,notes:document.getElementById('sale-notes').value,date:new Date().toISOString()});saveData();closeModal();renderSales();showToast('Sale logged!')}
+// PUBLISH CHECKLIST
+function renderChecklist(){
+  if(!appData.publishChecklist)appData.publishChecklist=defaultData().publishChecklist;
+  const done=appData.publishChecklist.filter(x=>x.done).length;
+  const total=appData.publishChecklist.length;
+  document.getElementById('checklist-container').innerHTML='<div style="margin-bottom:16px"><div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:6px"><span style="color:var(--text-muted)">Progress</span><span style="color:var(--success);font-weight:600">'+done+'/'+total+' complete</span></div><div class="progress-bar"><div class="fill" style="width:'+Math.round(done/total*100)+'%"></div></div></div>'+appData.publishChecklist.map(item=>'<div class="checklist-item'+(item.done?' done':'')+'" id="cli-'+item.id+'"><div class="ck" onclick="toggleCheck2(\''+item.id+'\')">✓</div><span>'+item.text+'</span></div>').join('');
+}
+function toggleCheck2(id){const item=appData.publishChecklist.find(x=>x.id===id);if(item){item.done=!item.done;saveData();renderChecklist();}}
 
-// ===================== PREVIEW & EXPORT =====================
+// PREVIEW & EXPORT
 function previewMaterial(){
-const title=document.getElementById('inp-title').value||'Untitled Material';
-const audience=document.getElementById('inp-audience').value||'';
-let html=`<h3>👁️ Preview</h3><div class="preview-pane"><h1>${title}</h1>`;
-if(audience)html+=`<p style="color:#666;font-style:italic">For: ${audience}</p>`;
-html+=`<p style="color:#666;font-size:0.85rem">By ${appData.settings.name||'JT Cotton'} | ${appData.settings.tagline||''}</p><hr style="margin:16px 0">`;
-if(generatedData.objectives)html+=`<h2>Learning Objectives</h2><p>${generatedData.objectives.replace(/\n/g,'<br>')}</p>`;
-if(generatedData.modules)html+=`<h2>Course Outline</h2><p>${generatedData.modules.replace(/\n/g,'<br>')}</p>`;
-if(generatedData.takeaways)html+=`<h2>Key Takeaways</h2><p>${generatedData.takeaways.replace(/\n/g,'<br>')}</p>`;
-if(generatedData.quiz)html+=`<h2>Assessment</h2><p>${generatedData.quiz.replace(/\n/g,'<br>')}</p>`;
-if(generatedData.resources)html+=`<h2>Resources</h2><p>${generatedData.resources.replace(/\n/g,'<br>')}</p>`;
-if(generatedData.cta)html+=`<h2>Next Steps</h2><p>${generatedData.cta.replace(/\n/g,'<br>')}</p>`;
-html+=`</div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Close</button><button class="btn btn-primary" onclick="closeModal();exportMaterial()">Export</button></div>`;
-showModal(html)}
+  const title=document.getElementById('inp-title').value||'Untitled';
+  const audience=document.getElementById('inp-audience').value||'';
+  let html='<h3>👁️ Preview</h3><div class="preview-pane"><h1>'+title+'</h1>';
+  if(audience)html+='<p style="color:#666;font-style:italic">For: '+audience+'</p>';
+  html+='<p style="color:#666;font-size:0.85rem">By '+(appData.settings.name||'JT Cotton')+' | '+(appData.settings.tagline||'')+'</p><hr style="margin:16px 0">';
+  if(generatedData.objectives)html+='<h2>Learning Objectives</h2><p>'+generatedData.objectives.replace(/\n/g,'<br>')+'</p>';
+  if(generatedData.modules)html+='<h2>Course Outline</h2><p>'+generatedData.modules.replace(/\n/g,'<br>')+'</p>';
+  if(generatedData.takeaways)html+='<h2>Key Takeaways</h2><p>'+generatedData.takeaways.replace(/\n/g,'<br>')+'</p>';
+  if(generatedData.quiz)html+='<h2>Assessment</h2><p>'+generatedData.quiz.replace(/\n/g,'<br>')+'</p>';
+  if(generatedData.resources)html+='<h2>Resources</h2><p>'+generatedData.resources.replace(/\n/g,'<br>')+'</p>';
+  if(generatedData.cta)html+='<h2>Next Steps</h2><p>'+generatedData.cta.replace(/\n/g,'<br>')+'</p>';
+  html+='</div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Close</button><button class="btn btn-primary" onclick="closeModal();exportMaterial()">Export</button></div>';
+  showModal(html);
+}
+function exportMaterial(){const title=document.getElementById('inp-title').value||'Untitled';showModal('<h3>📤 Export: '+title+'</h3><div class="export-options"><div class="export-card" onclick="exportAsPDF()"><div class="icon">📄</div><div class="name">PDF</div><div class="desc">For selling on Gumroad</div></div><div class="export-card" onclick="exportAsMarkdown()"><div class="icon">📝</div><div class="name">Markdown</div><div class="desc">For Gumroad/blog</div></div><div class="export-card" onclick="exportAsText()"><div class="icon">📋</div><div class="name">Plain Text</div><div class="desc">Copy-paste anywhere</div></div><div class="export-card" onclick="exportAsHTML()"><div class="icon">🌐</div><div class="name">HTML</div><div class="desc">Formatted web page</div></div></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button></div>');}
 
-function exportMaterial(){
-const title=document.getElementById('inp-title').value||'Untitled';
-showModal(`<h3>📤 Export: ${title}</h3><div class="export-options"><div class="export-card" onclick="exportAsPDF()"><div class="icon">📄</div><div class="name">PDF</div><div class="desc">Polished document with branding</div></div><div class="export-card" onclick="exportAsMarkdown()"><div class="icon">📝</div><div class="name">Markdown</div><div class="desc">For Gumroad / blog paste</div></div><div class="export-card" onclick="exportAsText()"><div class="icon">📋</div><div class="name">Plain Text</div><div class="desc">Copy-paste anywhere</div></div><div class="export-card" onclick="exportAsHTML()"><div class="icon">🌐</div><div class="name">HTML</div><div class="desc">Formatted web page</div></div></div><div class="modal-actions"><button class="btn btn-secondary" onclick="closeModal()">Cancel</button></div>`)}
+function getWC(){return Object.values(generatedData).join(' ').trim().split(/\s+/).length;}
 
-function exportAsMarkdown(){
-const title=document.getElementById('inp-title').value||'Untitled';
-const audience=document.getElementById('inp-audience').value||'';
-let md=`# ${title}\n\n`;
-if(audience)md+=`*Target Audience: ${audience}*\n\n`;
-md+=`*By ${appData.settings.name||'JT Cotton'}*\n\n---\n\n`;
-if(generatedData.objectives)md+=`## Learning Objectives\n\n${generatedData.objectives}\n\n`;
-if(generatedData.modules)md+=`## Course Outline\n\n${generatedData.modules}\n\n`;
-if(generatedData.takeaways)md+=`## Key Takeaways\n\n${generatedData.takeaways}\n\n`;
-if(generatedData.quiz)md+=`## Assessment Questions\n\n${generatedData.quiz}\n\n`;
-if(generatedData.resources)md+=`## Resources\n\n${generatedData.resources}\n\n`;
-if(generatedData.cta)md+=`## Next Steps\n\n${generatedData.cta}\n\n`;
-downloadFile(title+'.md',md,'text/markdown');closeModal()}
+function exportAsMarkdown(){const title=document.getElementById('inp-title').value||'Untitled';const audience=document.getElementById('inp-audience').value||'';let md='# '+title+'\n\n';if(audience)md+='*Target Audience: '+audience+'*\n\n';md+='*By '+(appData.settings.name||'JT Cotton')+' | Est. '+getWC().toLocaleString()+' words*\n\n---\n\n';if(generatedData.objectives)md+='## Learning Objectives\n\n'+generatedData.objectives+'\n\n';if(generatedData.modules)md+='## Course Outline\n\n'+generatedData.modules+'\n\n';if(generatedData.takeaways)md+='## Key Takeaways\n\n'+generatedData.takeaways+'\n\n';if(generatedData.quiz)md+='## Assessment\n\n'+generatedData.quiz+'\n\n';if(generatedData.resources)md+='## Resources\n\n'+generatedData.resources+'\n\n';if(generatedData.cta)md+='## Next Steps\n\n'+generatedData.cta+'\n\n';md+='\n---\n*© 2026 '+(appData.settings.name||'JT Cotton')+'. All Rights Reserved.*';downloadFile(title+'.md',md,'text/markdown');closeModal();}
+function exportAsText(){const title=document.getElementById('inp-title').value||'Untitled';let txt=title+'\n'+'='.repeat(title.length)+'\nBy '+(appData.settings.name||'JT Cotton')+' | '+getWC().toLocaleString()+' words\n\n';txt+=Object.values(generatedData).filter(Boolean).join('\n\n---\n\n');downloadFile(title+'.txt',txt,'text/plain');closeModal();}
+function exportAsHTML(){const title=document.getElementById('inp-title').value||'Untitled';const audience=document.getElementById('inp-audience').value||'';let html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>'+title+'</title><style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;padding:20px;line-height:1.8;color:#222}h1{color:#BA0C2F}h2{color:#333;border-bottom:2px solid #BA0C2F;padding-bottom:8px;margin-top:32px}pre{background:#f5f5f5;padding:16px;border-radius:8px;white-space:pre-wrap;border-left:4px solid #BA0C2F}.meta{color:#666;font-style:italic}footer{margin-top:40px;padding-top:16px;border-top:1px solid #ddd;color:#999;font-size:0.8rem;text-align:center}</style></head><body>';html+='<h1>'+title+'</h1><p class="meta">By '+(appData.settings.name||'JT Cotton')+' | '+audience+' | '+getWC().toLocaleString()+' words</p><hr>';if(generatedData.objectives)html+='<h2>Learning Objectives</h2><pre>'+generatedData.objectives+'</pre>';if(generatedData.modules)html+='<h2>Course Outline</h2><pre>'+generatedData.modules+'</pre>';if(generatedData.takeaways)html+='<h2>Key Takeaways</h2><pre>'+generatedData.takeaways+'</pre>';if(generatedData.quiz)html+='<h2>Assessment</h2><pre>'+generatedData.quiz+'</pre>';if(generatedData.resources)html+='<h2>Resources</h2><pre>'+generatedData.resources+'</pre>';if(generatedData.cta)html+='<h2>Next Steps</h2><pre>'+generatedData.cta+'</pre>';html+='<footer>© 2026 '+(appData.settings.name||'JT Cotton')+'. All Rights Reserved.</footer></body></html>';downloadFile(title+'.html',html,'text/html');closeModal();}
+function exportAsPDF(){const title=document.getElementById('inp-title').value||'Untitled';const audience=document.getElementById('inp-audience').value||'';const pw=window.open('','_blank');pw.document.write('<!DOCTYPE html><html><head><title>'+title+'</title><style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;padding:20px;line-height:1.8;color:#222}h1{color:#BA0C2F;font-size:2rem}h2{color:#333;border-bottom:2px solid #BA0C2F;padding-bottom:6px;margin-top:30px}pre{white-space:pre-wrap;font-family:inherit;background:#f9f9f9;padding:16px;border-radius:8px;border-left:4px solid #BA0C2F}.meta{color:#666;font-style:italic}footer{margin-top:40px;padding-top:12px;border-top:1px solid #ddd;color:#999;font-size:0.75rem;text-align:center}@media print{body{margin:0;padding:20px}}</style></head><body>');pw.document.write('<h1>'+title+'</h1><p class="meta">By '+(appData.settings.name||'JT Cotton')+' | Audience: '+audience+'</p><p class="meta">Credentials: '+appData.credentials.join(' • ')+' | '+getWC().toLocaleString()+' words</p><hr>');if(generatedData.objectives)pw.document.write('<h2>Learning Objectives</h2><pre>'+generatedData.objectives+'</pre>');if(generatedData.modules)pw.document.write('<h2>Course Outline</h2><pre>'+generatedData.modules+'</pre>');if(generatedData.takeaways)pw.document.write('<h2>Key Takeaways</h2><pre>'+generatedData.takeaways+'</pre>');if(generatedData.quiz)pw.document.write('<h2>Assessment</h2><pre>'+generatedData.quiz+'</pre>');if(generatedData.resources)pw.document.write('<h2>Resources</h2><pre>'+generatedData.resources+'</pre>');if(generatedData.cta)pw.document.write('<h2>Next Steps</h2><pre>'+generatedData.cta+'</pre>');pw.document.write('<footer>© 2026 '+(appData.settings.name||'JT Cotton')+'. All Rights Reserved.</footer></body></html>');pw.document.close();setTimeout(()=>pw.print(),500);closeModal();}
+function downloadFile(filename,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);showToast('Exported: '+filename);}
 
-function exportAsText(){
-const title=document.getElementById('inp-title').value||'Untitled';
-let txt=`${title}\n${'='.repeat(title.length)}\n\n`;
-txt+=Object.values(generatedData).filter(Boolean).join('\n\n---\n\n');
-downloadFile(title+'.txt',txt,'text/plain');closeModal()}
+// SETTINGS
+function saveSettings(){appData.settings.aiProvider=document.getElementById('set-ai-provider').value;appData.settings.apiKey=document.getElementById('set-api-key').value;saveData();showToast('AI settings saved!');}
+function saveProfile(){appData.settings.name=document.getElementById('set-name').value;appData.settings.tagline=document.getElementById('set-tagline').value;appData.settings.mission=document.getElementById('set-mission').value;saveData();showToast('Profile saved!');}
+function exportAllData(){downloadFile('lesson_creator_backup.json',JSON.stringify(appData,null,2),'application/json');}
+function importData(){document.getElementById('importFile').click();}
+function handleImport(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(ev){try{appData=JSON.parse(ev.target.result);saveData();showToast('Data imported!');renderDashboard();}catch(err){showToast('Invalid file','error');}};reader.readAsText(file);}
+function clearAllData(){if(!confirm('Delete ALL data? Cannot be undone.'))return;localStorage.removeItem(DB_KEY);appData=defaultData();saveData();showToast('All data cleared');renderDashboard();}
+function loadSettings(){document.getElementById('set-ai-provider').value=appData.settings.aiProvider||'openai';document.getElementById('set-api-key').value=appData.settings.apiKey||'';document.getElementById('set-name').value=appData.settings.name||'JT Cotton';document.getElementById('set-tagline').value=appData.settings.tagline||'';document.getElementById('set-mission').value=appData.settings.mission||'';}
 
-function exportAsHTML(){
-const title=document.getElementById('inp-title').value||'Untitled';
-const audience=document.getElementById('inp-audience').value||'';
-let html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${title}</title><style>body{font-family:Georgia,serif;max-width:800px;margin:40px auto;padding:20px;line-height:1.8;color:#222}h1{color:#BA0C2F}h2{color:#333;border-bottom:2px solid #BA0C2F;padding-bottom:8px}pre{background:#f5f5f5;padding:16px;border-radius:8px;white-space:pre-wrap}.meta{color:#666;font-style:italic}</style></head><body>`;
-html+=`<h1>${title}</h1><p class="meta">By ${appData.settings.name||'JT Cotton'} | ${audience}</p><hr>`;
-if(generatedData.objectives)html+=`<h2>Learning Objectives</h2><pre>${generatedData.objectives}</pre>`;
-if(generatedData.modules)html+=`<h2>Course Outline</h2><pre>${generatedData.modules}</pre>`;
-if(generatedData.takeaways)html+=`<h2>Key Takeaways</h2><pre>${generatedData.takeaways}</pre>`;
-if(generatedData.quiz)html+=`<h2>Assessment</h2><pre>${generatedData.quiz}</pre>`;
-if(generatedData.resources)html+=`<h2>Resources</h2><pre>${generatedData.resources}</pre>`;
-if(generatedData.cta)html+=`<h2>Next Steps</h2><pre>${generatedData.cta}</pre>`;
-html+=`</body></html>`;
-downloadFile(title+'.html',html,'text/html');closeModal()}
-
-function exportAsPDF(){
-// Generate printable HTML and trigger print dialog
-const title=document.getElementById('inp-title').value||'Untitled';
-const audience=document.getElementById('inp-audience').value||'';
-const printWin=window.open('','_blank');
-printWin.document.write(`<!DOCTYPE html><html><head><title>${title}</title><style>body{font-family:Georgia,serif;max-width:700px;margin:40px auto;padding:20px;line-height:1.8;color:#222}h1{color:#BA0C2F;font-size:2rem}h2{color:#333;border-bottom:2px solid #BA0C2F;padding-bottom:6px;margin-top:30px}pre{white-space:pre-wrap;font-family:inherit;background:#f9f9f9;padding:16px;border-radius:8px;border-left:4px solid #BA0C2F}.meta{color:#666;font-style:italic}@media print{body{margin:0;padding:20px}}</style></head><body>`);
-printWin.document.write(`<h1>${title}</h1><p class="meta">By ${appData.settings.name||'JT Cotton'} | Audience: ${audience}</p><p class="meta">Credentials: ${appData.credentials.join(' • ')}</p><hr>`);
-if(generatedData.objectives)printWin.document.write(`<h2>Learning Objectives</h2><pre>${generatedData.objectives}</pre>`);
-if(generatedData.modules)printWin.document.write(`<h2>Course Outline</h2><pre>${generatedData.modules}</pre>`);
-if(generatedData.takeaways)printWin.document.write(`<h2>Key Takeaways</h2><pre>${generatedData.takeaways}</pre>`);
-if(generatedData.quiz)printWin.document.write(`<h2>Assessment</h2><pre>${generatedData.quiz}</pre>`);
-if(generatedData.resources)printWin.document.write(`<h2>Resources</h2><pre>${generatedData.resources}</pre>`);
-if(generatedData.cta)printWin.document.write(`<h2>Next Steps</h2><pre>${generatedData.cta}</pre>`);
-printWin.document.write(`</body></html>`);
-printWin.document.close();
-setTimeout(()=>printWin.print(),500);closeModal()}
-
-function downloadFile(filename,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;a.click();URL.revokeObjectURL(url);showToast(`Exported: ${filename}`)}
-
-// ===================== SETTINGS =====================
-function saveSettings(){appData.settings.aiProvider=document.getElementById('set-ai-provider').value;appData.settings.apiKey=document.getElementById('set-api-key').value;saveData();showToast('AI settings saved!')}
-function saveProfile(){appData.settings.name=document.getElementById('set-name').value;appData.settings.tagline=document.getElementById('set-tagline').value;appData.settings.mission=document.getElementById('set-mission').value;saveData();showToast('Profile saved!')}
-function exportAllData(){downloadFile('lesson_creator_backup.json',JSON.stringify(appData,null,2),'application/json')}
-function importData(){document.getElementById('importFile').click()}
-function handleImport(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=function(ev){try{appData=JSON.parse(ev.target.result);saveData();showToast('Data imported!');renderDashboard()}catch(err){showToast('Invalid file','error')}};reader.readAsText(file)}
-function clearAllData(){if(!confirm('This will delete ALL your data. Are you sure?'))return;if(!confirm('REALLY sure? This cannot be undone.'))return;localStorage.removeItem(DB_KEY);appData=defaultData();saveData();showToast('All data cleared');renderDashboard()}
-
-// ===================== INIT =====================
-function loadSettings(){
-document.getElementById('set-ai-provider').value=appData.settings.aiProvider||'openai';
-document.getElementById('set-api-key').value=appData.settings.apiKey||'';
-document.getElementById('set-name').value=appData.settings.name||'JT Cotton';
-document.getElementById('set-tagline').value=appData.settings.tagline||'';
-document.getElementById('set-mission').value=appData.settings.mission||''}
-
-// Tab switching for generated content
-document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',function(){
-document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');
-const tabs=['objectives','modules','takeaways','quiz','resources','cta'];
-const idx=[...this.parentElement.children].indexOf(this);
-activeGenTab=tabs[idx]||'objectives';
-document.getElementById('gen-content').textContent=generatedData[activeGenTab]||'(No content generated yet)';})});
-
-// Save edits from contenteditable
-document.getElementById('gen-content').addEventListener('blur',function(){generatedData[activeGenTab]=this.textContent});
-
-// ===================== PROTECTION =====================
-// Disable right-click context menu
+// PROTECTION
 document.addEventListener('contextmenu',e=>e.preventDefault());
-// Disable common copy shortcuts (Ctrl+U, Ctrl+S, F12)
-document.addEventListener('keydown',function(e){if(e.ctrlKey&&(e.key==='u'||e.key==='U'||e.key==='s'||e.key==='S')){e.preventDefault();showToast('This action is disabled','error')}if(e.key==='F12'){e.preventDefault();showToast('Developer tools are restricted','error')}if(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='i'||e.key==='J'||e.key==='j'||e.key==='C'||e.key==='c')){e.preventDefault();showToast('This action is disabled','error')}});
-// Console warning
+document.addEventListener('keydown',function(e){if(e.ctrlKey&&(e.key==='u'||e.key==='U'||e.key==='s'||e.key==='S')){e.preventDefault();showToast('This action is disabled','error');}if(e.key==='F12'){e.preventDefault();showToast('Developer tools restricted','error');}if(e.ctrlKey&&e.shiftKey&&['I','i','J','j','C','c'].includes(e.key)){e.preventDefault();showToast('This action is disabled','error');}});
 console.log('%c⚠️ STOP','font-size:40px;color:red;font-weight:bold');
-console.log('%c© 2026 JT Cotton. All Rights Reserved.\nThis application is protected intellectual property.\nUnauthorized copying, modification, or distribution is prohibited\nand will be pursued under U.S. Copyright Law.','font-size:14px;color:#BA0C2F');
+console.log('%c© 2026 JT Cotton. All Rights Reserved.\nProtected under U.S. Copyright Law.','font-size:14px;color:#BA0C2F');
 
-// Init
-renderDashboard();loadSettings();
+// INIT
+applyTheme();
+renderDashboard();
+loadSettings();
 </script>
 </body>
 </html>
